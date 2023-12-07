@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI vinamilk", "GUI vinamilk\GUI vinamilk.csproj", "{0AB12787-4D00-4AA5-8D46-F031A0EA477C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AB12787-4D00-4AA5-8D46-F031A0EA477C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB12787-4D00-4AA5-8D46-F031A0EA477C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB12787-4D00-4AA5-8D46-F031A0EA477C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB12787-4D00-4AA5-8D46-F031A0EA477C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64CDD90A-2865-4FAA-BD99-586D49A800E9}
+	EndGlobalSection
+EndGlobal
