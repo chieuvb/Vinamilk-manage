@@ -1,9 +1,11 @@
 ﻿using GUI_vinamilk.Controls.Extra;
+using GUI_vinamilk.Properties;
 using System;
 using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls
@@ -16,25 +18,27 @@ namespace GUI_vinamilk.Controls
         }
 
         readonly string folImage = @"C:\Vinamilk manage\image\products\";
-        string imagePath;
-        SanPham sanPham;
+        SanPham sanPham = new SanPham();
 
         private async void SanPhamUC_LoadAsync(object sender, EventArgs e)
         {
             try
             {
                 gro_boloc.Visible = false;
-                pan_chitiet.Visible = false;
+                //pan_chitiet.Visible = false;
+
+                await LoadData();
 
                 using (VinamilkEntities vin = new VinamilkEntities())
                 {
-                    dat_sanpham.DataSource = await vin.SanPhams.AsNoTracking().ToListAsync();
+                    string[] nhaSanXuats = await vin.NhaSanXuats.Select(nsx => nsx.tenNhaSanXuat).ToArrayAsync();
+                    com_nhasanxuat.Items.AddRange(nhaSanXuats);
 
-                    com_nhasanxuat.Items.AddRange(await vin.NhaSanXuats.Select(nsx => nsx.tenNhaSanXuat).ToArrayAsync());
+                    string[] doiTuongs = await vin.DoiTuongs.Select(dt => dt.tenDoiTuong).ToArrayAsync();
+                    com_doituong.Items.AddRange(doiTuongs);
 
-                    com_doituong.Items.AddRange(await vin.DoiTuongs.Select(doi => doi.tenDoiTuong).ToArrayAsync());
-
-                    com_donvi.Items.AddRange(await vin.DonVis.Select(don => don.tenDonVi).ToArrayAsync());
+                    string[] donVis = await vin.DonVis.Select(dv => dv.tenDonVi).ToArrayAsync();
+                    com_donvi.Items.AddRange(donVis);
                 }
 
                 if (!Directory.Exists(folImage))
@@ -48,133 +52,67 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private void Dat_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
+        async Task LoadData()
+        {
+            using (VinamilkEntities vin = new VinamilkEntities())
+            {
+                dat_sanpham.DataSource = await vin.SanPhams.AsNoTracking().ToListAsync();
+            }
+        }
+
+        private async void Dat_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                /*if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-                {
-                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
-                    pan_chitiet.Visible = true;
-
-                    SanPham sanPham = new SanPham
-                    {
-                        maSanPham = dat_sanpham["maSanPham", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        maNhaSanXuat = dat_sanpham["maNhaSanXuat", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        maDoiTuong = dat_sanpham["maDoiTuong", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        tenSanPham = dat_sanpham["tenSanPham", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        moTa = dat_sanpham["moTa", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        trangThai = Convert.ToBoolean(dat_sanpham["trangThai", e.RowIndex].Value ?? false)
-                    };
-
-                    tex_tensanpham.Text = sanPham.tenSanPham;
-                    tex_mota.Text = sanPham.moTa;
-
-                    using (VinamilkEntities vin = new VinamilkEntities())
-                    {
-                        NhaSanXuat nha = vin.NhaSanXuats.FirstOrDefault(n => n.maNhaSanXuat == sanPham.maNhaSanXuat);
-                        if (nha != null)
-                        {
-                            var item = com_nhasanxuat.Items.Cast<object>().FirstOrDefault(i => i.ToString() == nha.tenNhaSanXuat);
-                            if (item != null)
-                            {
-                                com_nhasanxuat.SelectedItem = item;
-                            }
-                            else
-                            {
-                                com_nhasanxuat.SelectedIndex = 0;
-                            }
-                        }
-
-                        DoiTuong doi = vin.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == sanPham.maDoiTuong);
-                        if (doi != null)
-                        {
-                            var item = com_doituong.Items.Cast<object>().FirstOrDefault(i => i.ToString() == doi.tenDoiTuong);
-                            if (item != null)
-                            {
-                                com_doituong.SelectedItem = item;
-                            }
-                            else
-                            {
-                                com_doituong.SelectedIndex = 0;
-                            }
-                        }
-                        che_trangthai.Checked = sanPham.trangThai;
-
-                        ChiTietSanPham chi = vin.ChiTietSanPhams.FirstOrDefault(s => s.maSanPham == sanPham.maSanPham);
-                        dat_nsx.Value = chi.ngaySanXuat;
-                        dat_hsd.Value = chi.ngayHetHan;
-
-                        tex_soluong.Text = chi.soLuong.ToString();
-
-                        DonVi don = vin.DonVis.FirstOrDefault(d => d.maDonVi == chi.maDonVi);
-                        com_donvi.SelectedItem = don.tenDonVi;
-
-                        tex_gianhap.Text = chi.giaNhap.ToString();
-                        tex_giaban.Text = chi.giaBan.ToString();
-
-                        string imagePath = folImage + chi.hinhAnh;
-                        if (File.Exists(imagePath))
-                        {
-                            pic_sanpham.Image = Image.FromFile(imagePath);
-                        }
-                        else
-                        {
-                            pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
-                            pic_sanpham.Image = Properties.Resources.icons8_no_image_96;
-                        }
-                    }
-                }
-
-
-                */
-
                 if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
                     pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
                     pan_chitiet.Visible = true;
 
-                    string maSanPham = dat_sanpham["maSanPham", e.RowIndex].Value?.ToString() ?? string.Empty;
+                    string maSanPham = dat_sanpham["maSanPhamC", e.RowIndex].Value?.ToString() ?? string.Empty;
 
                     using (VinamilkEntities vin = new VinamilkEntities())
                     {
-                        sanPham = vin.SanPhams.FirstOrDefault(s => s.maSanPham == maSanPham);
-                        if (sanPham != null)
+                        sanPham = await vin.SanPhams.FirstOrDefaultAsync(s => s.maSanPham == maSanPham);
+                        ChiTietSanPham chiTiet = await vin.ChiTietSanPhams.FirstOrDefaultAsync(c => c.maSanPham == maSanPham);
+                        NhaSanXuat nha = await vin.NhaSanXuats.FirstOrDefaultAsync(n => n.maNhaSanXuat == sanPham.maNhaSanXuat);
+                        DoiTuong doi = await vin.DoiTuongs.FirstOrDefaultAsync(d => d.maDoiTuong == sanPham.maDoiTuong);
+                        DonVi don = await vin.DonVis.FirstOrDefaultAsync(d => d.maDonVi == chiTiet.maDonVi);
+
+                        if (sanPham != null && chiTiet != null)
                         {
+                            tex_masanpham.Text = sanPham.maSanPham;
                             tex_tensanpham.Text = sanPham.tenSanPham;
                             tex_mota.Text = sanPham.moTa;
-
-                            NhaSanXuat nha = vin.NhaSanXuats.FirstOrDefault(n => n.maNhaSanXuat == sanPham.maNhaSanXuat);
                             com_nhasanxuat.SelectedItem = nha?.tenNhaSanXuat;
-
-                            DoiTuong doi = vin.DoiTuongs.FirstOrDefault(d => d.maDoiTuong == sanPham.maDoiTuong);
                             com_doituong.SelectedItem = doi?.tenDoiTuong;
-
                             che_trangthai.Checked = sanPham.trangThai;
 
-                            ChiTietSanPham chiTiet = vin.ChiTietSanPhams.FirstOrDefault(c => c.maSanPham == maSanPham);
-                            if (chiTiet != null)
+                            dat_nsx.Value = chiTiet.ngaySanXuat;
+                            dat_hsd.Value = chiTiet.ngayHetHan;
+                            tex_soluong.Text = chiTiet.soLuong.ToString();
+                            com_donvi.SelectedItem = don?.tenDonVi;
+                            tex_gianhap.Text = chiTiet.giaNhap.ToString();
+
+                            string fullPath = Path.Combine(folImage, chiTiet.hinhAnh);
+
+                            if (File.Exists(fullPath))
                             {
-                                dat_nsx.Value = chiTiet.ngaySanXuat;
-                                dat_hsd.Value = chiTiet.ngayHetHan;
-                                tex_soluong.Text = chiTiet.soLuong.ToString();
-
-                                DonVi don = vin.DonVis.FirstOrDefault(d => d.maDonVi == chiTiet.maDonVi);
-                                com_donvi.SelectedItem = don?.tenDonVi;
-
-                                tex_gianhap.Text = chiTiet.giaNhap.ToString();
-                                tex_giaban.Text = chiTiet.giaBan.ToString();
-
-                                string imagePath = folImage + chiTiet.hinhAnh;
-                                if (File.Exists(imagePath))
+                                Image image = Image.FromFile(fullPath);
+                                using (MemoryStream ms = new MemoryStream())
                                 {
-                                    pic_sanpham.Image = Image.FromFile(imagePath);
+                                    image.Save(ms, image.RawFormat);
+                                    byte[] imageBytes = ms.ToArray();
+                                    using (MemoryStream mem = new MemoryStream(imageBytes))
+                                    {
+                                        pic_sanpham.Image = Image.FromStream(mem);
+                                    }
                                 }
-                                else
-                                {
-                                    pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
-                                    pic_sanpham.Image = Properties.Resources.icons8_no_image_96;
-                                }
+                            }
+                            else
+                            {
+                                pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pic_sanpham.Image = Resources.icons8_no_image_96;
                             }
                         }
                     }
@@ -188,6 +126,9 @@ namespace GUI_vinamilk.Controls
 
         private void But_them_Click(object sender, EventArgs e)
         {
+            sanPham.maSanPham = GenerateMaSanPham();
+
+            pan_chitiet.Visible = true;
             foreach (Control con in pan_chitiet.Controls)
             {
                 switch (con)
@@ -205,9 +146,8 @@ namespace GUI_vinamilk.Controls
             }
 
             pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic_sanpham.Image = Properties.Resources.icons8_add_image_96;
+            pic_sanpham.Image = Resources.icons8_add_image_96;
             tex_tensanpham.Focus();
-            pan_chitiet.Visible = true;
         }
 
         private void But_luu_Click(object sender, EventArgs e)
@@ -225,7 +165,7 @@ namespace GUI_vinamilk.Controls
                     }
                     else
                     {
-                        UpdateSanPham(existingSanPham, vin);
+                        UpdateSanPham(vin, existingSanPham);
                     }
                 }
             }
@@ -237,62 +177,133 @@ namespace GUI_vinamilk.Controls
 
         private void ValidateInputs()
         {
-            try
+            if (string.IsNullOrEmpty(tex_tensanpham.Text))
             {
-                if (string.IsNullOrEmpty(tex_tensanpham.Text))
-                {
-                    throw new Exception("Bạn chưa nhập tên sản phẩm!");
-                }
-                else if (string.IsNullOrEmpty(tex_mota.Text))
-                {
-                    throw new Exception("Bạn cần mô tả cho sản phẩm!");
-                }
-                else if (com_nhasanxuat.SelectedIndex == 0)
-                {
-                    throw new Exception("Bạn cần chọn nhà sản xuất!");
-                }
-                else if (com_doituong.SelectedIndex == 0)
-                {
-                    throw new Exception("Bạn cần chọn đối tượng sử dụng!");
-                }
-                else if (dat_nsx.Value >= DateTime.Now)
-                {
-                    throw new Exception("Ngày sản xuất không hợp lệ!");
-                }
-                else if (dat_hsd.Value <= dat_nsx.Value)
-                {
-                    throw new Exception("Hạn sử dụng không hợp lệ!");
-                }
-                else if (string.IsNullOrEmpty(tex_soluong.Text))
-                {
-                    throw new Exception("Số lượng không hợp lệ!");
-                }
-                else if (com_donvi.SelectedIndex == 0)
-                {
-                    throw new Exception("Đơn vị tính không hợp lệ!");
-                }
-                else if (string.IsNullOrEmpty(tex_gianhap.Text))
-                {
-                    throw new Exception("Giá nhập không hợp lệ!");
-                }
+                throw new Exception("Bạn chưa nhập tên sản phẩm!");
             }
-            catch (Exception ex)
+            else if (string.IsNullOrEmpty(tex_mota.Text))
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception("Bạn cần mô tả cho sản phẩm!");
+            }
+            else if (com_nhasanxuat.SelectedIndex == 0)
+            {
+                throw new Exception("Bạn cần chọn nhà sản xuất!");
+            }
+            else if (com_doituong.SelectedIndex == 0)
+            {
+                throw new Exception("Bạn cần chọn đối tượng sử dụng!");
+            }
+            else if (dat_nsx.Value >= DateTime.Now)
+            {
+                throw new Exception("Ngày sản xuất không hợp lệ!");
+            }
+            else if (dat_hsd.Value <= dat_nsx.Value)
+            {
+                throw new Exception("Hạn sử dụng không hợp lệ!");
+            }
+            else if (string.IsNullOrEmpty(tex_soluong.Text))
+            {
+                throw new Exception("Số lượng không hợp lệ!");
+            }
+            else if (com_donvi.SelectedIndex == 0)
+            {
+                throw new Exception("Đơn vị tính không hợp lệ!");
+            }
+            else if (string.IsNullOrEmpty(tex_gianhap.Text))
+            {
+                throw new Exception("Giá nhập không hợp lệ!");
             }
         }
 
         private string GenerateMaSanPham()
         {
+            string tenSanPham = tex_tensanpham.Text.Replace(" ", "") ?? string.Empty;
+            string maSanPham = "sp" + (tenSanPham.Length >= 5 ? tenSanPham.Trim().Substring(0, 5) : tenSanPham);
 
+            int remainingLength = 10 - maSanPham.Length;
+            if (remainingLength > 0)
+            {
+                maSanPham += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
+            }
+
+            return maSanPham.ToLower();
         }
+
 
         private SanPham CreateSanPhamObject(string msp)
         {
+            using (VinamilkEntities vin = new VinamilkEntities())
+            {
+                string tenSanPham = tex_tensanpham.Text ?? string.Empty;
+                string moTa = tex_mota.Text ?? string.Empty;
+                bool trangThai = che_trangthai.Checked;
 
+                string selectedDoiTuong = com_doituong.SelectedItem?.ToString() ?? string.Empty;
+                string maDT = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == selectedDoiTuong)?.maDoiTuong ?? "";
+
+                string selectedNhaSanXuat = com_nhasanxuat.SelectedItem?.ToString() ?? string.Empty;
+                string maNX = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == selectedNhaSanXuat)?.maNhaSanXuat ?? "";
+
+                SanPham sanPham = new SanPham
+                {
+                    maSanPham = msp,
+                    tenSanPham = tenSanPham,
+                    moTa = moTa,
+                    maDoiTuong = maDT,
+                    maNhaSanXuat = maNX,
+                    trangThai = trangThai
+                };
+                return sanPham;
+            }
         }
 
-        private void AddNewSanPham(VinamilkEntities vin)
+        private ChiTietSanPham CreateChiTietSanPhamObject(string msp)
+        {
+            string hinhAnh = "no-image";
+            int giaNhap = int.Parse(tex_gianhap.Text ?? "0");
+            int giaBan = int.Parse(tex_giaban.Text ?? "0");
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = pic_sanpham.Image;
+                img.Save(ms, img.RawFormat);
+                byte[] imb = ms.ToArray();
+
+                using (MemoryStream bti = new MemoryStream(imb))
+                {
+                    pic_sanpham.Image = Image.FromStream(bti);
+
+                    if (imb != null)
+                    {
+                        hinhAnh = msp + ".png";
+
+                        Image imag = Image.FromStream(bti);
+                        imag.Save(folImage + hinhAnh, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+            }
+
+            using (VinamilkEntities vin = new VinamilkEntities())
+            {
+                string maDonVi = vin.DonVis.FirstOrDefault(d => d.tenDonVi == com_donvi.SelectedItem.ToString())?.maDonVi;
+
+                ChiTietSanPham chiTietSanPham = new ChiTietSanPham
+                {
+                    maChiTietSanPham = "ctsp" + DateTime.Now.ToString("ssffff"),
+                    maSanPham = msp,
+                    maDonVi = maDonVi,
+                    hinhAnh = hinhAnh,
+                    ngaySanXuat = dat_nsx.Value,
+                    ngayHetHan = dat_hsd.Value,
+                    giaNhap = giaNhap,
+                    giaBan = giaBan,
+                    soLuong = int.Parse(tex_soluong.Text ?? "0")
+                };
+                return chiTietSanPham;
+            }
+        }
+
+        private async void AddNewSanPham(VinamilkEntities vin)
         {
             string maSP = GenerateMaSanPham();
 
@@ -306,171 +317,142 @@ namespace GUI_vinamilk.Controls
             vin.ChiTietSanPhams.Add(chiTietSanPham);
             vin.SaveChanges();
 
-            SanPhamUC_LoadAsync(this, EventArgs.Empty);
+            await LoadData();
             MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void UpdateSanPham(SanPham existingSanPham, VinamilkEntities vin)
+        private async void UpdateSanPham(VinamilkEntities vin, SanPham sanPham)
         {
-            // Update the existingSanPham object properties here
-            // e.g., existingSanPham.tenSanPham = tex_tensanpham.Text;
+            NhaSanXuat nhaSanXuat = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == com_nhasanxuat.SelectedItem.ToString());
+            DoiTuong doiTuong = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == com_doituong.SelectedItem.ToString());
+            ChiTietSanPham chiTietSanPham = vin.ChiTietSanPhams.FirstOrDefault(c => c.maSanPham == sanPham.maSanPham);
+            DonVi donVi = vin.DonVis.FirstOrDefault(d => d.tenDonVi == com_donvi.SelectedItem.ToString());
 
-            // Save changes to the existing SanPham object
+            string oldAnh = chiTietSanPham.hinhAnh.Trim();
+            string newAnh = "no-image";
+
+            /*if (pic_sanpham.Image != null && pic_sanpham.Image != Resources.icons8_no_image_96)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Image image = pic_sanpham.Image;
+                    image.Save(ms, image.RawFormat);
+                    byte[] ibs = ms.ToArray();
+
+                    using (MemoryStream mem = new MemoryStream(ibs))
+                    {
+                        newAnh = sanPham.maSanPham + ".png";
+
+                        Image anh = Image.FromStream(mem);
+                        anh.Save(folImage + newAnh, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+            }*/
+
+            if (File.Exists(folImage + oldAnh))
+            {
+                pic_sanpham.Image.Dispose();
+                File.Delete(folImage + oldAnh);
+            }
+
+            if (pic_sanpham.Image != null && pic_sanpham.Image != Resources.icons8_no_image_96)
+            {
+                newAnh = sanPham.maSanPham + ".png";
+                pic_sanpham.Image.Save(folImage + newAnh, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
+            sanPham.maNhaSanXuat = nhaSanXuat.maNhaSanXuat;
+            sanPham.maDoiTuong = doiTuong.maDoiTuong;
+            sanPham.tenSanPham = tex_tensanpham.Text;
+            sanPham.moTa = tex_mota.Text;
+            sanPham.trangThai = che_trangthai.Checked;
+
+            chiTietSanPham.maDonVi = donVi.maDonVi;
+            chiTietSanPham.hinhAnh = newAnh;
+            chiTietSanPham.ngaySanXuat = dat_nsx.Value;
+            chiTietSanPham.ngayHetHan = dat_hsd.Value;
+            chiTietSanPham.giaNhap = double.Parse(tex_giaban.Text);
+            chiTietSanPham.giaBan = double.Parse(tex_gianhap.Text);
+            chiTietSanPham.soLuong = int.Parse(tex_soluong.Text);
+
             vin.SaveChanges();
 
-            // Show success message or handle further updates if necessary
+            await LoadData();
+            MessageBox.Show("Sửa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
-        /*private void But_luu_Click(object sender, EventArgs e)
+        private async void But_xoa_Click(object sender, EventArgs e)
         {
+            /*try
+            {
+                DialogResult dr = MessageBox.Show("Bạn có thực sự muốn xóa sản phẩm: \"" + tex_tensanpham.Text + "\"?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Yes)
+                {
+                    using (VinamilkEntities vin = new VinamilkEntities())
+                    {
+                        SanPham sanPham = vin.SanPhams.FirstOrDefault(s => s.maSanPham == tex_masanpham.Text);
+                        ChiTietSanPham chiTiet = vin.ChiTietSanPhams.FirstOrDefault(c => c.maSanPham == tex_masanpham.Text);
+                        if (sanPham != null && chiTiet != null)
+                        {
+                            File.Delete(folImage + chiTiet.hinhAnh);
+                            vin.ChiTietSanPhams.Remove(chiTiet);
+                            vin.SanPhams.Remove(sanPham);
+                            vin.SaveChanges();
+
+                            await LoadData();
+                            MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy sản phẩm để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+
             try
             {
-                if (string.IsNullOrEmpty(tex_tensanpham.Text))
+                DialogResult dr = MessageBox.Show("Bạn có thực sự muốn xóa sản phẩm: \"" + tex_tensanpham.Text + "\"?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Yes)
                 {
-                    throw new Exception("Bạn chưa nhập tên sản phẩm!");
-                }
-                else if (string.IsNullOrEmpty(tex_mota.Text))
-                {
-                    throw new Exception("Bạn cần mô tả cho sản phẩm!");
-                }
-                else if (com_nhasanxuat.SelectedIndex == 0)
-                {
-                    throw new Exception("Bạn cần chọn nhà sản xuất!");
-                }
-                else if (com_doituong.SelectedIndex == 0)
-                {
-                    throw new Exception("Bạn cần chọn đối tượng sử dụng!");
-                }
-                else if (dat_nsx.Value >= DateTime.Now)
-                {
-                    throw new Exception("Ngày sản xuất không hợp lệ!");
-                }
-                else if (dat_hsd.Value <= dat_nsx.Value)
-                {
-                    throw new Exception("Hạn sử dụng không hợp lệ!");
-                }
-                else if (string.IsNullOrEmpty(tex_soluong.Text))
-                {
-                    throw new Exception("Số lượng không hợp lệ!");
-                }
-                else if (com_donvi.SelectedIndex == 0)
-                {
-                    throw new Exception("Đơn vị tính không hợp lệ!");
-                }
-                else if (string.IsNullOrEmpty(tex_gianhap.Text))
-                {
-                    throw new Exception("Giá nhập không hợp lệ!");
-                }
-
-                using (VinamilkEntities vin = new VinamilkEntities())
-                {
-                    */
-        /*SanPham sanP = vin.SanPhams.FirstOrDefault(s => s.maSanPham == sanPham.maSanPham);
-                    if (sanP != null)
+                    using (VinamilkEntities vin = new VinamilkEntities())
                     {
-                        sanP.tenSanPham = tex_tensanpham.Text;
-                        sanP.moTa = tex_mota.Text;
-                        sanP.trangThai = che_trangthai.Checked;
-
-                        DoiTuong doi = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == com_doituong.SelectedItem.ToString());
-                        if (doi != null)
+                        SanPham sanPham = vin.SanPhams.FirstOrDefault(s => s.maSanPham == tex_masanpham.Text);
+                        ChiTietSanPham chiTiet = vin.ChiTietSanPhams.FirstOrDefault(c => c.maSanPham == tex_masanpham.Text);
+                        if (sanPham != null && chiTiet != null)
                         {
-                            sanP.maDoiTuong = doi.maDoiTuong;
-                        }
-
-                        NhaSanXuat nha = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == com_nhasanxuat.SelectedItem.ToString());
-                        if (nha != null)
-                        {
-                            sanP.maNhaSanXuat = nha.maNhaSanXuat;
-                        }
-
-                        vin.SaveChanges();
-
-                        MessageBox.Show("Cập nhật dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không tìm thấy sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }*/
-        /*
-
-
-                    if (vin.SanPhams.FirstOrDefault(s => s.maSanPham == sanPham.maSanPham) == null)
-                    {
-                        string tenSP = tex_tensanpham.Text.Replace(" ", "") ?? string.Empty;
-                        string maSP = "sp" + (tenSP.Length >= 5 ? tenSP.Trim().Substring(0, 5) : tenSP) + DateTime.Now.ToString("fff");
-
-                        DoiTuong doi = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == com_doituong.SelectedItem.ToString());
-                        string maDT = "";
-                        if (doi != null) { maDT = doi.maDoiTuong; }
-
-                        NhaSanXuat nha = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == com_nhasanxuat.SelectedItem.ToString());
-                        string maNX = "";
-                        if (nha != null) { maNX = nha.maNhaSanXuat; }
-
-                        SanPham sanPh = new SanPham
-                        {
-                            maSanPham = maSP.ToLower(),
-                            tenSanPham = tex_tensanpham.Text,
-                            moTa = tex_mota.Text,
-                            maDoiTuong = maDT,
-                            maNhaSanXuat = maNX,
-                            trangThai = che_trangthai.Checked
-                        };
-
-                        SanPham sanP = vin.SanPhams.FirstOrDefault(s => s.maSanPham == sanPh.maSanPham);
-                        if (sanPh == null)
-                        {
-                            string hinh = "";
-                            if (File.Exists(imagePath))
+                            try
                             {
-                                string[] src = imagePath.Split('\\');
-                                hinh = src[src.Length - 1];
-                                if (!File.Exists(folImage + hinh))
-                                {
-                                    File.Copy(imagePath, folImage + hinh);
-                                }
+                                pic_sanpham.Image.Dispose();
+                                File.Delete(folImage + chiTiet.hinhAnh);
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                hinh = "no-image";
+                                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
-                            int gN = int.Parse(tex_gianhap.Text ?? "0");
-                            int gB = gN + (gN / 100 * 20);
-
-                            DonVi don = vin.DonVis.FirstOrDefault(d => d.tenDonVi == com_donvi.SelectedItem.ToString());
-                            string donV = don.maDonVi;
-
-                            ChiTietSanPham chiTietSanPham = new ChiTietSanPham
+                            try
                             {
-                                maChiTietSanPham = "ctsp" + DateTime.Now.ToString("ssffff"),
-                                maSanPham = maSP,
-                                maDonVi = donV,
-                                hinhAnh = hinh,
-                                ngaySanXuat = dat_nsx.Value,
-                                ngayHetHan = dat_hsd.Value,
-                                giaNhap = gN,
-                                giaBan = gB,
-                                soLuong = int.Parse(tex_soluong.Text ?? "0")
-                            };
-
-                            ChiTietSanPham chiT = vin.ChiTietSanPhams.FirstOrDefault(c => c.maChiTietSanPham == chiTietSanPham.maChiTietSanPham);
-                            if (chiT == null)
-                            {
-                                vin.SanPhams.Add(sanPh);
+                                vin.ChiTietSanPhams.Remove(chiTiet);
+                                vin.SanPhams.Remove(sanPham);
                                 vin.SaveChanges();
-                                vin.ChiTietSanPhams.Add(chiTietSanPham);
-                                vin.SaveChanges();
-                                SanPhamUC_LoadAsync(sender, e);
-                                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                await LoadData();
+                                MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Lỗi khi xóa dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
-                    }
-                    else
-                    {
-                        //cap nhat san pham
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy sản phẩm để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -478,18 +460,7 @@ namespace GUI_vinamilk.Controls
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }*/
 
-        private void But_xoa_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void Tex_timkiem_Enter(object sender, EventArgs e)
@@ -514,8 +485,6 @@ namespace GUI_vinamilk.Controls
 
         private void But_loc_Click(object sender, EventArgs e)
         {
-            //gro_boloc.Visible = !gro_boloc.Visible;
-
             if (gro_boloc.Visible)
             {
                 gro_boloc.Visible = false;
@@ -549,7 +518,7 @@ namespace GUI_vinamilk.Controls
         {
             pan_menu.Width = 0;
             pan_timkiem.Height = 0;
-            pan_chitiet.Width = 0;
+            //pan_chitiet.Width = 0;
 
             pan_grid.Controls.Add(uc);
             uc.BackColor = Color.MintCream;
@@ -577,6 +546,30 @@ namespace GUI_vinamilk.Controls
         {
             try
             {
+                /*OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp)|*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp"
+                };
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    string imagePath = openFileDialog.FileName;
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        Image img = Image.FromFile(imagePath);
+                        img.Save(ms, img.RawFormat);
+                        byte[] imageBytes = ms.ToArray();
+
+                        using (MemoryStream bti = new MemoryStream(imageBytes))
+                        {
+                            pic_sanpham.Image = Image.FromStream(bti);
+                        }
+                    }
+                }*/
+
                 OpenFileDialog openFileDialog = new OpenFileDialog
                 {
                     Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp)|*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp"
@@ -584,11 +577,12 @@ namespace GUI_vinamilk.Controls
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    imagePath = openFileDialog.FileName;
-
-                    pic_sanpham.Image = Image.FromFile(imagePath);
-
                     pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    string imagePath = openFileDialog.FileName;
+
+                    // Sử dụng Load() để hiển thị hình ảnh trực tiếp từ đường dẫn tệp
+                    pic_sanpham.Image = Image.FromFile(imagePath);
                 }
             }
             catch (Exception ex)
@@ -627,6 +621,11 @@ namespace GUI_vinamilk.Controls
                 long gB = gN + (gN / 100 * 20);
                 tex_giaban.Text = gB.ToString();
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            pic_sanpham.Dispose();
         }
     }
 }
