@@ -14,11 +14,11 @@ namespace GUI_vinamilk
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            but_thanhtoan_Click(sender, e);
+            But_thanhtoan_Click(sender, e);
             but_thanhtoan.BackColor = Color.DeepSkyBlue;
         }
 
-        private void but_thanhtoan_Click(object sender, EventArgs e)
+        private void But_thanhtoan_Click(object sender, EventArgs e)
         {
             UserControl tha = new ThanhToanUC();
             AddControl(tha, sender);
@@ -28,12 +28,36 @@ namespace GUI_vinamilk
         {
             if (pan_container.Controls.Count > 0)
             {
-                if (uc.Tag == pan_container.Controls[0].Tag)
-                {
+                var currentControl = pan_container.Controls[0] as UserControl;
+                if (uc.Tag == currentControl?.Tag)
                     return;
-                }
+
+                pan_container.Controls.Remove(currentControl);
+                currentControl.Dispose();
             }
 
+            pan_container.Controls.Add(uc);
+            uc.BackColor = Color.MintCream;
+            uc.Dock = DockStyle.Fill;
+            uc.BringToFront();
+
+            if (se is Button btn)
+            {
+                foreach (Button preBut in pan_navigator.Controls)
+                    preBut.BackColor = Color.MintCream;
+                btn.BackColor = Color.DeepSkyBlue;
+            }
+        }
+
+
+        /*void AddControl(UserControl uc, object se)
+        {
+            if (pan_container.Controls.Count > 0)
+            {
+                if (uc.Tag == pan_container.Controls[0].Tag)
+                    return;
+            }
+            uc.Dispose();
             pan_container.Controls?.Clear();
             pan_container.Controls.Add(uc);
             uc.BackColor = Color.MintCream;
@@ -43,20 +67,18 @@ namespace GUI_vinamilk
             if (se is Button btn)
             {
                 foreach (Button preBut in pan_navigator.Controls)
-                {
                     preBut.BackColor = Color.MintCream;
-                }
                 btn.BackColor = Color.DeepSkyBlue;
             }
-        }
+        }*/
 
-        private void but_sanpham_Click(object sender, EventArgs e)
+        private void But_sanpham_Click(object sender, EventArgs e)
         {
             UserControl san = new SanPhamUC();
             AddControl(san, sender);
         }
 
-        private void but_nhanvien_Click(object sender, EventArgs e)
+        private void But_nhanvien_Click(object sender, EventArgs e)
         {
             UserControl nha = new UserControl
             {
@@ -65,7 +87,7 @@ namespace GUI_vinamilk
             AddControl(nha, sender);
         }
 
-        private void but_khachhang_Click(object sender, EventArgs e)
+        private void But_khachhang_Click(object sender, EventArgs e)
         {
             UserControl kha = new UserControl
             {
@@ -74,7 +96,7 @@ namespace GUI_vinamilk
             AddControl(kha, sender);
         }
 
-        private void but_thongke_Click(object sender, EventArgs e)
+        private void But_thongke_Click(object sender, EventArgs e)
         {
             UserControl tho = new UserControl
             {
@@ -83,7 +105,7 @@ namespace GUI_vinamilk
             AddControl(tho, sender);
         }
 
-        private void but_tuychon_Click(object sender, EventArgs e)
+        private void But_tuychon_Click(object sender, EventArgs e)
         {
             UserControl tuy = new UserControl
             {
