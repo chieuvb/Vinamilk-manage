@@ -69,7 +69,7 @@
             this.but_tuychon.Text = "Tùy chọn";
             this.but_tuychon.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.but_tuychon.UseVisualStyleBackColor = false;
-            this.but_tuychon.Click += new System.EventHandler(this.but_tuychon_Click);
+            this.but_tuychon.Click += new System.EventHandler(this.But_tuychon_Click);
             // 
             // but_thongke
             // 
@@ -84,7 +84,7 @@
             this.but_thongke.Text = "Thống kê";
             this.but_thongke.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.but_thongke.UseVisualStyleBackColor = false;
-            this.but_thongke.Click += new System.EventHandler(this.but_thongke_Click);
+            this.but_thongke.Click += new System.EventHandler(this.But_thongke_Click);
             // 
             // but_khachhang
             // 
@@ -99,7 +99,7 @@
             this.but_khachhang.Text = "Khách hàng";
             this.but_khachhang.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.but_khachhang.UseVisualStyleBackColor = false;
-            this.but_khachhang.Click += new System.EventHandler(this.but_khachhang_Click);
+            this.but_khachhang.Click += new System.EventHandler(this.But_khachhang_Click);
             // 
             // but_nhanvien
             // 
@@ -114,7 +114,7 @@
             this.but_nhanvien.Text = "Nhân viên";
             this.but_nhanvien.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.but_nhanvien.UseVisualStyleBackColor = false;
-            this.but_nhanvien.Click += new System.EventHandler(this.but_nhanvien_Click);
+            this.but_nhanvien.Click += new System.EventHandler(this.But_nhanvien_Click);
             // 
             // but_sanpham
             // 
@@ -129,7 +129,7 @@
             this.but_sanpham.Text = "Sản phẩm";
             this.but_sanpham.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.but_sanpham.UseVisualStyleBackColor = false;
-            this.but_sanpham.Click += new System.EventHandler(this.but_sanpham_Click);
+            this.but_sanpham.Click += new System.EventHandler(this.But_sanpham_Click);
             // 
             // but_thanhtoan
             // 
@@ -144,7 +144,7 @@
             this.but_thanhtoan.Text = "Thanh toán";
             this.but_thanhtoan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.but_thanhtoan.UseVisualStyleBackColor = false;
-            this.but_thanhtoan.Click += new System.EventHandler(this.but_thanhtoan_Click);
+            this.but_thanhtoan.Click += new System.EventHandler(this.But_thanhtoan_Click);
             // 
             // pan_container
             // 

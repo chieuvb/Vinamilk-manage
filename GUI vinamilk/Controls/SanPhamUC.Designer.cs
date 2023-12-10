@@ -32,15 +32,26 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SanPhamUC));
             this.dat_sanpham = new System.Windows.Forms.DataGridView();
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moTaC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trangThaiC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pan_menu = new System.Windows.Forms.Panel();
             this.but_them = new System.Windows.Forms.Button();
             this.men_nsx = new System.Windows.Forms.MenuStrip();
-            this.qqqqqqqqqToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_them = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_nsx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_doituong = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_donvi = new System.Windows.Forms.ToolStripMenuItem();
             this.pan_chitiet = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pic_sanpham = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.com_donvi = new System.Windows.Forms.ComboBox();
@@ -65,7 +76,6 @@
             this.lab_nhasanxuat = new System.Windows.Forms.Label();
             this.tex_tensanpham = new System.Windows.Forms.TextBox();
             this.lab_tensanpham = new System.Windows.Forms.Label();
-            this.pic_sanpham = new System.Windows.Forms.PictureBox();
             this.tex_masanpham = new System.Windows.Forms.TextBox();
             this.pan_grid = new System.Windows.Forms.Panel();
             this.pan_timkiem = new System.Windows.Forms.Panel();
@@ -75,18 +85,8 @@
             this.but_timkiem = new System.Windows.Forms.Button();
             this.tex_timkiem = new System.Windows.Forms.TextBox();
             this.maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moTaC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trangThaiC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.pan_menu.SuspendLayout();
             this.men_nsx.SuspendLayout();
             this.pan_chitiet.SuspendLayout();
@@ -94,7 +94,6 @@
             this.pan_grid.SuspendLayout();
             this.pan_timkiem.SuspendLayout();
             this.gro_boloc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dat_sanpham
@@ -121,6 +120,7 @@
             this.dat_sanpham.DataSource = this.sanPhamBindingSource;
             this.dat_sanpham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dat_sanpham.Location = new System.Drawing.Point(0, 52);
+            this.dat_sanpham.MultiSelect = false;
             this.dat_sanpham.Name = "dat_sanpham";
             this.dat_sanpham.ReadOnly = true;
             this.dat_sanpham.RowTemplate.Height = 32;
@@ -135,6 +135,91 @@
             this.stt.Name = "stt";
             this.stt.ReadOnly = true;
             this.stt.Width = 64;
+            // 
+            // maSanPhamC
+            // 
+            this.maSanPhamC.DataPropertyName = "maSanPham";
+            this.maSanPhamC.HeaderText = "maSanPham";
+            this.maSanPhamC.Name = "maSanPhamC";
+            this.maSanPhamC.ReadOnly = true;
+            this.maSanPhamC.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "maNhaSanXuat";
+            this.dataGridViewTextBoxColumn2.HeaderText = "maNhaSanXuat";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "maDoiTuong";
+            this.dataGridViewTextBoxColumn4.HeaderText = "maDoiTuong";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // tenSanPhamC
+            // 
+            this.tenSanPhamC.DataPropertyName = "tenSanPham";
+            this.tenSanPhamC.HeaderText = "Tên sản phẩm";
+            this.tenSanPhamC.Name = "tenSanPhamC";
+            this.tenSanPhamC.ReadOnly = true;
+            this.tenSanPhamC.Width = 500;
+            // 
+            // moTaC
+            // 
+            this.moTaC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.moTaC.DataPropertyName = "moTa";
+            this.moTaC.HeaderText = "Mô tả";
+            this.moTaC.Name = "moTaC";
+            this.moTaC.ReadOnly = true;
+            // 
+            // trangThaiC
+            // 
+            this.trangThaiC.DataPropertyName = "trangThai";
+            this.trangThaiC.HeaderText = "Trạng thái";
+            this.trangThaiC.Name = "trangThaiC";
+            this.trangThaiC.ReadOnly = true;
+            this.trangThaiC.Visible = false;
+            this.trangThaiC.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "ChiTietDonHangs";
+            this.dataGridViewTextBoxColumn12.HeaderText = "ChiTietDonHangs";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "ChiTietSanPhams";
+            this.dataGridViewTextBoxColumn13.HeaderText = "ChiTietSanPhams";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "DoiTuong";
+            this.dataGridViewTextBoxColumn14.HeaderText = "DoiTuong";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "NhaSanXuat";
+            this.dataGridViewTextBoxColumn15.HeaderText = "NhaSanXuat";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Visible = false;
+            // 
+            // sanPhamBindingSource
+            // 
+            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
             // 
             // pan_menu
             // 
@@ -172,25 +257,25 @@
             this.men_nsx.Dock = System.Windows.Forms.DockStyle.None;
             this.men_nsx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.men_nsx.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.qqqqqqqqqToolStripMenuItem});
+            this.tsmi_them});
             this.men_nsx.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.men_nsx.Location = new System.Drawing.Point(8, 265);
             this.men_nsx.Name = "men_nsx";
             this.men_nsx.Size = new System.Drawing.Size(184, 36);
             this.men_nsx.TabIndex = 1;
             // 
-            // qqqqqqqqqToolStripMenuItem
+            // tsmi_them
             // 
-            this.qqqqqqqqqToolStripMenuItem.AutoSize = false;
-            this.qqqqqqqqqToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_them.AutoSize = false;
+            this.tsmi_them.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsm_nsx,
             this.tsm_doituong,
             this.tsm_donvi});
-            this.qqqqqqqqqToolStripMenuItem.Name = "qqqqqqqqqToolStripMenuItem";
-            this.qqqqqqqqqToolStripMenuItem.Size = new System.Drawing.Size(180, 32);
-            this.qqqqqqqqqToolStripMenuItem.Text = "Tùy chọn";
-            this.qqqqqqqqqToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.qqqqqqqqqToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.tsmi_them.Name = "tsmi_them";
+            this.tsmi_them.Size = new System.Drawing.Size(180, 32);
+            this.tsmi_them.Text = "Tùy chọn";
+            this.tsmi_them.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsmi_them.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
             // tsm_nsx
             // 
@@ -217,7 +302,7 @@
             // 
             this.pan_chitiet.BackColor = System.Drawing.Color.Honeydew;
             this.pan_chitiet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pan_chitiet.Controls.Add(this.button1);
+            this.pan_chitiet.Controls.Add(this.pic_sanpham);
             this.pan_chitiet.Controls.Add(this.label8);
             this.pan_chitiet.Controls.Add(this.label6);
             this.pan_chitiet.Controls.Add(this.com_donvi);
@@ -242,7 +327,6 @@
             this.pan_chitiet.Controls.Add(this.lab_nhasanxuat);
             this.pan_chitiet.Controls.Add(this.tex_tensanpham);
             this.pan_chitiet.Controls.Add(this.lab_tensanpham);
-            this.pan_chitiet.Controls.Add(this.pic_sanpham);
             this.pan_chitiet.Controls.Add(this.tex_masanpham);
             this.pan_chitiet.Dock = System.Windows.Forms.DockStyle.Right;
             this.pan_chitiet.Location = new System.Drawing.Point(1408, 8);
@@ -250,15 +334,17 @@
             this.pan_chitiet.Size = new System.Drawing.Size(512, 931);
             this.pan_chitiet.TabIndex = 2;
             // 
-            // button1
+            // pic_sanpham
             // 
-            this.button1.Location = new System.Drawing.Point(18, 301);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.pic_sanpham.BackColor = System.Drawing.Color.Snow;
+            this.pic_sanpham.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pic_sanpham.Location = new System.Drawing.Point(5, 5);
+            this.pic_sanpham.Name = "pic_sanpham";
+            this.pic_sanpham.Size = new System.Drawing.Size(500, 254);
+            this.pic_sanpham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_sanpham.TabIndex = 34;
+            this.pic_sanpham.TabStop = false;
+            this.pic_sanpham.DoubleClick += new System.EventHandler(this.Pic_sanpham_DoubleClick);
             // 
             // label8
             // 
@@ -513,21 +599,6 @@
             this.lab_tensanpham.TabIndex = 1;
             this.lab_tensanpham.Text = "Tên sản phẩm:";
             // 
-            // pic_sanpham
-            // 
-            this.pic_sanpham.BackColor = System.Drawing.Color.Snow;
-            this.pic_sanpham.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pic_sanpham.ErrorImage = null;
-            this.pic_sanpham.InitialImage = null;
-            this.pic_sanpham.Location = new System.Drawing.Point(5, 3);
-            this.pic_sanpham.Name = "pic_sanpham";
-            this.pic_sanpham.Padding = new System.Windows.Forms.Padding(8);
-            this.pic_sanpham.Size = new System.Drawing.Size(502, 256);
-            this.pic_sanpham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pic_sanpham.TabIndex = 0;
-            this.pic_sanpham.TabStop = false;
-            this.pic_sanpham.DoubleClick += new System.EventHandler(this.Pic_sanpham_DoubleClick);
-            // 
             // tex_masanpham
             // 
             this.tex_masanpham.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -636,91 +707,6 @@
             // 
             this.maSanPham.Name = "maSanPham";
             // 
-            // maSanPhamC
-            // 
-            this.maSanPhamC.DataPropertyName = "maSanPham";
-            this.maSanPhamC.HeaderText = "maSanPham";
-            this.maSanPhamC.Name = "maSanPhamC";
-            this.maSanPhamC.ReadOnly = true;
-            this.maSanPhamC.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "maNhaSanXuat";
-            this.dataGridViewTextBoxColumn2.HeaderText = "maNhaSanXuat";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "maDoiTuong";
-            this.dataGridViewTextBoxColumn4.HeaderText = "maDoiTuong";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // tenSanPhamC
-            // 
-            this.tenSanPhamC.DataPropertyName = "tenSanPham";
-            this.tenSanPhamC.HeaderText = "Tên sản phẩm";
-            this.tenSanPhamC.Name = "tenSanPhamC";
-            this.tenSanPhamC.ReadOnly = true;
-            this.tenSanPhamC.Width = 500;
-            // 
-            // moTaC
-            // 
-            this.moTaC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.moTaC.DataPropertyName = "moTa";
-            this.moTaC.HeaderText = "Mô tả";
-            this.moTaC.Name = "moTaC";
-            this.moTaC.ReadOnly = true;
-            // 
-            // trangThaiC
-            // 
-            this.trangThaiC.DataPropertyName = "trangThai";
-            this.trangThaiC.HeaderText = "Trạng thái";
-            this.trangThaiC.Name = "trangThaiC";
-            this.trangThaiC.ReadOnly = true;
-            this.trangThaiC.Visible = false;
-            this.trangThaiC.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "ChiTietDonHangs";
-            this.dataGridViewTextBoxColumn12.HeaderText = "ChiTietDonHangs";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "ChiTietSanPhams";
-            this.dataGridViewTextBoxColumn13.HeaderText = "ChiTietSanPhams";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "DoiTuong";
-            this.dataGridViewTextBoxColumn14.HeaderText = "DoiTuong";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "NhaSanXuat";
-            this.dataGridViewTextBoxColumn15.HeaderText = "NhaSanXuat";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Visible = false;
-            // 
-            // sanPhamBindingSource
-            // 
-            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
-            // 
             // SanPhamUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -737,6 +723,7 @@
             this.Tag = "sanpham";
             this.Load += new System.EventHandler(this.SanPhamUC_LoadAsync);
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.pan_menu.ResumeLayout(false);
             this.men_nsx.ResumeLayout(false);
             this.men_nsx.PerformLayout();
@@ -747,7 +734,6 @@
             this.pan_timkiem.ResumeLayout(false);
             this.pan_timkiem.PerformLayout();
             this.gro_boloc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -774,7 +760,6 @@
         private System.Windows.Forms.Panel pan_timkiem;
         private System.Windows.Forms.Button but_timkiem;
         private System.Windows.Forms.TextBox tex_timkiem;
-        private System.Windows.Forms.PictureBox pic_sanpham;
         private System.Windows.Forms.Label lab_tensanpham;
         private System.Windows.Forms.TextBox tex_tensanpham;
         private System.Windows.Forms.Label lab_nhasanxuat;
@@ -798,7 +783,7 @@
         private System.Windows.Forms.GroupBox gro_boloc;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.MenuStrip men_nsx;
-        private System.Windows.Forms.ToolStripMenuItem qqqqqqqqqToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_them;
         private System.Windows.Forms.ToolStripMenuItem tsm_nsx;
         private System.Windows.Forms.ToolStripMenuItem tsm_doituong;
         private System.Windows.Forms.ToolStripMenuItem tsm_donvi;
@@ -832,6 +817,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pic_sanpham;
     }
 }
