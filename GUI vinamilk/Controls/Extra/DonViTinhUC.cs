@@ -51,13 +51,6 @@ namespace GUI_vinamilk.Controls.Extra
             dat_donvi.Columns["stt"].Width = 64;
         }
 
-        public string LoaiBoDauTiengViet(string input)
-        {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
-            string temp = input.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, string.Empty).Normalize(NormalizationForm.FormC);
-        }
-
         private void Dat_donvi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -67,18 +60,21 @@ namespace GUI_vinamilk.Controls.Extra
                     DonVi don = new DonVi
                     {
                         maDonVi = dat_donvi["maDonViDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        tenDonVi = dat_donvi["tenDonViDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString().Replace(" ", "") ?? string.Empty,
+                        tenDonVi = dat_donvi["tenDonViDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
                         moTa = dat_donvi["moTaDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
                         trangThai = Convert.ToBoolean(dat_donvi["trangThaiDataGridViewCheckBoxColumn", e.RowIndex].Value ?? false)
                     };
                     using (VinamilkEntities vnm = new VinamilkEntities())
                     {
-                        string tenDonViKhongKhoangTrang = don.tenDonVi.Trim();
+                        string tenDonViKhongKhoangTrang = don.tenDonVi.Trim().Replace(" ", "");
                         string maDonVi = "dv" + (tenDonViKhongKhoangTrang.Length >= 5 ? tenDonViKhongKhoangTrang.Substring(0, 5) : tenDonViKhongKhoangTrang).PadRight(5, 'v') + DateTime.Now.ToString("fff");
+
+                        RegexTiengViet reg = new RegexTiengViet();
+                        string result = reg.RemoveVietnameseMarks(maDonVi.ToLower());
 
                         DonVi dv = new DonVi
                         {
-                            maDonVi = LoaiBoDauTiengViet(maDonVi).ToLower(),
+                            maDonVi = result,
                             tenDonVi = don.tenDonVi,
                             moTa = don.moTa,
                             trangThai = don.trangThai,

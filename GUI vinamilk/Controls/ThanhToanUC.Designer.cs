@@ -28,33 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.pan_menu = new System.Windows.Forms.Panel();
+            this.pan_thongtin = new System.Windows.Forms.Panel();
+            this.pan_chitiet = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // label1
+            // pan_menu
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(239, 268);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(528, 108);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Thanh toan";
+            this.pan_menu.BackColor = System.Drawing.Color.Honeydew;
+            this.pan_menu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pan_menu.Location = new System.Drawing.Point(0, 0);
+            this.pan_menu.Name = "pan_menu";
+            this.pan_menu.Size = new System.Drawing.Size(256, 939);
+            this.pan_menu.TabIndex = 0;
+            // 
+            // pan_thongtin
+            // 
+            this.pan_thongtin.BackColor = System.Drawing.Color.Honeydew;
+            this.pan_thongtin.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pan_thongtin.Location = new System.Drawing.Point(1408, 0);
+            this.pan_thongtin.Name = "pan_thongtin";
+            this.pan_thongtin.Size = new System.Drawing.Size(512, 939);
+            this.pan_thongtin.TabIndex = 1;
+            // 
+            // pan_chitiet
+            // 
+            this.pan_chitiet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pan_chitiet.Location = new System.Drawing.Point(256, 0);
+            this.pan_chitiet.Name = "pan_chitiet";
+            this.pan_chitiet.Size = new System.Drawing.Size(1152, 939);
+            this.pan_chitiet.TabIndex = 2;
             // 
             // ThanhToanUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pan_chitiet);
+            this.Controls.Add(this.pan_thongtin);
+            this.Controls.Add(this.pan_menu);
+            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ThanhToanUC";
-            this.Size = new System.Drawing.Size(1024, 720);
+            this.Size = new System.Drawing.Size(1920, 939);
+            this.Load += new System.EventHandler(this.ThanhToanUC_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pan_menu;
+        private System.Windows.Forms.Panel pan_thongtin;
+        private System.Windows.Forms.Panel pan_chitiet;
     }
 }

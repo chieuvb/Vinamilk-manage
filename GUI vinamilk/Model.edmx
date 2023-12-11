@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietDonHang">
           <Key>
             <PropertyRef Name="maChiTietDonHang" />
@@ -25,7 +25,7 @@
           <Property Name="maChiTietSanPham" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="maSanPham" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="maDonVi" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="hinhAnh" Type="nchar" MaxLength="128" />
+          <Property Name="hinhAnh" Type="varchar" MaxLength="64" />
           <Property Name="ngaySanXuat" Type="date" Nullable="false" />
           <Property Name="ngayHetHan" Type="date" Nullable="false" />
           <Property Name="giaNhap" Type="float" Nullable="false" />
@@ -126,7 +126,7 @@
           <Property Name="maNhaSanXuat" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="maDoiTuong" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="tenSanPham" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="moTa" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="moTa" Type="nvarchar(max)" />
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TaiKhoan">
@@ -328,8 +328,7 @@
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -355,7 +354,7 @@
           <Property Name="maChiTietSanPham" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maSanPham" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maDonVi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="hinhAnh" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="hinhAnh" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="ngaySanXuat" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ngayHetHan" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="giaNhap" Type="Double" Nullable="false" />
@@ -471,7 +470,7 @@
           <Property Name="maNhaSanXuat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maDoiTuong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="tenSanPham" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="moTa" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="moTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="trangThai" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_ChiTietDonHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonHang" />
           <NavigationProperty Name="ChiTietSanPhams" Relationship="Self.FK_ChiTietSanPham_SanPham" FromRole="SanPham" ToRole="ChiTietSanPham" />
