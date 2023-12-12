@@ -196,8 +196,7 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-
-        private async void Dat_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void Dat_sanpham_CellContentDoubleClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -206,6 +205,7 @@ namespace GUI_vinamilk.Controls
                     pan_chitiet.Visible = true;
 
                     string maSanPham = dat_sanpham["maSanPhamC", e.RowIndex].Value?.ToString() ?? string.Empty;
+                    string imageKey = null;
 
                     using (VinamilkEntities vin = new VinamilkEntities())
                     {
@@ -230,25 +230,27 @@ namespace GUI_vinamilk.Controls
                             com_donvi.SelectedItem = don?.tenDonVi;
                             tex_gianhap.Text = chiTiet.giaNhap.ToString();
 
-                            string imageKey = chiTiet.hinhAnh.Trim();
-                            LoadAndCacheImage(imageKey);
-
-                            if (cacheImage.ContainsKey(imageKey))
-                                pic_sanpham.Image = cacheImage[imageKey];
-                            else
-                                pic_sanpham.Image = cacheImage["no-image"];
-
-                            if (pic_sanpham.Image != null)
-                            {
-                                if (pic_sanpham.Image.Width <= 128 && pic_sanpham.Image.Height <= 128)
-                                    pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
-                                else
-                                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
-                            }
-                            else
-                                pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                            imageKey = chiTiet.hinhAnh.Trim();
                         }
                     }
+
+                    if (imageKey != null)
+                        LoadAndCacheImage(imageKey);
+
+                    if (cacheImage.ContainsKey(imageKey))
+                        pic_sanpham.Image = cacheImage[imageKey];
+                    else
+                        pic_sanpham.Image = cacheImage["no-image"];
+
+                    if (pic_sanpham.Image != null)
+                    {
+                        if (pic_sanpham.Image.Width <= 128 && pic_sanpham.Image.Height <= 128)
+                            pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
+                        else
+                            pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    else
+                        pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
             catch (Exception ex)

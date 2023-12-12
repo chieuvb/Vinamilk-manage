@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SanPhamUC));
             this.dat_sanpham = new System.Windows.Forms.DataGridView();
-            this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pan_menu = new System.Windows.Forms.Panel();
+            this.but_them = new System.Windows.Forms.Button();
             this.men_nsx = new System.Windows.Forms.MenuStrip();
             this.tsmi_them = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_nsx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_doituong = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_donvi = new System.Windows.Forms.ToolStripMenuItem();
             this.pan_chitiet = new System.Windows.Forms.Panel();
+            this.but_closepan = new System.Windows.Forms.Button();
+            this.pic_sanpham = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.com_donvi = new System.Windows.Forms.ComboBox();
@@ -66,15 +69,13 @@
             this.tex_masanpham = new System.Windows.Forms.TextBox();
             this.pan_grid = new System.Windows.Forms.Panel();
             this.pan_timkiem = new System.Windows.Forms.Panel();
+            this.but_loc = new System.Windows.Forms.Button();
             this.gro_boloc = new System.Windows.Forms.GroupBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.but_timkiem = new System.Windows.Forms.Button();
             this.tex_timkiem = new System.Windows.Forms.TextBox();
             this.maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.but_loc = new System.Windows.Forms.Button();
-            this.but_timkiem = new System.Windows.Forms.Button();
-            this.but_closepan = new System.Windows.Forms.Button();
-            this.pic_sanpham = new System.Windows.Forms.PictureBox();
-            this.but_them = new System.Windows.Forms.Button();
+            this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,10 +91,10 @@
             this.pan_menu.SuspendLayout();
             this.men_nsx.SuspendLayout();
             this.pan_chitiet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_sanpham)).BeginInit();
             this.pan_grid.SuspendLayout();
             this.pan_timkiem.SuspendLayout();
             this.gro_boloc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_sanpham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +106,15 @@
             this.dat_sanpham.AllowUserToResizeRows = false;
             this.dat_sanpham.AutoGenerateColumns = false;
             this.dat_sanpham.BackgroundColor = System.Drawing.Color.Snow;
-            this.dat_sanpham.ColumnHeadersHeight = 32;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dat_sanpham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dat_sanpham.ColumnHeadersHeight = 38;
             this.dat_sanpham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.stt,
             this.maSanPhamC,
@@ -127,15 +136,8 @@
             this.dat_sanpham.RowTemplate.Height = 32;
             this.dat_sanpham.Size = new System.Drawing.Size(1150, 877);
             this.dat_sanpham.TabIndex = 0;
-            this.dat_sanpham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_sanpham_CellClick);
+            this.dat_sanpham.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_sanpham_CellContentDoubleClickAsync);
             this.dat_sanpham.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.Dat_sanpham_RowPrePaint);
-            // 
-            // stt
-            // 
-            this.stt.HeaderText = "STT";
-            this.stt.Name = "stt";
-            this.stt.ReadOnly = true;
-            this.stt.Width = 64;
             // 
             // pan_menu
             // 
@@ -149,6 +151,22 @@
             this.pan_menu.Padding = new System.Windows.Forms.Padding(8);
             this.pan_menu.Size = new System.Drawing.Size(256, 931);
             this.pan_menu.TabIndex = 1;
+            // 
+            // but_them
+            // 
+            this.but_them.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.but_them.FlatAppearance.BorderSize = 0;
+            this.but_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.but_them.Image = ((System.Drawing.Image)(resources.GetObject("but_them.Image")));
+            this.but_them.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.but_them.Location = new System.Drawing.Point(8, 8);
+            this.but_them.Name = "but_them";
+            this.but_them.Size = new System.Drawing.Size(235, 34);
+            this.but_them.TabIndex = 0;
+            this.but_them.Text = "Thêm sản phẩm";
+            this.but_them.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.but_them.UseVisualStyleBackColor = false;
+            this.but_them.Click += new System.EventHandler(this.But_them_Click);
             // 
             // men_nsx
             // 
@@ -180,21 +198,21 @@
             // tsm_nsx
             // 
             this.tsm_nsx.Name = "tsm_nsx";
-            this.tsm_nsx.Size = new System.Drawing.Size(180, 22);
+            this.tsm_nsx.Size = new System.Drawing.Size(165, 22);
             this.tsm_nsx.Text = "Nhà sản xuất";
             this.tsm_nsx.Click += new System.EventHandler(this.Tsm_nsx_Click);
             // 
             // tsm_doituong
             // 
             this.tsm_doituong.Name = "tsm_doituong";
-            this.tsm_doituong.Size = new System.Drawing.Size(180, 22);
+            this.tsm_doituong.Size = new System.Drawing.Size(165, 22);
             this.tsm_doituong.Text = "Đối tượng";
             this.tsm_doituong.Click += new System.EventHandler(this.Tsm_phanloai_Click);
             // 
             // tsm_donvi
             // 
             this.tsm_donvi.Name = "tsm_donvi";
-            this.tsm_donvi.Size = new System.Drawing.Size(180, 22);
+            this.tsm_donvi.Size = new System.Drawing.Size(165, 22);
             this.tsm_donvi.Text = "Đơn vị tính";
             this.tsm_donvi.Click += new System.EventHandler(this.Tsm_donvi_Click);
             // 
@@ -234,6 +252,31 @@
             this.pan_chitiet.Name = "pan_chitiet";
             this.pan_chitiet.Size = new System.Drawing.Size(512, 931);
             this.pan_chitiet.TabIndex = 2;
+            // 
+            // but_closepan
+            // 
+            this.but_closepan.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.but_closepan.FlatAppearance.BorderSize = 0;
+            this.but_closepan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.but_closepan.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.but_closepan.Location = new System.Drawing.Point(470, 5);
+            this.but_closepan.Name = "but_closepan";
+            this.but_closepan.Size = new System.Drawing.Size(34, 34);
+            this.but_closepan.TabIndex = 36;
+            this.but_closepan.UseVisualStyleBackColor = false;
+            this.but_closepan.Click += new System.EventHandler(this.But_closepan_Click);
+            // 
+            // pic_sanpham
+            // 
+            this.pic_sanpham.BackColor = System.Drawing.Color.Snow;
+            this.pic_sanpham.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pic_sanpham.Location = new System.Drawing.Point(5, 52);
+            this.pic_sanpham.Name = "pic_sanpham";
+            this.pic_sanpham.Size = new System.Drawing.Size(500, 254);
+            this.pic_sanpham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_sanpham.TabIndex = 34;
+            this.pic_sanpham.TabStop = false;
+            this.pic_sanpham.DoubleClick += new System.EventHandler(this.Pic_sanpham_DoubleClick);
             // 
             // label8
             // 
@@ -525,6 +568,21 @@
             this.pan_timkiem.Size = new System.Drawing.Size(1150, 52);
             this.pan_timkiem.TabIndex = 1;
             // 
+            // but_loc
+            // 
+            this.but_loc.BackColor = System.Drawing.Color.MistyRose;
+            this.but_loc.FlatAppearance.BorderSize = 0;
+            this.but_loc.Image = global::GUI_vinamilk.Properties.Resources.icons8_filter_24;
+            this.but_loc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.but_loc.Location = new System.Drawing.Point(869, 8);
+            this.but_loc.Name = "but_loc";
+            this.but_loc.Size = new System.Drawing.Size(128, 32);
+            this.but_loc.TabIndex = 3;
+            this.but_loc.Text = "Lọc";
+            this.but_loc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.but_loc.UseVisualStyleBackColor = false;
+            this.but_loc.Click += new System.EventHandler(this.But_loc_Click);
+            // 
             // gro_boloc
             // 
             this.gro_boloc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -553,6 +611,20 @@
             this.checkedListBox1.Size = new System.Drawing.Size(163, 25);
             this.checkedListBox1.TabIndex = 0;
             // 
+            // but_timkiem
+            // 
+            this.but_timkiem.BackColor = System.Drawing.Color.MistyRose;
+            this.but_timkiem.FlatAppearance.BorderSize = 0;
+            this.but_timkiem.Image = global::GUI_vinamilk.Properties.Resources.icons8_search_24;
+            this.but_timkiem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.but_timkiem.Location = new System.Drawing.Point(732, 8);
+            this.but_timkiem.Name = "but_timkiem";
+            this.but_timkiem.Size = new System.Drawing.Size(128, 32);
+            this.but_timkiem.TabIndex = 1;
+            this.but_timkiem.Text = "Tìm kiếm";
+            this.but_timkiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.but_timkiem.UseVisualStyleBackColor = false;
+            // 
             // tex_timkiem
             // 
             this.tex_timkiem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -569,75 +641,12 @@
             // 
             this.maSanPham.Name = "maSanPham";
             // 
-            // but_loc
+            // stt
             // 
-            this.but_loc.BackColor = System.Drawing.Color.MistyRose;
-            this.but_loc.FlatAppearance.BorderSize = 0;
-            this.but_loc.Image = global::GUI_vinamilk.Properties.Resources.icons8_filter_24;
-            this.but_loc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.but_loc.Location = new System.Drawing.Point(869, 8);
-            this.but_loc.Name = "but_loc";
-            this.but_loc.Size = new System.Drawing.Size(128, 32);
-            this.but_loc.TabIndex = 3;
-            this.but_loc.Text = "Lọc";
-            this.but_loc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.but_loc.UseVisualStyleBackColor = false;
-            this.but_loc.Click += new System.EventHandler(this.But_loc_Click);
-            // 
-            // but_timkiem
-            // 
-            this.but_timkiem.BackColor = System.Drawing.Color.MistyRose;
-            this.but_timkiem.FlatAppearance.BorderSize = 0;
-            this.but_timkiem.Image = global::GUI_vinamilk.Properties.Resources.icons8_search_24;
-            this.but_timkiem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.but_timkiem.Location = new System.Drawing.Point(732, 8);
-            this.but_timkiem.Name = "but_timkiem";
-            this.but_timkiem.Size = new System.Drawing.Size(128, 32);
-            this.but_timkiem.TabIndex = 1;
-            this.but_timkiem.Text = "Tìm kiếm";
-            this.but_timkiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.but_timkiem.UseVisualStyleBackColor = false;
-            // 
-            // but_closepan
-            // 
-            this.but_closepan.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.but_closepan.FlatAppearance.BorderSize = 0;
-            this.but_closepan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.but_closepan.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
-            this.but_closepan.Location = new System.Drawing.Point(470, 5);
-            this.but_closepan.Name = "but_closepan";
-            this.but_closepan.Size = new System.Drawing.Size(34, 34);
-            this.but_closepan.TabIndex = 36;
-            this.but_closepan.UseVisualStyleBackColor = false;
-            this.but_closepan.Click += new System.EventHandler(this.But_closepan_Click);
-            // 
-            // pic_sanpham
-            // 
-            this.pic_sanpham.BackColor = System.Drawing.Color.Snow;
-            this.pic_sanpham.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pic_sanpham.Location = new System.Drawing.Point(5, 52);
-            this.pic_sanpham.Name = "pic_sanpham";
-            this.pic_sanpham.Size = new System.Drawing.Size(500, 254);
-            this.pic_sanpham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pic_sanpham.TabIndex = 34;
-            this.pic_sanpham.TabStop = false;
-            this.pic_sanpham.DoubleClick += new System.EventHandler(this.Pic_sanpham_DoubleClick);
-            // 
-            // but_them
-            // 
-            this.but_them.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.but_them.FlatAppearance.BorderSize = 0;
-            this.but_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.but_them.Image = ((System.Drawing.Image)(resources.GetObject("but_them.Image")));
-            this.but_them.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.but_them.Location = new System.Drawing.Point(8, 8);
-            this.but_them.Name = "but_them";
-            this.but_them.Size = new System.Drawing.Size(235, 34);
-            this.but_them.TabIndex = 0;
-            this.but_them.Text = "Thêm sản phẩm";
-            this.but_them.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.but_them.UseVisualStyleBackColor = false;
-            this.but_them.Click += new System.EventHandler(this.But_them_Click);
+            this.stt.HeaderText = "STT";
+            this.stt.Name = "stt";
+            this.stt.ReadOnly = true;
+            this.stt.Width = 64;
             // 
             // maSanPhamC
             // 
@@ -669,7 +678,7 @@
             this.tenSanPhamC.HeaderText = "Tên sản phẩm";
             this.tenSanPhamC.Name = "tenSanPhamC";
             this.tenSanPhamC.ReadOnly = true;
-            this.tenSanPhamC.Width = 500;
+            this.tenSanPhamC.Width = 480;
             // 
             // moTaC
             // 
@@ -745,11 +754,11 @@
             this.men_nsx.PerformLayout();
             this.pan_chitiet.ResumeLayout(false);
             this.pan_chitiet.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_sanpham)).EndInit();
             this.pan_grid.ResumeLayout(false);
             this.pan_timkiem.ResumeLayout(false);
             this.pan_timkiem.PerformLayout();
             this.gro_boloc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_sanpham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -823,6 +832,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tex_masanpham;
         private System.Windows.Forms.BindingSource sanPhamBindingSource;
+        private System.Windows.Forms.PictureBox pic_sanpham;
+        private System.Windows.Forms.Button but_closepan;
         private System.Windows.Forms.DataGridViewTextBoxColumn stt;
         private System.Windows.Forms.DataGridViewTextBoxColumn maSanPhamC;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -834,7 +845,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.PictureBox pic_sanpham;
-        private System.Windows.Forms.Button but_closepan;
     }
 }
