@@ -262,8 +262,8 @@ namespace GUI_vinamilk.Controls
         private void But_them_Click(object sender, EventArgs e)
         {
             sanPham.maSanPham = GenerateMaSanPham();
+            pan_chitiet.Visible = !pan_chitiet.Visible;
 
-            pan_chitiet.Visible = true;
             foreach (Control con in pan_chitiet.Controls)
             {
                 switch (con)
@@ -528,6 +528,53 @@ namespace GUI_vinamilk.Controls
             }
         }
 
+        private void But_timkiem_Click(object sender, EventArgs e)
+        {
+            TimKiemSanPham();
+        }
+
+        private void Tex_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            TimKiemSanPham();
+        }
+
+        private void TimKiemSanPham()
+        {
+            try
+            {
+                RegexTiengViet reg = new RegexTiengViet();
+
+                using (VinamilkEntities vin = new VinamilkEntities())
+                {
+                    string keyword = reg.RemoveVietnameseMarks(tex_timkiem.Text.ToLower());
+
+                    List<SanPham> sanPhams = vin.SanPhams.ToList();
+
+                    List<SanPham> filteredSanPhams = sanPhams.Where(s => reg.RemoveVietnameseMarks(s.tenSanPham.ToLower()).Contains(keyword) || s.maSanPham.Contains(keyword)).ToList();
+
+                    dat_sanpham.DataSource = filteredSanPhams;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tìm kiếm thất bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void But_loc_Click(object sender, EventArgs e)
+        {
+            if (gro_boloc.Visible)
+            {
+                gro_boloc.Visible = false;
+                pan_timkiem.Height = 52;
+            }
+            else
+            {
+                gro_boloc.Visible = true;
+                pan_timkiem.Height = 256;
+            }
+        }
+
         private void Tex_timkiem_Enter(object sender, EventArgs e)
         {
             if (tex_timkiem.Text == "Nhập mã sản phẩm hoặc tên sản phẩm ở đây")
@@ -548,17 +595,26 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private void But_loc_Click(object sender, EventArgs e)
+        private void Pic_sanpham_DoubleClick(object sender, EventArgs e)
         {
-            if (gro_boloc.Visible)
+            try
             {
-                gro_boloc.Visible = false;
-                pan_timkiem.Height = 52;
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp)|*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp"
+                };
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string imagePath = openFileDialog.FileName;
+                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                    Image image = Image.FromFile(imagePath);
+                    pic_sanpham.Image = image;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                gro_boloc.Visible = true;
-                pan_timkiem.Height = 256;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -608,29 +664,6 @@ namespace GUI_vinamilk.Controls
             don.BackButtonClicked += Uc_back;
 
             OpenUserControl(don);
-        }
-
-        private void Pic_sanpham_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp)|*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp"
-                };
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string imagePath = openFileDialog.FileName;
-                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
-                    Image image = Image.FromFile(imagePath);
-                    pic_sanpham.Image = image;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void Dat_sanpham_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
