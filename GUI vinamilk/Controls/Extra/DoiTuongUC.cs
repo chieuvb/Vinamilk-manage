@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls.Extra
@@ -51,13 +49,6 @@ namespace GUI_vinamilk.Controls.Extra
             dat_doituong.Columns["stt"].Width = 64;
         }
 
-        public string LoaiBoDauTiengViet(string input)
-        {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
-            string temp = input.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, string.Empty).Normalize(NormalizationForm.FormC);
-        }
-
         private void Dat_loaihang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -67,7 +58,7 @@ namespace GUI_vinamilk.Controls.Extra
                     DoiTuong doi = new DoiTuong
                     {
                         maDoiTuong = dat_doituong["maDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        tenDoiTuong = dat_doituong["tenDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString().Replace(" ", "") ?? string.Empty,
+                        tenDoiTuong = dat_doituong["tenDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
                         moTa = dat_doituong["moTaDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
                         trangThai = Convert.ToBoolean(dat_doituong["trangThaiDataGridViewCheckBoxColumn", e.RowIndex].Value ?? false)
                     };
@@ -76,22 +67,21 @@ namespace GUI_vinamilk.Controls.Extra
                     {
                         string maDoiTuong = "lh" + (doi.tenDoiTuong.Length >= 5 ? doi.tenDoiTuong.Trim().Substring(doi.tenDoiTuong.Replace(" ", "").Trim().Length - 5) : doi.tenDoiTuong) + DateTime.Now.ToString("fff");
 
+                        RegexTiengViet reg = new RegexTiengViet();
+                        string result = reg.RemoveVietnameseMarks(maDoiTuong.ToLower());
+
                         DoiTuong dt = new DoiTuong
                         {
-                            maDoiTuong = LoaiBoDauTiengViet(maDoiTuong).ToLower(),
+                            maDoiTuong = result,
                             tenDoiTuong = doi.tenDoiTuong,
                             moTa = doi.moTa,
                             trangThai = doi.trangThai
                         };
 
                         if (dt.maDoiTuong.Length < 10)
-                        {
                             throw new Exception("Tên của đối tượng không hợp lệ!");
-                        }
                         else if (dt.moTa.Length < 10)
-                        {
                             throw new Exception("Mô tả quá ngắn!");
-                        }
 
                         DoiTuong doiTuong = vnm.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == doi.maDoiTuong);
 

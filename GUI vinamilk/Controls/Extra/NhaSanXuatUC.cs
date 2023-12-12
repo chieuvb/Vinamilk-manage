@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls.Extra
@@ -62,13 +60,6 @@ namespace GUI_vinamilk.Controls.Extra
             dat_nhasanxuat.Columns["stt"].Width = 64;
         }
 
-        public string LoaiBoDauTiengViet(string input)
-        {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
-            string temp = input.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, string.Empty).Normalize(NormalizationForm.FormC);
-        }
-
         private void Dat_nhasanxuat_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -78,18 +69,21 @@ namespace GUI_vinamilk.Controls.Extra
                     NhaSanXuat nha = new NhaSanXuat
                     {
                         maNhaSanXuat = dat_nhasanxuat["maNhaSanXuat", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        tenNhaSanXuat = dat_nhasanxuat["tenNhaSanXuat", e.RowIndex].Value?.ToString().Replace(" ", "") ?? string.Empty,
+                        tenNhaSanXuat = dat_nhasanxuat["tenNhaSanXuat", e.RowIndex].Value?.ToString() ?? string.Empty,
                         dienThoai = dat_nhasanxuat["dienThoai", e.RowIndex].Value?.ToString() ?? string.Empty,
                         diaChi = dat_nhasanxuat["diaChi", e.RowIndex].Value?.ToString() ?? string.Empty
                     };
 
                     using (VinamilkEntities vnm = new VinamilkEntities())
                     {
-                        string maNhaSanXuat = "sx" + (nha.tenNhaSanXuat.Length >= 5 ? nha.tenNhaSanXuat.Trim().Substring(0, 5) : nha.tenNhaSanXuat) + DateTime.Now.ToString("fff");
+                        string maNhaSanXuat = "sx" + (nha.tenNhaSanXuat.Length >= 5 ? nha.tenNhaSanXuat.Trim().Replace(" ", "").Substring(0, 5) : nha.tenNhaSanXuat) + DateTime.Now.ToString("fff");
+
+                        RegexTiengViet reg = new RegexTiengViet();
+                        string result = reg.RemoveVietnameseMarks(maNhaSanXuat.ToLower());
 
                         NhaSanXuat nh = new NhaSanXuat
                         {
-                            maNhaSanXuat = LoaiBoDauTiengViet(maNhaSanXuat).ToLower(),
+                            maNhaSanXuat = result,
                             tenNhaSanXuat = nha.tenNhaSanXuat,
                             dienThoai = nha.dienThoai,
                             diaChi = nha.diaChi

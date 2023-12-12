@@ -100,10 +100,7 @@ namespace GUI_vinamilk.Controls
                     File.Delete(sourceFile);
 
                 if (cacheImage.ContainsKey(key))
-                {
-                    cacheImage[key].Dispose();
                     cacheImage.Remove(key);
-                }
 
                 SaveAndCacheImage(key);
             }
@@ -123,14 +120,11 @@ namespace GUI_vinamilk.Controls
                     File.Delete(sourceFile);
 
                 if (cacheImage.ContainsKey(key))
-                {
-                    cacheImage[key].Dispose();
                     cacheImage.Remove(key);
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi xóa nhật ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi xóa ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -139,51 +133,79 @@ namespace GUI_vinamilk.Controls
             try
             {
                 gro_boloc.Visible = false;
-                //pan_chitiet.Visible = false;
+                pan_chitiet.Visible = false;
 
-                await LoadData();
-
-                using (VinamilkEntities vin = new VinamilkEntities())
-                {
-                    string[] nhaSanXuats = await vin.NhaSanXuats.Select(nsx => nsx.tenNhaSanXuat).ToArrayAsync();
-                    com_nhasanxuat.Items.AddRange(nhaSanXuats);
-
-                    string[] doiTuongs = await vin.DoiTuongs.Select(dt => dt.tenDoiTuong).ToArrayAsync();
-                    com_doituong.Items.AddRange(doiTuongs);
-
-                    string[] donVis = await vin.DonVis.Select(dv => dv.tenDonVi).ToArrayAsync();
-                    com_donvi.Items.AddRange(donVis);
-                }
+                await RefreshData();
 
                 if (!Directory.Exists(sourceFolder))
                     Directory.CreateDirectory(sourceFolder);
 
-                cacheImage.Add("no-image", Resources.icons8_no_image_96);
+                if (!cacheImage.ContainsKey("no-image"))
+                    cacheImage.Add("no-image", Resources.icons8_no_image_96);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khởi động: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private async Task LoadData()
+        private async Task RefreshData()
         {
-            using (VinamilkEntities vin = new VinamilkEntities())
+            try
             {
-                dat_sanpham.DataSource = await vin.SanPhams.AsNoTracking().ToListAsync();
+                using (VinamilkEntities vin = new VinamilkEntities())
+                {
+                    dat_sanpham.DataSource = await vin.SanPhams.AsNoTracking().ToListAsync();
+
+                    com_nhasanxuat.Items.Clear();
+                    com_nhasanxuat.Items.Add("-- Nhà sản xuất --");
+                    string[] nhaSX = await vin.NhaSanXuats.Select(nsx => nsx.tenNhaSanXuat).ToArrayAsync();
+                    foreach (string s in nhaSX)
+                    {
+                        if (!com_nhasanxuat.Items.Contains(s))
+                            com_nhasanxuat.Items.Add(s);
+                    }
+                    com_nhasanxuat.SelectedIndex = 0;
+
+                    com_doituong.Items.Clear();
+                    com_doituong.Items.Add("-- Đối tượng sử dụng --");
+                    string[] doiT = await vin.DoiTuongs.Select(dt => dt.tenDoiTuong).ToArrayAsync();
+                    foreach (string d in doiT)
+                    {
+                        if (!com_doituong.Items.Contains(d))
+                            com_doituong.Items.Add(d);
+                    }
+                    com_doituong.SelectedIndex = 0;
+
+                    com_donvi.Items.Clear();
+                    com_donvi.Items.Add("-- Đơn vị tính --");
+                    string[] donV = await vin.DonVis.Select(dv => dv.tenDonVi).ToArrayAsync();
+                    foreach (string d in donV)
+                    {
+                        if (!com_donvi.Items.Contains(d))
+                            com_donvi.Items.Add(d);
+                    }
+                    com_donvi.SelectedIndex = 0;
+                }
+
+                pan_chitiet.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi làm mới dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private async void Dat_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void Dat_sanpham_CellContentDoubleClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
-                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
                     pan_chitiet.Visible = true;
 
                     string maSanPham = dat_sanpham["maSanPhamC", e.RowIndex].Value?.ToString() ?? string.Empty;
+                    string imageKey = null;
 
                     using (VinamilkEntities vin = new VinamilkEntities())
                     {
@@ -208,19 +230,32 @@ namespace GUI_vinamilk.Controls
                             com_donvi.SelectedItem = don?.tenDonVi;
                             tex_gianhap.Text = chiTiet.giaNhap.ToString();
 
-                            string imageKey = chiTiet.hinhAnh.Trim();
-                            LoadAndCacheImage(imageKey);
-                            pic_sanpham.Image = cacheImage[imageKey];
-
-                            if (pic_sanpham.Image.Width <= 128)
-                                pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
+                            imageKey = chiTiet.hinhAnh.Trim();
                         }
                     }
+
+                    if (imageKey != null)
+                        LoadAndCacheImage(imageKey);
+
+                    if (cacheImage.ContainsKey(imageKey))
+                        pic_sanpham.Image = cacheImage[imageKey];
+                    else
+                        pic_sanpham.Image = cacheImage["no-image"];
+
+                    if (pic_sanpham.Image != null)
+                    {
+                        if (pic_sanpham.Image.Width <= 128 && pic_sanpham.Image.Height <= 128)
+                            pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
+                        else
+                            pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    else
+                        pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi chuyển dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -255,49 +290,56 @@ namespace GUI_vinamilk.Controls
         {
             try
             {
-                ValidateInputs();
-
-                using (VinamilkEntities vin = new VinamilkEntities())
+                string result = ValidateInputs();
+                if (result == "success")
                 {
-                    SanPham existingSanPham = vin.SanPhams.FirstOrDefault(s => s.maSanPham == sanPham.maSanPham);
-                    if (existingSanPham == null)
-                        AddNewSanPham(vin);
-                    else
-                        UpdateSanPham(vin, existingSanPham);
+                    using (VinamilkEntities vin = new VinamilkEntities())
+                    {
+                        SanPham existingSanPham = vin.SanPhams.FirstOrDefault(s => s.maSanPham == sanPham.maSanPham);
+                        if (existingSanPham == null)
+                            AddNewSanPham(vin);
+                        else
+                            UpdateSanPham(vin, existingSanPham);
+                    }
                 }
+                else
+                    throw new Exception(result);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi lưu sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void ValidateInputs()
+        private string ValidateInputs()
         {
             try
             {
                 if (string.IsNullOrEmpty(tex_tensanpham.Text))
-                    throw new Exception("Bạn chưa nhập tên sản phẩm!");
+                    return "Bạn chưa nhập tên sản phẩm!";
                 else if (string.IsNullOrEmpty(tex_mota.Text))
-                    throw new Exception("Bạn cần mô tả cho sản phẩm!");
+                    return "Bạn cần mô tả cho sản phẩm!";
                 else if (com_nhasanxuat.SelectedIndex == 0)
-                    throw new Exception("Bạn cần chọn nhà sản xuất!");
+                    return "Bạn cần chọn nhà sản xuất!";
                 else if (com_doituong.SelectedIndex == 0)
-                    throw new Exception("Bạn cần chọn đối tượng sử dụng!");
+                    return "Bạn cần chọn đối tượng sử dụng!";
                 else if (dat_nsx.Value >= DateTime.Now)
-                    throw new Exception("Ngày sản xuất không hợp lệ!");
+                    return "Ngày sản xuất không hợp lệ!";
                 else if (dat_hsd.Value <= dat_nsx.Value)
-                    throw new Exception("Hạn sử dụng không hợp lệ!");
+                    return "Hạn sử dụng không hợp lệ!";
                 else if (string.IsNullOrEmpty(tex_soluong.Text))
-                    throw new Exception("Số lượng không hợp lệ!");
+                    return "Số lượng không hợp lệ!";
                 else if (com_donvi.SelectedIndex == 0)
-                    throw new Exception("Đơn vị tính không hợp lệ!");
+                    return "Đơn vị tính không hợp lệ!";
                 else if (string.IsNullOrEmpty(tex_gianhap.Text))
-                    throw new Exception("Giá nhập không hợp lệ!");
+                    return "Giá nhập không hợp lệ!";
+                else
+                    return "success";
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi nhập dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "fail";
             }
         }
 
@@ -312,11 +354,14 @@ namespace GUI_vinamilk.Controls
                 if (remainingLength > 0)
                     maSanPham += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
 
-                return maSanPham.ToLower();
+                RegexTiengViet reg = new RegexTiengViet();
+                string result = reg.RemoveVietnameseMarks(maSanPham.ToLower());
+
+                return result;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tạo mã sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return "";
             }
         }
@@ -350,7 +395,7 @@ namespace GUI_vinamilk.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tạo sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -385,7 +430,7 @@ namespace GUI_vinamilk.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tạo chi tiết sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -404,13 +449,13 @@ namespace GUI_vinamilk.Controls
                 vin.ChiTietSanPhams.Add(chiTietSanPham);
 
                 vin.SaveChanges();
-                await LoadData();
+                await RefreshData();
 
                 MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi thêm sản phẩm mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -443,12 +488,12 @@ namespace GUI_vinamilk.Controls
 
                 vin.SaveChanges();
 
-                await LoadData();
+                await RefreshData();
                 MessageBox.Show("Sửa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi cập nhật dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -471,7 +516,7 @@ namespace GUI_vinamilk.Controls
                             vin.SanPhams.Remove(sanPham);
                             vin.SaveChanges();
 
-                            await LoadData();
+                            await RefreshData();
                             MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -479,7 +524,7 @@ namespace GUI_vinamilk.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi xóa sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -529,17 +574,20 @@ namespace GUI_vinamilk.Controls
         {
             pan_grid.Controls.Remove(sender as Control);
 
-            pan_menu.Width = 200;
-            pan_timkiem.Height = 52;
-            pan_chitiet.Width = 512;
+            pan_grid.Controls.Add(dat_sanpham);
+            pan_grid.Controls.Add(pan_timkiem);
+            pan_menu.Visible = true;
+            pan_timkiem.Visible = true;
+            pan_chitiet.Visible = true;
         }
 
-        void OpenUserControl(UserControl uc)
+        private void OpenUserControl(UserControl uc)
         {
-            pan_menu.Width = 0;
-            pan_timkiem.Height = 0;
-            //pan_chitiet.Visible = false;
+            pan_menu.Visible = false;
+            pan_timkiem.Visible = false;
+            pan_chitiet.Visible = false;
 
+            pan_grid.Controls.Clear();
             pan_grid.Controls.Add(uc);
             uc.BackColor = Color.MintCream;
             uc.Dock = DockStyle.Fill;
@@ -581,7 +629,7 @@ namespace GUI_vinamilk.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -615,6 +663,16 @@ namespace GUI_vinamilk.Controls
                 long gB = gN + (gN / 100 * 20);
                 tex_giaban.Text = gB.ToString();
             }
+        }
+
+        private async void Pan_grid_ControlAddedAsync(object sender, ControlEventArgs e)
+        {
+            await RefreshData();
+        }
+
+        private void But_closepan_Click(object sender, EventArgs e)
+        {
+            pan_chitiet.Visible = false;
         }
     }
 }
