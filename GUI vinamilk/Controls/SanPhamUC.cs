@@ -196,7 +196,7 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void Dat_sanpham_CellContentDoubleClickAsync(object sender, DataGridViewCellEventArgs e)
+        private async void Dat_sanpham_CellDoubleClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -482,8 +482,8 @@ namespace GUI_vinamilk.Controls
                 chiTietSanPham.hinhAnh = newAnh;
                 chiTietSanPham.ngaySanXuat = dat_nsx.Value;
                 chiTietSanPham.ngayHetHan = dat_hsd.Value;
-                chiTietSanPham.giaNhap = double.Parse(tex_giaban.Text);
-                chiTietSanPham.giaBan = double.Parse(tex_gianhap.Text);
+                chiTietSanPham.giaNhap = double.Parse(tex_gianhap.Text);
+                chiTietSanPham.giaBan = double.Parse(tex_giaban.Text);
                 chiTietSanPham.soLuong = int.Parse(tex_soluong.Text);
 
                 vin.SaveChanges();

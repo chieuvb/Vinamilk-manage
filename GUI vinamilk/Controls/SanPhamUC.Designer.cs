@@ -33,17 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SanPhamUC));
             this.dat_sanpham = new System.Windows.Forms.DataGridView();
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moTaC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trangThaiC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pan_menu = new System.Windows.Forms.Panel();
             this.but_them = new System.Windows.Forms.Button();
             this.men_nsx = new System.Windows.Forms.MenuStrip();
@@ -87,8 +76,18 @@
             this.but_timkiem = new System.Windows.Forms.Button();
             this.tex_timkiem = new System.Windows.Forms.TextBox();
             this.maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenSanPhamC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moTaC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trangThaiC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.pan_menu.SuspendLayout();
             this.men_nsx.SuspendLayout();
             this.pan_chitiet.SuspendLayout();
@@ -96,6 +95,7 @@
             this.pan_grid.SuspendLayout();
             this.pan_timkiem.SuspendLayout();
             this.gro_boloc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dat_sanpham
@@ -136,7 +136,7 @@
             this.dat_sanpham.RowTemplate.Height = 32;
             this.dat_sanpham.Size = new System.Drawing.Size(1150, 877);
             this.dat_sanpham.TabIndex = 0;
-            this.dat_sanpham.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_sanpham_CellContentDoubleClickAsync);
+            this.dat_sanpham.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_sanpham_CellDoubleClickAsync);
             this.dat_sanpham.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.Dat_sanpham_RowPrePaint);
             // 
             // stt
@@ -145,91 +145,6 @@
             this.stt.Name = "stt";
             this.stt.ReadOnly = true;
             this.stt.Width = 64;
-            // 
-            // maSanPhamC
-            // 
-            this.maSanPhamC.DataPropertyName = "maSanPham";
-            this.maSanPhamC.HeaderText = "maSanPham";
-            this.maSanPhamC.Name = "maSanPhamC";
-            this.maSanPhamC.ReadOnly = true;
-            this.maSanPhamC.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "maNhaSanXuat";
-            this.dataGridViewTextBoxColumn2.HeaderText = "maNhaSanXuat";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "maDoiTuong";
-            this.dataGridViewTextBoxColumn4.HeaderText = "maDoiTuong";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // tenSanPhamC
-            // 
-            this.tenSanPhamC.DataPropertyName = "tenSanPham";
-            this.tenSanPhamC.HeaderText = "Tên sản phẩm";
-            this.tenSanPhamC.Name = "tenSanPhamC";
-            this.tenSanPhamC.ReadOnly = true;
-            this.tenSanPhamC.Width = 480;
-            // 
-            // moTaC
-            // 
-            this.moTaC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.moTaC.DataPropertyName = "moTa";
-            this.moTaC.HeaderText = "Mô tả";
-            this.moTaC.Name = "moTaC";
-            this.moTaC.ReadOnly = true;
-            // 
-            // trangThaiC
-            // 
-            this.trangThaiC.DataPropertyName = "trangThai";
-            this.trangThaiC.HeaderText = "Trạng thái";
-            this.trangThaiC.Name = "trangThaiC";
-            this.trangThaiC.ReadOnly = true;
-            this.trangThaiC.Visible = false;
-            this.trangThaiC.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "ChiTietDonHangs";
-            this.dataGridViewTextBoxColumn12.HeaderText = "ChiTietDonHangs";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "ChiTietSanPhams";
-            this.dataGridViewTextBoxColumn13.HeaderText = "ChiTietSanPhams";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "DoiTuong";
-            this.dataGridViewTextBoxColumn14.HeaderText = "DoiTuong";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "NhaSanXuat";
-            this.dataGridViewTextBoxColumn15.HeaderText = "NhaSanXuat";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Visible = false;
-            // 
-            // sanPhamBindingSource
-            // 
-            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
             // 
             // pan_menu
             // 
@@ -376,9 +291,9 @@
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(347, 784);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 18);
+            this.label8.Size = new System.Drawing.Size(42, 18);
             this.label8.TabIndex = 32;
-            this.label8.Text = "vnd";
+            this.label8.Text = "VND";
             // 
             // label6
             // 
@@ -386,9 +301,9 @@
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(347, 752);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 18);
+            this.label6.Size = new System.Drawing.Size(42, 18);
             this.label6.TabIndex = 31;
-            this.label6.Text = "vnd";
+            this.label6.Text = "VND";
             // 
             // com_donvi
             // 
@@ -735,6 +650,91 @@
             // 
             this.maSanPham.Name = "maSanPham";
             // 
+            // maSanPhamC
+            // 
+            this.maSanPhamC.DataPropertyName = "maSanPham";
+            this.maSanPhamC.HeaderText = "maSanPham";
+            this.maSanPhamC.Name = "maSanPhamC";
+            this.maSanPhamC.ReadOnly = true;
+            this.maSanPhamC.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "maNhaSanXuat";
+            this.dataGridViewTextBoxColumn2.HeaderText = "maNhaSanXuat";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "maDoiTuong";
+            this.dataGridViewTextBoxColumn4.HeaderText = "maDoiTuong";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // tenSanPhamC
+            // 
+            this.tenSanPhamC.DataPropertyName = "tenSanPham";
+            this.tenSanPhamC.HeaderText = "Tên sản phẩm";
+            this.tenSanPhamC.Name = "tenSanPhamC";
+            this.tenSanPhamC.ReadOnly = true;
+            this.tenSanPhamC.Width = 480;
+            // 
+            // moTaC
+            // 
+            this.moTaC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.moTaC.DataPropertyName = "moTa";
+            this.moTaC.HeaderText = "Mô tả";
+            this.moTaC.Name = "moTaC";
+            this.moTaC.ReadOnly = true;
+            // 
+            // trangThaiC
+            // 
+            this.trangThaiC.DataPropertyName = "trangThai";
+            this.trangThaiC.HeaderText = "Trạng thái";
+            this.trangThaiC.Name = "trangThaiC";
+            this.trangThaiC.ReadOnly = true;
+            this.trangThaiC.Visible = false;
+            this.trangThaiC.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "ChiTietDonHangs";
+            this.dataGridViewTextBoxColumn12.HeaderText = "ChiTietDonHangs";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "ChiTietSanPhams";
+            this.dataGridViewTextBoxColumn13.HeaderText = "ChiTietSanPhams";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "DoiTuong";
+            this.dataGridViewTextBoxColumn14.HeaderText = "DoiTuong";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "NhaSanXuat";
+            this.dataGridViewTextBoxColumn15.HeaderText = "NhaSanXuat";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Visible = false;
+            // 
+            // sanPhamBindingSource
+            // 
+            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
+            // 
             // SanPhamUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -751,7 +751,6 @@
             this.Tag = "sanpham";
             this.Load += new System.EventHandler(this.SanPhamUC_LoadAsync);
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.pan_menu.ResumeLayout(false);
             this.men_nsx.ResumeLayout(false);
             this.men_nsx.PerformLayout();
@@ -762,6 +761,7 @@
             this.pan_timkiem.ResumeLayout(false);
             this.pan_timkiem.PerformLayout();
             this.gro_boloc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
