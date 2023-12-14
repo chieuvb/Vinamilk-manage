@@ -29,27 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.GroupBox gro_sanpham;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.GroupBox gro_sanpham;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.pan_menu = new System.Windows.Forms.Panel();
             this.tex_sanpham = new System.Windows.Forms.TextBox();
             this.dat_sanpham = new System.Windows.Forms.DataGridView();
+            this.col_tenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pan_menu = new System.Windows.Forms.Panel();
             this.pan_chitiet = new System.Windows.Forms.Panel();
             this.pan_container = new System.Windows.Forms.Panel();
             this.dat_hoadon = new System.Windows.Forms.DataGridView();
-            this.pan_tongtien = new System.Windows.Forms.Panel();
-            this.tex_tongtien = new System.Windows.Forms.TextBox();
-            this.pan_right = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tex_khachhang = new System.Windows.Forms.TextBox();
-            this.gro_khachhang = new System.Windows.Forms.GroupBox();
             this.col_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_tensanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_tru = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -58,32 +54,38 @@
             this.col_gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pan_tongtien = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.col_tenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.tex_tongtien = new System.Windows.Forms.TextBox();
+            this.pan_right = new System.Windows.Forms.Panel();
+            this.gro_khachhang = new System.Windows.Forms.GroupBox();
+            this.tex_khachhang = new System.Windows.Forms.TextBox();
             gro_sanpham = new System.Windows.Forms.GroupBox();
-            this.pan_menu.SuspendLayout();
+            gro_sanpham.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
+            this.pan_menu.SuspendLayout();
             this.pan_chitiet.SuspendLayout();
             this.pan_container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_hoadon)).BeginInit();
             this.pan_tongtien.SuspendLayout();
             this.pan_right.SuspendLayout();
             this.gro_khachhang.SuspendLayout();
-            gro_sanpham.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // pan_menu
+            // gro_sanpham
             // 
-            this.pan_menu.BackColor = System.Drawing.Color.Honeydew;
-            this.pan_menu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pan_menu.Controls.Add(gro_sanpham);
-            this.pan_menu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pan_menu.Location = new System.Drawing.Point(0, 8);
-            this.pan_menu.Name = "pan_menu";
-            this.pan_menu.Size = new System.Drawing.Size(480, 931);
-            this.pan_menu.TabIndex = 0;
+            gro_sanpham.BackColor = System.Drawing.Color.DarkSeaGreen;
+            gro_sanpham.Controls.Add(this.tex_sanpham);
+            gro_sanpham.Controls.Add(this.dat_sanpham);
+            gro_sanpham.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            gro_sanpham.Location = new System.Drawing.Point(5, 5);
+            gro_sanpham.Name = "gro_sanpham";
+            gro_sanpham.Size = new System.Drawing.Size(468, 797);
+            gro_sanpham.TabIndex = 6;
+            gro_sanpham.TabStop = false;
+            gro_sanpham.Text = "Sản phẩm";
             // 
             // tex_sanpham
             // 
@@ -126,6 +128,31 @@
             this.dat_sanpham.Size = new System.Drawing.Size(458, 70);
             this.dat_sanpham.TabIndex = 0;
             this.dat_sanpham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_sanpham_CellClick);
+            // 
+            // col_tenSP
+            // 
+            this.col_tenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.col_tenSP.DataPropertyName = "tenSanPham";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.col_tenSP.DefaultCellStyle = dataGridViewCellStyle2;
+            this.col_tenSP.HeaderText = "Tên sản phẩm";
+            this.col_tenSP.Name = "col_tenSP";
+            this.col_tenSP.ReadOnly = true;
+            // 
+            // sanPhamBindingSource
+            // 
+            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
+            // 
+            // pan_menu
+            // 
+            this.pan_menu.BackColor = System.Drawing.Color.Honeydew;
+            this.pan_menu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pan_menu.Controls.Add(gro_sanpham);
+            this.pan_menu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pan_menu.Location = new System.Drawing.Point(0, 8);
+            this.pan_menu.Name = "pan_menu";
+            this.pan_menu.Size = new System.Drawing.Size(480, 931);
+            this.pan_menu.TabIndex = 0;
             // 
             // pan_chitiet
             // 
@@ -182,83 +209,6 @@
             this.dat_hoadon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_hoadon_CellClick);
             this.dat_hoadon.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_hoadon_CellEndEdit);
             this.dat_hoadon.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.Dat_hoadon_CellPainting);
-            // 
-            // pan_tongtien
-            // 
-            this.pan_tongtien.BackColor = System.Drawing.Color.Honeydew;
-            this.pan_tongtien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pan_tongtien.Controls.Add(this.label1);
-            this.pan_tongtien.Controls.Add(this.label2);
-            this.pan_tongtien.Controls.Add(this.tex_tongtien);
-            this.pan_tongtien.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pan_tongtien.Location = new System.Drawing.Point(0, 803);
-            this.pan_tongtien.Name = "pan_tongtien";
-            this.pan_tongtien.Size = new System.Drawing.Size(960, 128);
-            this.pan_tongtien.TabIndex = 1;
-            // 
-            // tex_tongtien
-            // 
-            this.tex_tongtien.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tex_tongtien.Location = new System.Drawing.Point(485, 57);
-            this.tex_tongtien.Name = "tex_tongtien";
-            this.tex_tongtien.ReadOnly = true;
-            this.tex_tongtien.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tex_tongtien.Size = new System.Drawing.Size(379, 44);
-            this.tex_tongtien.TabIndex = 0;
-            // 
-            // pan_right
-            // 
-            this.pan_right.BackColor = System.Drawing.Color.Honeydew;
-            this.pan_right.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pan_right.Controls.Add(this.gro_khachhang);
-            this.pan_right.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pan_right.Location = new System.Drawing.Point(960, 0);
-            this.pan_right.Name = "pan_right";
-            this.pan_right.Size = new System.Drawing.Size(480, 931);
-            this.pan_right.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(870, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 37);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "VND";
-            // 
-            // tex_khachhang
-            // 
-            this.tex_khachhang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tex_khachhang.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tex_khachhang.Location = new System.Drawing.Point(6, 49);
-            this.tex_khachhang.Name = "tex_khachhang";
-            this.tex_khachhang.Size = new System.Drawing.Size(458, 32);
-            this.tex_khachhang.TabIndex = 3;
-            // 
-            // gro_khachhang
-            // 
-            this.gro_khachhang.Controls.Add(this.tex_khachhang);
-            this.gro_khachhang.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gro_khachhang.Location = new System.Drawing.Point(5, 5);
-            this.gro_khachhang.Name = "gro_khachhang";
-            this.gro_khachhang.Size = new System.Drawing.Size(470, 109);
-            this.gro_khachhang.TabIndex = 5;
-            this.gro_khachhang.TabStop = false;
-            this.gro_khachhang.Text = "Khách hàng";
-            // 
-            // gro_sanpham
-            // 
-            gro_sanpham.BackColor = System.Drawing.Color.DarkSeaGreen;
-            gro_sanpham.Controls.Add(this.tex_sanpham);
-            gro_sanpham.Controls.Add(this.dat_sanpham);
-            gro_sanpham.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            gro_sanpham.Location = new System.Drawing.Point(5, 5);
-            gro_sanpham.Name = "gro_sanpham";
-            gro_sanpham.Size = new System.Drawing.Size(468, 797);
-            gro_sanpham.TabIndex = 6;
-            gro_sanpham.TabStop = false;
-            gro_sanpham.Text = "Sản phẩm";
             // 
             // col_stt
             // 
@@ -337,6 +287,19 @@
             this.maSanPham.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.maSanPham.Visible = false;
             // 
+            // pan_tongtien
+            // 
+            this.pan_tongtien.BackColor = System.Drawing.Color.Honeydew;
+            this.pan_tongtien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pan_tongtien.Controls.Add(this.label1);
+            this.pan_tongtien.Controls.Add(this.label2);
+            this.pan_tongtien.Controls.Add(this.tex_tongtien);
+            this.pan_tongtien.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pan_tongtien.Location = new System.Drawing.Point(0, 803);
+            this.pan_tongtien.Name = "pan_tongtien";
+            this.pan_tongtien.Size = new System.Drawing.Size(960, 128);
+            this.pan_tongtien.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -347,19 +310,56 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Tổng:";
             // 
-            // col_tenSP
+            // label2
             // 
-            this.col_tenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.col_tenSP.DataPropertyName = "tenSanPham";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.col_tenSP.DefaultCellStyle = dataGridViewCellStyle2;
-            this.col_tenSP.HeaderText = "Tên sản phẩm";
-            this.col_tenSP.Name = "col_tenSP";
-            this.col_tenSP.ReadOnly = true;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(870, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 37);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "VND";
             // 
-            // sanPhamBindingSource
+            // tex_tongtien
             // 
-            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
+            this.tex_tongtien.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tex_tongtien.Location = new System.Drawing.Point(485, 57);
+            this.tex_tongtien.Name = "tex_tongtien";
+            this.tex_tongtien.ReadOnly = true;
+            this.tex_tongtien.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tex_tongtien.Size = new System.Drawing.Size(379, 44);
+            this.tex_tongtien.TabIndex = 0;
+            // 
+            // pan_right
+            // 
+            this.pan_right.BackColor = System.Drawing.Color.Honeydew;
+            this.pan_right.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pan_right.Controls.Add(this.gro_khachhang);
+            this.pan_right.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pan_right.Location = new System.Drawing.Point(960, 0);
+            this.pan_right.Name = "pan_right";
+            this.pan_right.Size = new System.Drawing.Size(480, 931);
+            this.pan_right.TabIndex = 0;
+            // 
+            // gro_khachhang
+            // 
+            this.gro_khachhang.Controls.Add(this.tex_khachhang);
+            this.gro_khachhang.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gro_khachhang.Location = new System.Drawing.Point(5, 5);
+            this.gro_khachhang.Name = "gro_khachhang";
+            this.gro_khachhang.Size = new System.Drawing.Size(470, 109);
+            this.gro_khachhang.TabIndex = 5;
+            this.gro_khachhang.TabStop = false;
+            this.gro_khachhang.Text = "Khách hàng";
+            // 
+            // tex_khachhang
+            // 
+            this.tex_khachhang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tex_khachhang.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tex_khachhang.Location = new System.Drawing.Point(6, 49);
+            this.tex_khachhang.Name = "tex_khachhang";
+            this.tex_khachhang.Size = new System.Drawing.Size(458, 32);
+            this.tex_khachhang.TabIndex = 3;
             // 
             // ThanhToanUC
             // 
@@ -372,9 +372,13 @@
             this.Name = "ThanhToanUC";
             this.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.Size = new System.Drawing.Size(1920, 939);
+            this.Tag = "Thanh toan";
             this.Load += new System.EventHandler(this.ThanhToanUC_Load);
-            this.pan_menu.ResumeLayout(false);
+            gro_sanpham.ResumeLayout(false);
+            gro_sanpham.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
+            this.pan_menu.ResumeLayout(false);
             this.pan_chitiet.ResumeLayout(false);
             this.pan_container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dat_hoadon)).EndInit();
@@ -383,9 +387,6 @@
             this.pan_right.ResumeLayout(false);
             this.gro_khachhang.ResumeLayout(false);
             this.gro_khachhang.PerformLayout();
-            gro_sanpham.ResumeLayout(false);
-            gro_sanpham.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
