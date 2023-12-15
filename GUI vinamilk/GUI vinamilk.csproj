@@ -42,6 +42,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -82,6 +84,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChiTietDonHang.cs">
@@ -111,6 +114,18 @@
     <Compile Include="Controls\Extra\DoiTuongUC.Designer.cs">
       <DependentUpon>DoiTuongUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\KhachHangUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\KhachHangUC.Designer.cs">
+      <DependentUpon>KhachHangUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NhanVienUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NhanVienUC.Designer.cs">
+      <DependentUpon>NhanVienUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SanPhamUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,6 +137,18 @@
     </Compile>
     <Compile Include="Controls\ThanhToanUC.Designer.cs">
       <DependentUpon>ThanhToanUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ThongKeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ThongKeUC.Designer.cs">
+      <DependentUpon>ThongKeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TuyChonUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TuyChonUC.Designer.cs">
+      <DependentUpon>TuyChonUC.cs</DependentUpon>
     </Compile>
     <Compile Include="DoiTuong.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -183,11 +210,23 @@
     <EmbeddedResource Include="Controls\Extra\DoiTuongUC.resx">
       <DependentUpon>DoiTuongUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\KhachHangUC.resx">
+      <DependentUpon>KhachHangUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NhanVienUC.resx">
+      <DependentUpon>NhanVienUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SanPhamUC.resx">
       <DependentUpon>SanPhamUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThanhToanUC.resx">
       <DependentUpon>ThanhToanUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ThongKeUC.resx">
+      <DependentUpon>ThongKeUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TuyChonUC.resx">
+      <DependentUpon>TuyChonUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -211,6 +250,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ChiTietDonHang.datasource" />
+    <None Include="Properties\DataSources\KhachHang.datasource" />
     <None Include="Properties\DataSources\SanPham.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

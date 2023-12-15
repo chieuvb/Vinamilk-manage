@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls
@@ -128,14 +127,14 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void SanPhamUC_LoadAsync(object sender, EventArgs e)
+        private void SanPhamUC_LoadAsync(object sender, EventArgs e)
         {
             try
             {
                 gro_boloc.Visible = false;
                 pan_chitiet.Visible = false;
 
-                await RefreshData();
+                RefreshData();
 
                 if (!Directory.Exists(sourceFolder))
                     Directory.CreateDirectory(sourceFolder);
@@ -149,7 +148,7 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async Task RefreshData()
+        private async void RefreshData()
         {
             try
             {
@@ -210,6 +209,7 @@ namespace GUI_vinamilk.Controls
                     using (VinamilkEntities vin = new VinamilkEntities())
                     {
                         sanPham = await vin.SanPhams.FirstOrDefaultAsync(s => s.maSanPham == maSanPham);
+
                         ChiTietSanPham chiTiet = await vin.ChiTietSanPhams.FirstOrDefaultAsync(c => c.maSanPham == maSanPham);
                         NhaSanXuat nha = await vin.NhaSanXuats.FirstOrDefaultAsync(n => n.maNhaSanXuat == sanPham.maNhaSanXuat);
                         DoiTuong doi = await vin.DoiTuongs.FirstOrDefaultAsync(d => d.maDoiTuong == sanPham.maDoiTuong);
@@ -291,6 +291,7 @@ namespace GUI_vinamilk.Controls
             try
             {
                 string result = ValidateInputs();
+
                 if (result == "success")
                 {
                     using (VinamilkEntities vin = new VinamilkEntities())
@@ -435,7 +436,7 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void AddNewSanPham(VinamilkEntities vin)
+        private void AddNewSanPham(VinamilkEntities vin)
         {
             try
             {
@@ -449,7 +450,8 @@ namespace GUI_vinamilk.Controls
                 vin.ChiTietSanPhams.Add(chiTietSanPham);
 
                 vin.SaveChanges();
-                await RefreshData();
+
+                RefreshData();
 
                 MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -459,7 +461,7 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void UpdateSanPham(VinamilkEntities vin, SanPham sanPham)
+        private void UpdateSanPham(VinamilkEntities vin, SanPham sanPham)
         {
             try
             {
@@ -488,7 +490,8 @@ namespace GUI_vinamilk.Controls
 
                 vin.SaveChanges();
 
-                await RefreshData();
+                RefreshData();
+
                 MessageBox.Show("Sửa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -497,7 +500,7 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void But_xoa_Click(object sender, EventArgs e)
+        private void But_xoa_Click(object sender, EventArgs e)
         {
             try
             {
@@ -516,7 +519,8 @@ namespace GUI_vinamilk.Controls
                             vin.SanPhams.Remove(sanPham);
                             vin.SaveChanges();
 
-                            await RefreshData();
+                            RefreshData();
+
                             MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -698,9 +702,9 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void Pan_grid_ControlAddedAsync(object sender, ControlEventArgs e)
+        private void Pan_grid_ControlAdded(object sender, ControlEventArgs e)
         {
-            await RefreshData();
+            RefreshData();
         }
 
         private void But_closepan_Click(object sender, EventArgs e)
