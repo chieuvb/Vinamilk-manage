@@ -19,7 +19,7 @@ namespace GUI_vinamilk
         public string maSanPham { get; set; }
         public short soLuong { get; set; }
         public double thanhTien { get; set; }
-        public bool trangThai { get; set; }
+        public double donGia { get; set; }
     
         public virtual DonHang DonHang { get; set; }
         public virtual SanPham SanPham { get; set; }

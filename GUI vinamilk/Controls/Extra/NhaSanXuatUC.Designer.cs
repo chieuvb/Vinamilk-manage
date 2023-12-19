@@ -62,12 +62,11 @@
             // 
             // but_back
             // 
-            this.but_back.Dock = System.Windows.Forms.DockStyle.Left;
             this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_back_24;
-            this.but_back.Location = new System.Drawing.Point(0, 0);
+            this.but_back.Location = new System.Drawing.Point(3, 3);
             this.but_back.Margin = new System.Windows.Forms.Padding(4);
             this.but_back.Name = "but_back";
-            this.but_back.Size = new System.Drawing.Size(48, 48);
+            this.but_back.Size = new System.Drawing.Size(40, 40);
             this.but_back.TabIndex = 0;
             this.but_back.UseVisualStyleBackColor = true;
             this.but_back.Click += new System.EventHandler(this.But_back_Click);
