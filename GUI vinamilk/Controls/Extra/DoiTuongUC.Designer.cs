@@ -32,7 +32,6 @@
             this.pan_menu = new System.Windows.Forms.Panel();
             this.but_back = new System.Windows.Forms.Button();
             this.dat_doituong = new System.Windows.Forms.DataGridView();
-            this.doiTuongBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maDoiTuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenDoiTuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +40,7 @@
             this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
             this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.sanPhamsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doiTuongBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pan_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_doituong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doiTuongBindingSource)).BeginInit();
@@ -58,12 +58,11 @@
             // 
             // but_back
             // 
-            this.but_back.Dock = System.Windows.Forms.DockStyle.Left;
             this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_back_24;
-            this.but_back.Location = new System.Drawing.Point(0, 0);
+            this.but_back.Location = new System.Drawing.Point(3, 3);
             this.but_back.Margin = new System.Windows.Forms.Padding(6);
             this.but_back.Name = "but_back";
-            this.but_back.Size = new System.Drawing.Size(48, 48);
+            this.but_back.Size = new System.Drawing.Size(40, 40);
             this.but_back.TabIndex = 0;
             this.but_back.UseVisualStyleBackColor = true;
             this.but_back.Click += new System.EventHandler(this.But_back_Click);
@@ -92,13 +91,7 @@
             this.dat_doituong.Size = new System.Drawing.Size(1206, 829);
             this.dat_doituong.TabIndex = 3;
             this.dat_doituong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_loaihang_CellClick);
-            this.dat_doituong.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_loaihang_CellEnter);
-            this.dat_doituong.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Dat_loaihang_EditingControlShowing);
             this.dat_doituong.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.Dat_loaihang_RowPrePaint);
-            // 
-            // doiTuongBindingSource
-            // 
-            this.doiTuongBindingSource.DataSource = typeof(GUI_vinamilk.DoiTuong);
             // 
             // stt
             // 
@@ -154,6 +147,10 @@
             this.sanPhamsDataGridViewTextBoxColumn.HeaderText = "SanPhams";
             this.sanPhamsDataGridViewTextBoxColumn.Name = "sanPhamsDataGridViewTextBoxColumn";
             this.sanPhamsDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // doiTuongBindingSource
+            // 
+            this.doiTuongBindingSource.DataSource = typeof(GUI_vinamilk.DoiTuong);
             // 
             // DoiTuongUC
             // 

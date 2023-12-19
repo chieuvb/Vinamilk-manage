@@ -189,5 +189,15 @@ namespace GUI_vinamilk.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vinamilk_logo_new {
+            get {
+                object obj = ResourceManager.GetObject("vinamilk_logo_new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

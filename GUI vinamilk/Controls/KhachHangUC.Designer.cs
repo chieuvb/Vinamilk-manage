@@ -33,11 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.buttonLoaiKhachHang = new System.Windows.Forms.Button();
             this.buttonKhachHangMoi = new System.Windows.Forms.Button();
             this.panelChiTiet = new System.Windows.Forms.Panel();
             this.buttonXoa = new System.Windows.Forms.Button();
             this.buttonLuu = new System.Windows.Forms.Button();
             this.groupBoxThongTinKhachHang = new System.Windows.Forms.GroupBox();
+            this.textBoxDiemTichLuy = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxLoaiKhachHang = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,22 +64,37 @@
             this.maKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maLoaiKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panelContainer = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelChiTiet.SuspendLayout();
             this.groupBoxThongTinKhachHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKhachHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).BeginInit();
+            this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMenu.Controls.Add(this.buttonLoaiKhachHang);
             this.panelMenu.Controls.Add(this.buttonKhachHangMoi);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 8);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(256, 931);
             this.panelMenu.TabIndex = 2;
+            // 
+            // buttonLoaiKhachHang
+            // 
+            this.buttonLoaiKhachHang.BackColor = System.Drawing.Color.LightCyan;
+            this.buttonLoaiKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLoaiKhachHang.Location = new System.Drawing.Point(3, 446);
+            this.buttonLoaiKhachHang.Name = "buttonLoaiKhachHang";
+            this.buttonLoaiKhachHang.Size = new System.Drawing.Size(248, 36);
+            this.buttonLoaiKhachHang.TabIndex = 1;
+            this.buttonLoaiKhachHang.Text = "Loại khách hàng";
+            this.buttonLoaiKhachHang.UseVisualStyleBackColor = false;
+            this.buttonLoaiKhachHang.Click += new System.EventHandler(this.ButtonLoaiKhachHang_Click);
             // 
             // buttonKhachHangMoi
             // 
@@ -98,7 +115,7 @@
             this.panelChiTiet.Controls.Add(this.buttonLuu);
             this.panelChiTiet.Controls.Add(this.groupBoxThongTinKhachHang);
             this.panelChiTiet.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelChiTiet.Location = new System.Drawing.Point(1408, 8);
+            this.panelChiTiet.Location = new System.Drawing.Point(1152, 0);
             this.panelChiTiet.Name = "panelChiTiet";
             this.panelChiTiet.Size = new System.Drawing.Size(512, 931);
             this.panelChiTiet.TabIndex = 3;
@@ -128,6 +145,7 @@
             // groupBoxThongTinKhachHang
             // 
             this.groupBoxThongTinKhachHang.BackColor = System.Drawing.Color.PowderBlue;
+            this.groupBoxThongTinKhachHang.Controls.Add(this.textBoxDiemTichLuy);
             this.groupBoxThongTinKhachHang.Controls.Add(this.label5);
             this.groupBoxThongTinKhachHang.Controls.Add(this.comboBoxLoaiKhachHang);
             this.groupBoxThongTinKhachHang.Controls.Add(this.label1);
@@ -149,6 +167,15 @@
             this.groupBoxThongTinKhachHang.Text = "Thông tin khách hàng";
             this.groupBoxThongTinKhachHang.Enter += new System.EventHandler(this.GroupBoxThongTinKhachHang_Enter);
             // 
+            // textBoxDiemTichLuy
+            // 
+            this.textBoxDiemTichLuy.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDiemTichLuy.Location = new System.Drawing.Point(145, 445);
+            this.textBoxDiemTichLuy.MaxLength = 128;
+            this.textBoxDiemTichLuy.Name = "textBoxDiemTichLuy";
+            this.textBoxDiemTichLuy.Size = new System.Drawing.Size(194, 29);
+            this.textBoxDiemTichLuy.TabIndex = 15;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -164,7 +191,7 @@
             this.comboBoxLoaiKhachHang.FormattingEnabled = true;
             this.comboBoxLoaiKhachHang.Location = new System.Drawing.Point(145, 118);
             this.comboBoxLoaiKhachHang.Name = "comboBoxLoaiKhachHang";
-            this.comboBoxLoaiKhachHang.Size = new System.Drawing.Size(351, 26);
+            this.comboBoxLoaiKhachHang.Size = new System.Drawing.Size(324, 26);
             this.comboBoxLoaiKhachHang.TabIndex = 13;
             // 
             // label1
@@ -182,7 +209,7 @@
             this.textBoxTenKhachHang.Location = new System.Drawing.Point(145, 56);
             this.textBoxTenKhachHang.MaxLength = 128;
             this.textBoxTenKhachHang.Name = "textBoxTenKhachHang";
-            this.textBoxTenKhachHang.Size = new System.Drawing.Size(351, 29);
+            this.textBoxTenKhachHang.Size = new System.Drawing.Size(324, 29);
             this.textBoxTenKhachHang.TabIndex = 1;
             // 
             // dateTimePickerNgayDangKy
@@ -191,7 +218,7 @@
             this.dateTimePickerNgayDangKy.MaxDate = new System.DateTime(2976, 12, 31, 0, 0, 0, 0);
             this.dateTimePickerNgayDangKy.MinDate = new System.DateTime(1976, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerNgayDangKy.Name = "dateTimePickerNgayDangKy";
-            this.dateTimePickerNgayDangKy.Size = new System.Drawing.Size(351, 26);
+            this.dateTimePickerNgayDangKy.Size = new System.Drawing.Size(324, 26);
             this.dateTimePickerNgayDangKy.TabIndex = 12;
             // 
             // textBoxDiaChi
@@ -200,7 +227,7 @@
             this.textBoxDiaChi.Location = new System.Drawing.Point(145, 176);
             this.textBoxDiaChi.Multiline = true;
             this.textBoxDiaChi.Name = "textBoxDiaChi";
-            this.textBoxDiaChi.Size = new System.Drawing.Size(351, 97);
+            this.textBoxDiaChi.Size = new System.Drawing.Size(324, 97);
             this.textBoxDiaChi.TabIndex = 2;
             // 
             // label6
@@ -224,10 +251,10 @@
             // labelDiemTichLuy
             // 
             this.labelDiemTichLuy.AutoSize = true;
-            this.labelDiemTichLuy.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDiemTichLuy.Location = new System.Drawing.Point(52, 452);
+            this.labelDiemTichLuy.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDiemTichLuy.Location = new System.Drawing.Point(36, 451);
             this.labelDiemTichLuy.Name = "labelDiemTichLuy";
-            this.labelDiemTichLuy.Size = new System.Drawing.Size(177, 29);
+            this.labelDiemTichLuy.Size = new System.Drawing.Size(103, 18);
             this.labelDiemTichLuy.TabIndex = 10;
             this.labelDiemTichLuy.Text = "Điểm tích lũy: ";
             // 
@@ -246,7 +273,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(145, 332);
             this.textBoxEmail.MaxLength = 128;
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(351, 29);
+            this.textBoxEmail.Size = new System.Drawing.Size(324, 29);
             this.textBoxEmail.TabIndex = 9;
             // 
             // textBoxSoDienThoai
@@ -255,7 +282,7 @@
             this.textBoxSoDienThoai.Location = new System.Drawing.Point(145, 297);
             this.textBoxSoDienThoai.MaxLength = 16;
             this.textBoxSoDienThoai.Name = "textBoxSoDienThoai";
-            this.textBoxSoDienThoai.Size = new System.Drawing.Size(351, 29);
+            this.textBoxSoDienThoai.Size = new System.Drawing.Size(324, 29);
             this.textBoxSoDienThoai.TabIndex = 5;
             // 
             // label4
@@ -296,7 +323,7 @@
             this.maLoaiKhachHangDataGridViewTextBoxColumn});
             this.dataGridViewKhachHang.DataSource = this.khachHangBindingSource;
             this.dataGridViewKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewKhachHang.Location = new System.Drawing.Point(256, 8);
+            this.dataGridViewKhachHang.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewKhachHang.Name = "dataGridViewKhachHang";
             this.dataGridViewKhachHang.RowHeadersVisible = false;
             this.dataGridViewKhachHang.RowTemplate.Height = 32;
@@ -376,13 +403,22 @@
             // 
             this.khachHangBindingSource.DataSource = typeof(GUI_vinamilk.KhachHang);
             // 
+            // panelContainer
+            // 
+            this.panelContainer.Controls.Add(this.dataGridViewKhachHang);
+            this.panelContainer.Controls.Add(this.panelChiTiet);
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(256, 8);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(1664, 931);
+            this.panelContainer.TabIndex = 5;
+            // 
             // KhachHangUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
-            this.Controls.Add(this.dataGridViewKhachHang);
-            this.Controls.Add(this.panelChiTiet);
+            this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panelMenu);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -397,6 +433,7 @@
             this.groupBoxThongTinKhachHang.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKhachHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
+            this.panelContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -432,5 +469,8 @@
         private System.Windows.Forms.Button buttonKhachHangMoi;
         private System.Windows.Forms.Button buttonXoa;
         private System.Windows.Forms.Button buttonLuu;
+        private System.Windows.Forms.TextBox textBoxDiemTichLuy;
+        private System.Windows.Forms.Button buttonLoaiKhachHang;
+        private System.Windows.Forms.Panel panelContainer;
     }
 }

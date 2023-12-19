@@ -20,7 +20,7 @@ namespace GUI_vinamilk
 
         private void But_thanhtoan_Click(object sender, EventArgs e)
         {
-            UserControl tha = new ThanhToanUC();
+            UserControl tha = new ThanhToanUC("chieuvb");
             AddControl(tha, sender);
         }
 

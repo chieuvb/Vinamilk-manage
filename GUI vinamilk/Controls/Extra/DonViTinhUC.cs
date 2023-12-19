@@ -26,9 +26,6 @@ namespace GUI_vinamilk.Controls.Extra
             try
             {
                 LoadData();
-
-                dat_donvi.Columns["luu"].Visible = false;
-                dat_donvi.Columns["xoa"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -109,9 +106,6 @@ namespace GUI_vinamilk.Controls.Extra
 
                         LoadData();
                     }
-
-                    dat_donvi.Columns["luu"].Visible = false;
-                    dat_donvi.Columns["xoa"].Visible = false;
                 }
 
                 if (e.ColumnIndex >= 0 && dat_donvi.Columns[e.ColumnIndex].Name == "xoa" && e.RowIndex >= 0)
@@ -150,21 +144,6 @@ namespace GUI_vinamilk.Controls.Extra
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void Dat_donvil_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            dat_donvi.Columns["luu"].Visible = true;
-            dat_donvi.Columns["xoa"].Visible = true;
-        }
-
-        private void Dat_donvil_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1 && e.ColumnIndex == 4)
-            {
-                dat_donvi.Columns["luu"].Visible = true;
-                dat_donvi.Columns["xoa"].Visible = true;
             }
         }
     }

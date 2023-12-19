@@ -58,12 +58,11 @@
             // 
             // but_back
             // 
-            this.but_back.Dock = System.Windows.Forms.DockStyle.Left;
             this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_back_24;
-            this.but_back.Location = new System.Drawing.Point(0, 0);
+            this.but_back.Location = new System.Drawing.Point(3, 3);
             this.but_back.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.but_back.Name = "but_back";
-            this.but_back.Size = new System.Drawing.Size(48, 48);
+            this.but_back.Size = new System.Drawing.Size(40, 40);
             this.but_back.TabIndex = 0;
             this.but_back.UseVisualStyleBackColor = true;
             this.but_back.Click += new System.EventHandler(this.But_back_Click);
@@ -90,8 +89,6 @@
             this.dat_donvi.Size = new System.Drawing.Size(1206, 829);
             this.dat_donvi.TabIndex = 4;
             this.dat_donvi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_donvi_CellClick);
-            this.dat_donvi.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_donvil_CellEnter);
-            this.dat_donvi.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Dat_donvil_EditingControlShowing);
             this.dat_donvi.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.Dat_donvi_RowPrePaint);
             // 
             // stt

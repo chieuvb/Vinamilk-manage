@@ -1,6 +1,8 @@
-﻿using System;
+﻿using GUI_vinamilk.Controls.Extra;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -19,7 +21,6 @@ namespace GUI_vinamilk.Controls
 
         private void KhachHangUC_Load(object sender, EventArgs e)
         {
-            panelChiTiet.Visible = false;
             buttonLuu.Visible = false;
 
             RefreshData();
@@ -56,8 +57,6 @@ namespace GUI_vinamilk.Controls
             {
                 if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
-                    panelChiTiet.Visible = true;
-
                     DataGridViewRow row = dataGridViewKhachHang.Rows[e.RowIndex];
 
                     khachHang = new KhachHang
@@ -77,7 +76,7 @@ namespace GUI_vinamilk.Controls
                     textBoxSoDienThoai.Text = khachHang.soDienThoai;
                     textBoxEmail.Text = khachHang.email;
                     dateTimePickerNgayDangKy.Value = khachHang.ngayDangKy;
-                    labelDiemTichLuy.Text = "Điểm tích lũy: " + khachHang.diemTichLuy.ToString();
+                    textBoxDiemTichLuy.Text = khachHang.diemTichLuy.ToString();
 
                     using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
                     {
@@ -105,15 +104,13 @@ namespace GUI_vinamilk.Controls
         {
             khachHang.maKhachHang = GenerateMaKhachHang(textBoxTenKhachHang.Text);
 
-            panelChiTiet.Visible = !panelChiTiet.Visible;
-
             textBoxTenKhachHang.Clear();
             comboBoxLoaiKhachHang.SelectedIndex = 0;
             textBoxDiaChi.Clear();
             textBoxSoDienThoai.Clear();
             textBoxEmail.Clear();
             dateTimePickerNgayDangKy.Value = DateTime.Now;
-            labelDiemTichLuy.Text = "Điểm tích lũy: 0";
+            textBoxDiemTichLuy.Text = "0";
         }
 
         private void GroupBoxThongTinKhachHang_Enter(object sender, EventArgs e)
@@ -231,7 +228,7 @@ namespace GUI_vinamilk.Controls
                     diaChi = textBoxDiaChi.Text.Trim(),
                     soDienThoai = textBoxSoDienThoai.Text.Trim(),
                     email = textBoxEmail.Text.Trim(),
-                    diemTichLuy = short.Parse(labelDiemTichLuy.Text.Trim().Replace("Điểm tích lũy: ", "")),
+                    diemTichLuy = short.Parse(textBoxDiemTichLuy.Text.Trim()),
                     ngayDangKy = dateTimePickerNgayDangKy.Value
                 };
 
@@ -259,7 +256,7 @@ namespace GUI_vinamilk.Controls
                 khach.diaChi = textBoxDiaChi.Text;
                 khach.soDienThoai = textBoxSoDienThoai.Text;
                 khach.email = textBoxEmail.Text;
-                khach.diemTichLuy = short.Parse(labelDiemTichLuy.Text.Replace("Điểm tích lũy: ", ""));
+                khach.diemTichLuy = short.Parse(textBoxDiemTichLuy.Text);
                 khach.ngayDangKy = dateTimePickerNgayDangKy.Value;
 
                 vinamilkEntities.SaveChanges();
@@ -310,6 +307,33 @@ namespace GUI_vinamilk.Controls
             {
                 MessageBox.Show("Lỗi xóa dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ButtonLoaiKhachHang_Click(object sender, EventArgs e)
+        {
+            panelContainer.Controls.Remove(sender as Control);
+
+            dataGridViewKhachHang.Visible = false;
+            panelChiTiet.Visible = false;
+
+            LoaiKhachHangUC loai = new LoaiKhachHangUC();
+            loai.BackButtonClicked += UserControl_Back;
+
+            panelContainer.Controls.Add(loai);
+            loai.BackColor = Color.MintCream;
+            loai.Dock = DockStyle.Fill;
+            loai.BringToFront();
+        }
+
+        private void UserControl_Back(object sender, EventArgs e)
+        {
+            panelContainer.Controls.Remove(sender as Control);
+
+            panelContainer.Controls.Add(dataGridViewKhachHang);
+            panelContainer.Controls.Add(panelChiTiet);
+
+            dataGridViewKhachHang.Visible = true;
+            panelChiTiet.Visible = true;
         }
     }
 }

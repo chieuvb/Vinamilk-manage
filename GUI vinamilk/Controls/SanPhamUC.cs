@@ -636,14 +636,12 @@ namespace GUI_vinamilk.Controls
 
             pan_grid.Controls.Add(dat_sanpham);
             pan_grid.Controls.Add(pan_timkiem);
-            pan_menu.Visible = true;
             pan_timkiem.Visible = true;
             pan_chitiet.Visible = true;
         }
 
         private void OpenUserControl(UserControl uc)
         {
-            pan_menu.Visible = false;
             pan_timkiem.Visible = false;
             pan_chitiet.Visible = false;
 

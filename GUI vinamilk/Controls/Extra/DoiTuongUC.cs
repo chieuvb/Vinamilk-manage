@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -19,23 +20,21 @@ namespace GUI_vinamilk.Controls.Extra
             try
             {
                 LoadData();
-
-                dat_doituong.Columns["luu"].Visible = false;
-                dat_doituong.Columns["xoa"].Visible = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Loi khoi dong: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         void LoadData()
         {
-            VinamilkEntities vinamilkEntities = new VinamilkEntities();
-            DoiTuong doi = new DoiTuong();
-            List<DoiTuong> dois = vinamilkEntities.DoiTuongs.ToList();
-            dois.Add(doi);
-            dat_doituong.DataSource = dois;
+            using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
+            {
+                List<DoiTuong> doiTuongs = vinamilkEntities.DoiTuongs.ToList();
+                doiTuongs.Add(new DoiTuong());
+                dat_doituong.DataSource = doiTuongs;
+            }
         }
 
         private void But_back_Click(object sender, EventArgs e)
@@ -65,23 +64,20 @@ namespace GUI_vinamilk.Controls.Extra
 
                     using (VinamilkEntities vnm = new VinamilkEntities())
                     {
-                        string maDoiTuong = "lh" + (doi.tenDoiTuong.Length >= 5 ? doi.tenDoiTuong.Trim().Substring(doi.tenDoiTuong.Replace(" ", "").Trim().Length - 5) : doi.tenDoiTuong) + DateTime.Now.ToString("fff");
-
-                        RegexTiengViet reg = new RegexTiengViet();
-                        string result = reg.RemoveVietnameseMarks(maDoiTuong.ToLower());
+                        string maDoiTuong = TaoMaDoiTuong(doi.tenDoiTuong);
 
                         DoiTuong dt = new DoiTuong
                         {
-                            maDoiTuong = result,
+                            maDoiTuong = maDoiTuong,
                             tenDoiTuong = doi.tenDoiTuong,
                             moTa = doi.moTa,
                             trangThai = doi.trangThai
                         };
 
-                        if (dt.maDoiTuong.Length < 10)
+                        if (string.IsNullOrEmpty(dt.tenDoiTuong))
                             throw new Exception("Tên của đối tượng không hợp lệ!");
-                        else if (dt.moTa.Length < 10)
-                            throw new Exception("Mô tả quá ngắn!");
+                        else if (string.IsNullOrEmpty(dt.moTa))
+                            throw new Exception("Mô tả không hợp lệ!");
 
                         DoiTuong doiTuong = vnm.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == doi.maDoiTuong);
 
@@ -102,9 +98,6 @@ namespace GUI_vinamilk.Controls.Extra
 
                         LoadData();
                     }
-
-                    dat_doituong.Columns["luu"].Visible = false;
-                    dat_doituong.Columns["xoa"].Visible = false;
                 }
 
                 if (e.ColumnIndex >= 0 && dat_doituong.Columns[e.ColumnIndex].Name == "xoa" && e.RowIndex >= 0)
@@ -146,19 +139,19 @@ namespace GUI_vinamilk.Controls.Extra
             }
         }
 
-        private void Dat_loaihang_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        private string TaoMaDoiTuong(string tenDT)
         {
-            dat_doituong.Columns["luu"].Visible = true;
-            dat_doituong.Columns["xoa"].Visible = true;
-        }
+            string tenDoiTuong = tenDT.Replace(" ", "") ?? string.Empty;
+            string maDoiTuong = "lk" + (tenDoiTuong.Length >= 5 ? tenDoiTuong.Trim().Substring(0, 5) : tenDoiTuong);
 
-        private void Dat_loaihang_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1 && e.ColumnIndex == 4)
-            {
-                dat_doituong.Columns["luu"].Visible = true;
-                dat_doituong.Columns["xoa"].Visible = true;
-            }
+            int remainingLength = 10 - maDoiTuong.Length;
+            if (remainingLength > 0)
+                maDoiTuong += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
+
+            RegexTiengViet reg = new RegexTiengViet();
+            string result = reg.RemoveVietnameseMarks(maDoiTuong.ToLower());
+
+            return result;
         }
     }
 }

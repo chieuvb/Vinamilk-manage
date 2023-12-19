@@ -102,6 +102,12 @@
     <Compile Include="Controls\Extra\DonViTinhUC.Designer.cs">
       <DependentUpon>DonViTinhUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Extra\LoaiKhachHangUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Extra\LoaiKhachHangUC.Designer.cs">
+      <DependentUpon>LoaiKhachHangUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Extra\NhaSanXuatUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     <EmbeddedResource Include="Controls\Extra\DonViTinhUC.resx">
       <DependentUpon>DonViTinhUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Extra\LoaiKhachHangUC.resx">
+      <DependentUpon>LoaiKhachHangUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Extra\NhaSanXuatUC.resx">
       <DependentUpon>NhaSanXuatUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +260,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ChiTietDonHang.datasource" />
     <None Include="Properties\DataSources\KhachHang.datasource" />
+    <None Include="Properties\DataSources\LoaiKhachHang.datasource" />
     <None Include="Properties\DataSources\SanPham.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -307,6 +317,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\vinamilk-logo-new.png" />
     <None Include="Resources\icons8-close-24.png" />
     <None Include="Resources\icons8-no-image-96.png" />
   </ItemGroup>

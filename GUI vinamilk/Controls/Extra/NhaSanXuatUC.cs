@@ -30,9 +30,6 @@ namespace GUI_vinamilk.Controls.Extra
                 dat_nhasanxuat.Columns["tenNhaSanXuat"].Width = 256;
                 dat_nhasanxuat.Columns["dienThoai"].Width = 256;
                 dat_nhasanxuat.Columns["diaChi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                dat_nhasanxuat.Columns["luu"].Visible = false;
-                dat_nhasanxuat.Columns["xoa"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -121,9 +118,6 @@ namespace GUI_vinamilk.Controls.Extra
 
                         LoadData();
                     }
-
-                    dat_nhasanxuat.Columns["luu"].Visible = false;
-                    dat_nhasanxuat.Columns["xoa"].Visible = false;
                 }
 
                 if (e.ColumnIndex >= 0 && dat_nhasanxuat.Columns[e.ColumnIndex].Name == "xoa" && e.RowIndex >= 0)
@@ -167,10 +161,8 @@ namespace GUI_vinamilk.Controls.Extra
 
         private void Dat_nhasanxuat_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            dat_nhasanxuat.Columns["luu"].Visible = true;
-            dat_nhasanxuat.Columns["xoa"].Visible = true;
-
             e.Control.KeyPress -= new KeyPressEventHandler(Phone_Keypress);
+
             if (dat_nhasanxuat.CurrentCell.ColumnIndex == 3)
             {
                 if (e.Control is TextBox tb)
