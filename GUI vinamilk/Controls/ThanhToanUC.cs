@@ -1,4 +1,5 @@
-﻿using GUI_vinamilk.Properties;
+﻿using GUI_vinamilk.Controls.Extra;
+using GUI_vinamilk.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -235,7 +236,7 @@ namespace GUI_vinamilk.Controls
 
         private void TextBoxSanPham_TextChanged(object sender, EventArgs e)
         {
-            RegexTiengViet reg = new RegexTiengViet();
+            RegexInput reg = new RegexInput();
 
             using (VinamilkEntities vin = new VinamilkEntities())
             {
@@ -295,7 +296,7 @@ namespace GUI_vinamilk.Controls
         {
             try
             {
-                RegexTiengViet reg = new RegexTiengViet();
+                RegexInput reg = new RegexInput();
 
                 using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
                 {
@@ -646,6 +647,26 @@ namespace GUI_vinamilk.Controls
             }
 
             return result;
+        }
+
+        private void ButtonLichSuHoaDon_Click(object sender, EventArgs e)
+        {
+            LichSuHoaDonUC lic = new LichSuHoaDonUC();
+            lic.BackButtonClicked += Uc_back;
+
+            Controls.Clear();
+            Controls.Add(lic);
+            lic.BackColor = Color.MintCream;
+            lic.Dock = DockStyle.Fill;
+            lic.BringToFront();
+        }
+
+        private void Uc_back(object sender, EventArgs e)
+        {
+            Controls.Remove(sender as Control);
+
+            Controls.Add(panelChiTiet);
+            Controls.Add(panelLeft);
         }
     }
 }

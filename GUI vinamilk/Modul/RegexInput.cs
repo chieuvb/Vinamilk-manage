@@ -1,6 +1,8 @@
-﻿namespace GUI_vinamilk
+﻿using System.Text.RegularExpressions;
+
+namespace GUI_vinamilk
 {
-    internal class RegexTiengViet
+    internal class RegexInput
     {
         private readonly string[] VietnameseWithMarks = new string[]
         {
@@ -45,6 +47,22 @@
                 input = input.Replace(VietnameseWithMarks[i], VietnameseWithoutMarks[i]);
             }
             return input;
+        }
+
+
+
+        public bool ValidatePhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^(0[1-9][0-9]{8,9})$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(phoneNumber);
+        }
+
+        public bool ValidateEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(email);
         }
     }
 }

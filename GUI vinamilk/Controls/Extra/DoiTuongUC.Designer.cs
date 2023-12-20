@@ -33,12 +33,12 @@
             this.but_back = new System.Windows.Forms.Button();
             this.dat_doituong = new System.Windows.Forms.DataGridView();
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.maDoiTuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenDoiTuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moTaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trangThaiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.sanPhamsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.doiTuongBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pan_menu.SuspendLayout();
@@ -58,8 +58,9 @@
             // 
             // but_back
             // 
-            this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_back_24;
-            this.but_back.Location = new System.Drawing.Point(3, 3);
+            this.but_back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.but_back.Location = new System.Drawing.Point(1162, 4);
             this.but_back.Margin = new System.Windows.Forms.Padding(6);
             this.but_back.Name = "but_back";
             this.but_back.Size = new System.Drawing.Size(40, 40);
@@ -99,6 +100,20 @@
             this.stt.Name = "stt";
             this.stt.Width = 64;
             // 
+            // luu
+            // 
+            this.luu.HeaderText = "";
+            this.luu.Name = "luu";
+            this.luu.Text = "Lưu";
+            this.luu.UseColumnTextForButtonValue = true;
+            // 
+            // xoa
+            // 
+            this.xoa.HeaderText = "";
+            this.xoa.Name = "xoa";
+            this.xoa.Text = "Xóa";
+            this.xoa.UseColumnTextForButtonValue = true;
+            // 
             // maDoiTuongDataGridViewTextBoxColumn
             // 
             this.maDoiTuongDataGridViewTextBoxColumn.DataPropertyName = "maDoiTuong";
@@ -126,20 +141,6 @@
             this.trangThaiDataGridViewCheckBoxColumn.HeaderText = "Trạng thái";
             this.trangThaiDataGridViewCheckBoxColumn.Name = "trangThaiDataGridViewCheckBoxColumn";
             this.trangThaiDataGridViewCheckBoxColumn.Width = 200;
-            // 
-            // luu
-            // 
-            this.luu.HeaderText = "";
-            this.luu.Name = "luu";
-            this.luu.Text = "Lưu";
-            this.luu.UseColumnTextForButtonValue = true;
-            // 
-            // xoa
-            // 
-            this.xoa.HeaderText = "";
-            this.xoa.Name = "xoa";
-            this.xoa.Text = "Xóa";
-            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // sanPhamsDataGridViewTextBoxColumn
             // 

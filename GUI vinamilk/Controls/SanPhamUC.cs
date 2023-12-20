@@ -1,10 +1,10 @@
 ﻿using GUI_vinamilk.Controls.Extra;
+using GUI_vinamilk.Modul;
 using GUI_vinamilk.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,132 +15,21 @@ namespace GUI_vinamilk.Controls
         public SanPhamUC()
         {
             InitializeComponent();
+            imageProcess = new ImageProcess(true, cacheImage);
         }
 
-        readonly string sourceFolder = @"C:\Vinamilk manage\image\products\";
+        readonly ImageProcess imageProcess;
         readonly Dictionary<string, Image> cacheImage = new Dictionary<string, Image>();
         SanPham sanPham = new SanPham();
-
-        private void LoadAndCacheImage(string key)
-        {
-            try
-            {
-                string imagePath = sourceFolder + key + ".png";
-
-                if (cacheImage.ContainsKey(key))
-                    return;
-
-                if (File.Exists(imagePath))
-                {
-                    using (Image image = Image.FromFile(imagePath))
-                    {
-                        using (MemoryStream mem = new MemoryStream())
-                        {
-                            image.Save(mem, image.RawFormat);
-
-                            if (cacheImage.TryGetValue(key, out Image existingImage))
-                            {
-                                existingImage.Dispose();
-                                cacheImage[key] = Image.FromStream(mem);
-                            }
-                            else
-                                cacheImage.Add(key, Image.FromStream(mem));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi lưu ảnh vào bộ đệm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private string SaveAndCacheImage(string key)
-        {
-            try
-            {
-                Image imageToSave = pic_sanpham.Image;
-
-                string destinationFile = sourceFolder + key + ".png";
-
-                if (imageToSave != null && imageToSave.Width >= 128 && !File.Exists(destinationFile))
-                {
-                    using (imageToSave)
-                    {
-                        imageToSave.Save(destinationFile, System.Drawing.Imaging.ImageFormat.Png);
-
-                        LoadAndCacheImage(key);
-                    }
-
-                    return key;
-                }
-                else if (File.Exists(destinationFile))
-                {
-                    UpdateImage(key);
-                    return key;
-                }
-                else
-                    return "no-image";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi lưu ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "no-image";
-            }
-        }
-
-        private void UpdateImage(string key)
-        {
-            try
-            {
-                string sourceFile = sourceFolder + key + ".png";
-
-                if (File.Exists(sourceFile))
-                    File.Delete(sourceFile);
-
-                if (cacheImage.ContainsKey(key))
-                    cacheImage.Remove(key);
-
-                SaveAndCacheImage(key);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi cập nhật ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void DeleteImage(string key)
-        {
-            try
-            {
-                string sourceFile = sourceFolder + key + ".png";
-
-                if (File.Exists(sourceFile))
-                    File.Delete(sourceFile);
-
-                if (cacheImage.ContainsKey(key))
-                    cacheImage.Remove(key);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi xóa ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void SanPhamUC_LoadAsync(object sender, EventArgs e)
         {
             try
             {
                 gro_boloc.Visible = false;
-                pan_chitiet.Visible = false;
+                panelChiTiet.Visible = false;
 
                 RefreshData();
-
-                if (!Directory.Exists(sourceFolder))
-                    Directory.CreateDirectory(sourceFolder);
-
-                if (!cacheImage.ContainsKey("no-image"))
-                    cacheImage.Add("no-image", Resources.icons8_no_image_96);
             }
             catch (Exception ex)
             {
@@ -176,18 +65,18 @@ namespace GUI_vinamilk.Controls
                     }
                     com_doituong.SelectedIndex = 0;
 
-                    com_donvi.Items.Clear();
-                    com_donvi.Items.Add("-- Đơn vị tính --");
+                    comboBoxDonVi.Items.Clear();
+                    comboBoxDonVi.Items.Add("-- Đơn vị tính --");
                     string[] donV = await vin.DonVis.Select(dv => dv.tenDonVi).ToArrayAsync();
                     foreach (string d in donV)
                     {
-                        if (!com_donvi.Items.Contains(d))
-                            com_donvi.Items.Add(d);
+                        if (!comboBoxDonVi.Items.Contains(d))
+                            comboBoxDonVi.Items.Add(d);
                     }
-                    com_donvi.SelectedIndex = 0;
+                    comboBoxDonVi.SelectedIndex = 0;
                 }
 
-                pan_chitiet.Visible = false;
+                panelChiTiet.Visible = false;
             }
             catch (Exception ex)
             {
@@ -195,13 +84,13 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private async void Dat_sanpham_CellDoubleClickAsync(object sender, DataGridViewCellEventArgs e)
+        private async void Dat_sanpham_CellClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
-                    pan_chitiet.Visible = true;
+                    panelChiTiet.Visible = true;
 
                     string maSanPham = dat_sanpham["maSanPhamC", e.RowIndex].Value?.ToString() ?? string.Empty;
                     string imageKey = null;
@@ -227,30 +116,30 @@ namespace GUI_vinamilk.Controls
                             dat_nsx.Value = chiTiet.ngaySanXuat;
                             dat_hsd.Value = chiTiet.ngayHetHan;
                             tex_soluong.Text = chiTiet.soLuong.ToString();
-                            com_donvi.SelectedItem = don?.tenDonVi;
-                            tex_gianhap.Text = chiTiet.giaNhap.ToString();
+                            comboBoxDonVi.SelectedItem = don?.tenDonVi;
+                            textBoxGiaNhap.Text = chiTiet.giaNhap.ToString();
 
                             imageKey = chiTiet.hinhAnh.Trim();
                         }
                     }
 
                     if (imageKey != null)
-                        LoadAndCacheImage(imageKey);
+                        imageProcess.LoadAndCacheImage(imageKey, cacheImage);
 
                     if (cacheImage.ContainsKey(imageKey))
-                        pic_sanpham.Image = cacheImage[imageKey];
+                        pictureBoxSanPham.Image = cacheImage[imageKey];
                     else
-                        pic_sanpham.Image = cacheImage["no-image"];
+                        pictureBoxSanPham.Image = cacheImage["no-image"];
 
-                    if (pic_sanpham.Image != null)
+                    if (pictureBoxSanPham.Image != null)
                     {
-                        if (pic_sanpham.Image.Width <= 128 && pic_sanpham.Image.Height <= 128)
-                            pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
+                        if (pictureBoxSanPham.Image.Width <= 128 && pictureBoxSanPham.Image.Height <= 128)
+                            pictureBoxSanPham.SizeMode = PictureBoxSizeMode.CenterImage;
                         else
-                            pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                            pictureBoxSanPham.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
-                        pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBoxSanPham.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
             catch (Exception ex)
@@ -261,10 +150,9 @@ namespace GUI_vinamilk.Controls
 
         private void But_them_Click(object sender, EventArgs e)
         {
-            sanPham.maSanPham = GenerateMaSanPham();
-            pan_chitiet.Visible = !pan_chitiet.Visible;
+            panelChiTiet.Visible = true;
 
-            foreach (Control con in pan_chitiet.Controls)
+            foreach (Control con in panelChiTiet.Controls)
             {
                 switch (con)
                 {
@@ -280,8 +168,8 @@ namespace GUI_vinamilk.Controls
                 }
             }
 
-            pic_sanpham.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic_sanpham.Image = Resources.icons8_add_image_96;
+            pictureBoxSanPham.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBoxSanPham.Image = Resources.icons8_add_image_96;
 
             tex_tensanpham.Focus();
         }
@@ -330,9 +218,9 @@ namespace GUI_vinamilk.Controls
                     return "Hạn sử dụng không hợp lệ!";
                 else if (string.IsNullOrEmpty(tex_soluong.Text))
                     return "Số lượng không hợp lệ!";
-                else if (com_donvi.SelectedIndex == 0)
+                else if (comboBoxDonVi.SelectedIndex == 0)
                     return "Đơn vị tính không hợp lệ!";
-                else if (string.IsNullOrEmpty(tex_gianhap.Text))
+                else if (string.IsNullOrEmpty(textBoxGiaNhap.Text))
                     return "Giá nhập không hợp lệ!";
                 else
                     return "success";
@@ -344,55 +232,57 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private string GenerateMaSanPham()
+        private void AddNewSanPham(VinamilkEntities vin)
         {
             try
             {
-                string tenSanPham = tex_tensanpham.Text.Replace(" ", "") ?? string.Empty;
-                string maSanPham = "sp" + (tenSanPham.Length >= 5 ? tenSanPham.Trim().Substring(0, 5) : tenSanPham);
+                GenerateString gen = new GenerateString();
 
-                int remainingLength = 10 - maSanPham.Length;
-                if (remainingLength > 0)
-                    maSanPham += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
+                string maSanPham = gen.StringID("sp", tex_tensanpham.Text);
 
-                RegexTiengViet reg = new RegexTiengViet();
-                string result = reg.RemoveVietnameseMarks(maSanPham.ToLower());
+                SanPham sanPh = CreateSanPhamObject(maSanPham, vin);
+                ChiTietSanPham chiTietSanPham = CreateChiTietSanPhamObject(maSanPham);
 
-                return result;
+                vin.SanPhams.Add(sanPh);
+                vin.SaveChanges();
+                chiTietSanPham.maSanPham = maSanPham;
+                vin.ChiTietSanPhams.Add(chiTietSanPham);
+
+                vin.SaveChanges();
+
+                RefreshData();
+
+                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tạo mã sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "";
+                MessageBox.Show("Lỗi thêm sản phẩm mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private SanPham CreateSanPhamObject(string msp)
+        private SanPham CreateSanPhamObject(string msp, VinamilkEntities vin)
         {
             try
             {
-                using (VinamilkEntities vin = new VinamilkEntities())
+                string tenSanPham = tex_tensanpham.Text ?? string.Empty;
+                string moTa = tex_mota.Text ?? string.Empty;
+                bool trangThai = che_trangthai.Checked;
+                string selectedDoiTuong = com_doituong.SelectedItem?.ToString() ?? string.Empty;
+                string maDT = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == selectedDoiTuong)?.maDoiTuong ?? "";
+                string selectedNhaSanXuat = com_nhasanxuat.SelectedItem?.ToString() ?? string.Empty;
+                string maNX = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == selectedNhaSanXuat)?.maNhaSanXuat ?? "";
+
+                SanPham sanPham = new SanPham
                 {
-                    string tenSanPham = tex_tensanpham.Text ?? string.Empty;
-                    string moTa = tex_mota.Text ?? string.Empty;
-                    bool trangThai = che_trangthai.Checked;
-                    string selectedDoiTuong = com_doituong.SelectedItem?.ToString() ?? string.Empty;
-                    string maDT = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == selectedDoiTuong)?.maDoiTuong ?? "";
-                    string selectedNhaSanXuat = com_nhasanxuat.SelectedItem?.ToString() ?? string.Empty;
-                    string maNX = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == selectedNhaSanXuat)?.maNhaSanXuat ?? "";
+                    maSanPham = msp,
+                    tenSanPham = tenSanPham,
+                    moTa = moTa,
+                    maDoiTuong = maDT,
+                    maNhaSanXuat = maNX,
+                    trangThai = trangThai
+                };
 
-                    SanPham sanPham = new SanPham
-                    {
-                        maSanPham = msp,
-                        tenSanPham = tenSanPham,
-                        moTa = moTa,
-                        maDoiTuong = maDT,
-                        maNhaSanXuat = maNX,
-                        trangThai = trangThai
-                    };
-
-                    return sanPham;
-                }
+                return sanPham;
             }
             catch (Exception ex)
             {
@@ -405,14 +295,14 @@ namespace GUI_vinamilk.Controls
         {
             try
             {
-                int giaNhap = int.Parse(tex_gianhap.Text ?? "0");
-                int giaBan = int.Parse(tex_giaban.Text ?? "0");
+                int giaNhap = int.Parse(textBoxGiaNhap.Text ?? "0");
+                int giaBan = int.Parse(textBoxGiaBan.Text ?? "0");
 
-                string hinhAnh = SaveAndCacheImage(msp);
+                string hinhAnh = imageProcess.SaveAndCacheImage(msp, pictureBoxSanPham.Image, cacheImage);
 
                 using (VinamilkEntities vin = new VinamilkEntities())
                 {
-                    string maDonVi = vin.DonVis.FirstOrDefault(d => d.tenDonVi == com_donvi.SelectedItem.ToString())?.maDonVi;
+                    string maDonVi = vin.DonVis.FirstOrDefault(d => d.tenDonVi == comboBoxDonVi.SelectedItem.ToString())?.maDonVi;
                     ChiTietSanPham chiTietSanPham = new ChiTietSanPham
                     {
                         maChiTietSanPham = "ctsp" + DateTime.Now.ToString("ssffff"),
@@ -436,31 +326,6 @@ namespace GUI_vinamilk.Controls
             }
         }
 
-        private void AddNewSanPham(VinamilkEntities vin)
-        {
-            try
-            {
-                string maSP = GenerateMaSanPham();
-                SanPham sanPh = CreateSanPhamObject(maSP);
-                ChiTietSanPham chiTietSanPham = CreateChiTietSanPhamObject(maSP);
-
-                vin.SanPhams.Add(sanPh);
-                vin.SaveChanges();
-                chiTietSanPham.maSanPham = maSP;
-                vin.ChiTietSanPhams.Add(chiTietSanPham);
-
-                vin.SaveChanges();
-
-                RefreshData();
-
-                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi thêm sản phẩm mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void UpdateSanPham(VinamilkEntities vin, SanPham sanPham)
         {
             try
@@ -468,11 +333,11 @@ namespace GUI_vinamilk.Controls
                 NhaSanXuat nhaSanXuat = vin.NhaSanXuats.FirstOrDefault(n => n.tenNhaSanXuat == com_nhasanxuat.SelectedItem.ToString());
                 DoiTuong doiTuong = vin.DoiTuongs.FirstOrDefault(d => d.tenDoiTuong == com_doituong.SelectedItem.ToString());
                 ChiTietSanPham chiTietSanPham = vin.ChiTietSanPhams.FirstOrDefault(c => c.maSanPham == sanPham.maSanPham);
-                DonVi donVi = vin.DonVis.FirstOrDefault(d => d.tenDonVi == com_donvi.SelectedItem.ToString());
+                DonVi donVi = vin.DonVis.FirstOrDefault(d => d.tenDonVi == comboBoxDonVi.SelectedItem.ToString());
 
                 string newAnh = sanPham.maSanPham;
 
-                UpdateImage(newAnh);
+                imageProcess.UpdateImage(newAnh, pictureBoxSanPham.Image, cacheImage);
 
                 sanPham.maNhaSanXuat = nhaSanXuat.maNhaSanXuat;
                 sanPham.maDoiTuong = doiTuong.maDoiTuong;
@@ -484,8 +349,8 @@ namespace GUI_vinamilk.Controls
                 chiTietSanPham.hinhAnh = newAnh;
                 chiTietSanPham.ngaySanXuat = dat_nsx.Value;
                 chiTietSanPham.ngayHetHan = dat_hsd.Value;
-                chiTietSanPham.giaNhap = double.Parse(tex_gianhap.Text);
-                chiTietSanPham.giaBan = double.Parse(tex_giaban.Text);
+                chiTietSanPham.giaNhap = double.Parse(textBoxGiaNhap.Text);
+                chiTietSanPham.giaBan = double.Parse(textBoxGiaBan.Text);
                 chiTietSanPham.soLuong = int.Parse(tex_soluong.Text);
 
                 vin.SaveChanges();
@@ -513,7 +378,7 @@ namespace GUI_vinamilk.Controls
                         ChiTietSanPham chiTiet = vin.ChiTietSanPhams.FirstOrDefault(c => c.maSanPham == tex_masanpham.Text);
                         if (sanPham != null && chiTiet != null)
                         {
-                            DeleteImage(chiTiet.maSanPham);
+                            imageProcess.DeleteImage(chiTiet.maSanPham, cacheImage);
 
                             vin.ChiTietSanPhams.Remove(chiTiet);
                             vin.SanPhams.Remove(sanPham);
@@ -521,6 +386,7 @@ namespace GUI_vinamilk.Controls
 
                             RefreshData();
 
+                            panelChiTiet.Visible = false;
                             MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -546,7 +412,10 @@ namespace GUI_vinamilk.Controls
         {
             try
             {
-                RegexTiengViet reg = new RegexTiengViet();
+                if (tex_timkiem.Text == "Nhập mã sản phẩm hoặc tên sản phẩm ở đây!")
+                    return;
+
+                RegexInput reg = new RegexInput();
 
                 using (VinamilkEntities vin = new VinamilkEntities())
                 {
@@ -581,7 +450,7 @@ namespace GUI_vinamilk.Controls
 
         private void Tex_timkiem_Enter(object sender, EventArgs e)
         {
-            if (tex_timkiem.Text == "Nhập mã sản phẩm hoặc tên sản phẩm ở đây")
+            if (tex_timkiem.Text == "Nhập mã sản phẩm hoặc tên sản phẩm ở đây!")
             {
                 tex_timkiem.Clear();
             }
@@ -593,7 +462,7 @@ namespace GUI_vinamilk.Controls
         {
             if (string.IsNullOrEmpty(tex_timkiem.Text))
             {
-                tex_timkiem.Text = "Nhập mã sản phẩm hoặc tên sản phẩm ở đây";
+                tex_timkiem.Text = "Nhập mã sản phẩm hoặc tên sản phẩm ở đây!";
                 tex_timkiem.ForeColor = Color.Gray;
                 tex_timkiem.Font = new Font("Arial", 12, FontStyle.Italic);
             }
@@ -605,15 +474,15 @@ namespace GUI_vinamilk.Controls
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog
                 {
-                    Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp)|*.jpg; *.jpeg; *.gif; *.bmp; *.png; *.webp"
+                    Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png;"
                 };
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string imagePath = openFileDialog.FileName;
-                    pic_sanpham.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBoxSanPham.SizeMode = PictureBoxSizeMode.Zoom;
                     Image image = Image.FromFile(imagePath);
-                    pic_sanpham.Image = image;
+                    pictureBoxSanPham.Image = image;
                 }
             }
             catch (Exception ex)
@@ -637,13 +506,13 @@ namespace GUI_vinamilk.Controls
             pan_grid.Controls.Add(dat_sanpham);
             pan_grid.Controls.Add(pan_timkiem);
             pan_timkiem.Visible = true;
-            pan_chitiet.Visible = true;
+            panelChiTiet.Visible = true;
         }
 
         private void OpenUserControl(UserControl uc)
         {
             pan_timkiem.Visible = false;
-            pan_chitiet.Visible = false;
+            panelChiTiet.Visible = false;
 
             pan_grid.Controls.Clear();
             pan_grid.Controls.Add(uc);
@@ -692,11 +561,11 @@ namespace GUI_vinamilk.Controls
 
         private void Tex_gianhap_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tex_gianhap.Text))
+            if (!string.IsNullOrEmpty(textBoxGiaNhap.Text))
             {
-                long gN = long.Parse(tex_gianhap.Text);
+                long gN = long.Parse(textBoxGiaNhap.Text);
                 long gB = gN + (gN / 100 * 20);
-                tex_giaban.Text = gB.ToString();
+                textBoxGiaBan.Text = gB.ToString();
             }
         }
 
@@ -707,7 +576,7 @@ namespace GUI_vinamilk.Controls
 
         private void But_closepan_Click(object sender, EventArgs e)
         {
-            pan_chitiet.Visible = false;
+            panelChiTiet.Visible = false;
         }
     }
 }

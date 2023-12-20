@@ -75,7 +75,7 @@ namespace GUI_vinamilk.Controls.Extra
                     {
                         string maNhaSanXuat = "sx" + (nha.tenNhaSanXuat.Length >= 5 ? nha.tenNhaSanXuat.Trim().Replace(" ", "").Substring(0, 5) : nha.tenNhaSanXuat) + DateTime.Now.ToString("fff");
 
-                        RegexTiengViet reg = new RegexTiengViet();
+                        RegexInput reg = new RegexInput();
                         string result = reg.RemoveVietnameseMarks(maNhaSanXuat.ToLower());
 
                         NhaSanXuat nh = new NhaSanXuat

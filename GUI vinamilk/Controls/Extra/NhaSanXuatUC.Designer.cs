@@ -36,13 +36,13 @@
             this.nhaSanXuatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dat_nhasanxuat = new System.Windows.Forms.DataGridView();
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.maNhaSanXuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenNhaSanXuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanPhams = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.nhaSanXuatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pan_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nhaSanXuatBindingSource)).BeginInit();
@@ -62,8 +62,9 @@
             // 
             // but_back
             // 
-            this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_back_24;
-            this.but_back.Location = new System.Drawing.Point(3, 3);
+            this.but_back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.but_back.Location = new System.Drawing.Point(1162, 4);
             this.but_back.Margin = new System.Windows.Forms.Padding(4);
             this.but_back.Name = "but_back";
             this.but_back.Size = new System.Drawing.Size(40, 40);
@@ -101,6 +102,26 @@
             this.stt.HeaderText = "STT";
             this.stt.Name = "stt";
             // 
+            // luu
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.luu.DefaultCellStyle = dataGridViewCellStyle1;
+            this.luu.HeaderText = "";
+            this.luu.Name = "luu";
+            this.luu.Text = "Lưu";
+            this.luu.UseColumnTextForButtonValue = true;
+            // 
+            // xoa
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.xoa.DefaultCellStyle = dataGridViewCellStyle2;
+            this.xoa.HeaderText = "";
+            this.xoa.Name = "xoa";
+            this.xoa.Text = "Xóa";
+            this.xoa.UseColumnTextForButtonValue = true;
+            // 
             // maNhaSanXuat
             // 
             this.maNhaSanXuat.DataPropertyName = "maNhaSanXuat";
@@ -132,26 +153,6 @@
             this.sanPhams.DataPropertyName = "SanPhams";
             this.sanPhams.HeaderText = "SanPhams";
             this.sanPhams.Name = "sanPhams";
-            // 
-            // luu
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.luu.DefaultCellStyle = dataGridViewCellStyle1;
-            this.luu.HeaderText = "";
-            this.luu.Name = "luu";
-            this.luu.Text = "Lưu";
-            this.luu.UseColumnTextForButtonValue = true;
-            // 
-            // xoa
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            this.xoa.DefaultCellStyle = dataGridViewCellStyle2;
-            this.xoa.HeaderText = "";
-            this.xoa.Name = "xoa";
-            this.xoa.Text = "Xóa";
-            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // nhaSanXuatBindingSource1
             // 

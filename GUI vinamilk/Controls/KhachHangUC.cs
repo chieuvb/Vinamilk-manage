@@ -51,7 +51,7 @@ namespace GUI_vinamilk.Controls
             dataGridViewKhachHang.Rows[e.RowIndex].Cells["stt"].Value = e.RowIndex + 1;
         }
 
-        private void DataGridViewKhachHang_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -157,15 +157,17 @@ namespace GUI_vinamilk.Controls
         {
             try
             {
+                RegexInput reg = new RegexInput();
+
                 if (string.IsNullOrEmpty(textBoxTenKhachHang.Text))
                     return "Chưa nhập tên khách hàng!";
                 if (comboBoxLoaiKhachHang.SelectedIndex <= 0)
                     return "Loại khách hàng không hợp lệ!";
                 if (string.IsNullOrEmpty(textBoxDiaChi.Text))
                     return "Địa chỉ khách hàng không được bỏ trống!";
-                if (string.IsNullOrEmpty(textBoxSoDienThoai.Text) || !ValidatePhoneNumber(textBoxSoDienThoai.Text))
+                if (string.IsNullOrEmpty(textBoxSoDienThoai.Text) || !reg.ValidatePhoneNumber(textBoxSoDienThoai.Text))
                     return "Vui lòng nhập số điện thoại hợp lệ!";
-                if (string.IsNullOrEmpty(textBoxEmail.Text) || !ValidateEmail(textBoxEmail.Text))
+                if (string.IsNullOrEmpty(textBoxEmail.Text) || !reg.ValidateEmail(textBoxEmail.Text))
                     return "Vui lòng nhập email hợp lệ!";
                 else
                     return "success";
@@ -175,20 +177,6 @@ namespace GUI_vinamilk.Controls
                 MessageBox.Show("Lỗi nhập dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return "fail";
             }
-        }
-
-        static bool ValidatePhoneNumber(string phoneNumber)
-        {
-            string pattern = @"^(0[1-9][0-9]{8,9})$";
-            Regex regex = new Regex(pattern);
-            return regex.IsMatch(phoneNumber);
-        }
-
-        static bool ValidateEmail(string email)
-        {
-            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-            Regex regex = new Regex(pattern);
-            return regex.IsMatch(email);
         }
 
         private string GenerateMaKhachHang(string tenKhachHang)
@@ -202,7 +190,7 @@ namespace GUI_vinamilk.Controls
                 if (remainingLength > 0)
                     maSanPham += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
 
-                RegexTiengViet reg = new RegexTiengViet();
+                RegexInput reg = new RegexInput();
                 string result = reg.RemoveVietnameseMarks(maSanPham.ToLower());
 
                 return result;
