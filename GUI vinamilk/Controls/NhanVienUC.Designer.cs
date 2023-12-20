@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.buttonChucVu = new System.Windows.Forms.Button();
             this.buttonThemNhanVien = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
             this.comboBoxChucVu = new System.Windows.Forms.ComboBox();
@@ -86,12 +87,24 @@
             // 
             this.panelLeft.BackColor = System.Drawing.Color.PaleGreen;
             this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLeft.Controls.Add(this.buttonChucVu);
             this.panelLeft.Controls.Add(this.buttonThemNhanVien);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 8);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(256, 931);
             this.panelLeft.TabIndex = 0;
+            // 
+            // buttonChucVu
+            // 
+            this.buttonChucVu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonChucVu.Location = new System.Drawing.Point(3, 447);
+            this.buttonChucVu.Name = "buttonChucVu";
+            this.buttonChucVu.Size = new System.Drawing.Size(248, 34);
+            this.buttonChucVu.TabIndex = 1;
+            this.buttonChucVu.Text = "Chức vụ";
+            this.buttonChucVu.UseVisualStyleBackColor = true;
+            this.buttonChucVu.Click += new System.EventHandler(this.ButtonChucVu_Click);
             // 
             // buttonThemNhanVien
             // 
@@ -356,6 +369,8 @@
             // 
             this.dataGridViewNhanVien.AllowUserToAddRows = false;
             this.dataGridViewNhanVien.AllowUserToDeleteRows = false;
+            this.dataGridViewNhanVien.AllowUserToResizeColumns = false;
+            this.dataGridViewNhanVien.AllowUserToResizeRows = false;
             this.dataGridViewNhanVien.AutoGenerateColumns = false;
             this.dataGridViewNhanVien.BackgroundColor = System.Drawing.Color.MintCream;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -590,5 +605,6 @@
         private System.Windows.Forms.BindingSource chucVuBindingSource;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxTimKiem;
+        private System.Windows.Forms.Button buttonChucVu;
     }
 }

@@ -140,9 +140,7 @@
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ChiTietDonHang_DonHang">
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
           <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonHang">
@@ -154,9 +152,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChiTietDonHang_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
@@ -168,9 +164,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChiTietSanPham_DonVi">
-          <End Role="DonVi" Type="Self.DonVi" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="DonVi" Type="Self.DonVi" Multiplicity="1" />
           <End Role="ChiTietSanPham" Type="Self.ChiTietSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonVi">
@@ -182,9 +176,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChiTietSanPham_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="ChiTietSanPham" Type="Self.ChiTietSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
@@ -196,9 +188,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonHang_KhachHang">
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
@@ -210,9 +200,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonHang_NhanVien">
-          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NhanVien">
@@ -224,9 +212,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KhachHang_LoaiKhachHang">
-          <End Role="LoaiKhachHang" Type="Self.LoaiKhachHang" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="LoaiKhachHang" Type="Self.LoaiKhachHang" Multiplicity="1" />
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiKhachHang">
@@ -238,9 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhanVien_ChucVu">
-          <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChucVu">
@@ -252,9 +236,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SanPham_DoiTuong">
-          <End Role="DoiTuong" Type="Self.DoiTuong" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="DoiTuong" Type="Self.DoiTuong" Multiplicity="1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DoiTuong">
@@ -266,9 +248,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SanPham_NhaSanXuat">
-          <End Role="NhaSanXuat" Type="Self.NhaSanXuat" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="NhaSanXuat" Type="Self.NhaSanXuat" Multiplicity="1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NhaSanXuat">
@@ -280,9 +260,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_NhanVien">
-          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="NhanVien">

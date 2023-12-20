@@ -100,6 +100,12 @@
     <Compile Include="ChucVu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Extra\ChucVuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Extra\ChucVuUC.Designer.cs">
+      <DependentUpon>ChucVuUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Extra\DonViTinhUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\Extra\ChucVuUC.resx">
+      <DependentUpon>ChucVuUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Extra\DonViTinhUC.resx">
       <DependentUpon>DonViTinhUC.cs</DependentUpon>
     </EmbeddedResource>
