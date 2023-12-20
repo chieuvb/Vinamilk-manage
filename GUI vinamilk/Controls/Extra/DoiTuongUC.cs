@@ -148,7 +148,7 @@ namespace GUI_vinamilk.Controls.Extra
             if (remainingLength > 0)
                 maDoiTuong += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
 
-            RegexTiengViet reg = new RegexTiengViet();
+            RegexInput reg = new RegexInput();
             string result = reg.RemoveVietnameseMarks(maDoiTuong.ToLower());
 
             return result;

@@ -66,7 +66,7 @@ namespace GUI_vinamilk.Controls.Extra
                         string tenDonViKhongKhoangTrang = don.tenDonVi.Trim().Replace(" ", "");
                         string maDonVi = "dv" + (tenDonViKhongKhoangTrang.Length >= 5 ? tenDonViKhongKhoangTrang.Substring(0, 5) : tenDonViKhongKhoangTrang).PadRight(5, 'v') + DateTime.Now.ToString("fff");
 
-                        RegexTiengViet reg = new RegexTiengViet();
+                        RegexInput reg = new RegexInput();
                         string result = reg.RemoveVietnameseMarks(maDonVi.ToLower());
 
                         DonVi dv = new DonVi

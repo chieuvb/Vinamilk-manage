@@ -106,9 +106,9 @@
           <Property Name="gioiTinh" Type="bit" Nullable="false" />
           <Property Name="ngaySinh" Type="date" Nullable="false" />
           <Property Name="diaChi" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="soDienThoai" Type="varchar" MaxLength="16" />
+          <Property Name="soDienThoai" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="128" />
-          <Property Name="kinhNghiem" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="kinhNghiem" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="NhaSanXuat">
           <Key>
@@ -469,9 +469,9 @@
           <Property Name="gioiTinh" Type="Boolean" Nullable="false" />
           <Property Name="ngaySinh" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="diaChi" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="soDienThoai" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="soDienThoai" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="kinhNghiem" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kinhNghiem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChucVu" Relationship="Self.FK_NhanVien_ChucVu" FromRole="NhanVien" ToRole="ChucVu" />
           <NavigationProperty Name="DonHangs" Relationship="Self.FK_DonHang_NhanVien" FromRole="NhanVien" ToRole="DonHang" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_TaiKhoan_NhanVien" FromRole="NhanVien" ToRole="TaiKhoan" />

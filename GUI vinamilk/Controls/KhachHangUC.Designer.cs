@@ -329,7 +329,7 @@
             this.dataGridViewKhachHang.RowTemplate.Height = 32;
             this.dataGridViewKhachHang.Size = new System.Drawing.Size(1152, 931);
             this.dataGridViewKhachHang.TabIndex = 4;
-            this.dataGridViewKhachHang.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewKhachHang_CellDoubleClick);
+            this.dataGridViewKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewKhachHang_CellClick);
             this.dataGridViewKhachHang.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.DataGridViewKhachHang_RowPrePaint);
             // 
             // stt

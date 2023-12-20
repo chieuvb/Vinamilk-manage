@@ -60,8 +60,9 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Image = global::GUI_vinamilk.Properties.Resources.icons8_back_24;
-            this.buttonBack.Location = new System.Drawing.Point(3, 3);
+            this.buttonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBack.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.buttonBack.Location = new System.Drawing.Point(1619, 3);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(40, 40);
             this.buttonBack.TabIndex = 0;
