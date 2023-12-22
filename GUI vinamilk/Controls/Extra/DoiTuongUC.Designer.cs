@@ -70,7 +70,10 @@
             // 
             // dat_doituong
             // 
-            this.dat_doituong.AllowUserToOrderColumns = true;
+            this.dat_doituong.AllowUserToAddRows = false;
+            this.dat_doituong.AllowUserToDeleteRows = false;
+            this.dat_doituong.AllowUserToResizeColumns = false;
+            this.dat_doituong.AllowUserToResizeRows = false;
             this.dat_doituong.AutoGenerateColumns = false;
             this.dat_doituong.ColumnHeadersHeight = 38;
             this.dat_doituong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

@@ -1,4 +1,5 @@
-﻿using GUI_vinamilk.Modul;
+﻿using GUI_vinamilk.Controls.Extra;
+using GUI_vinamilk.Modul;
 using GUI_vinamilk.Properties;
 using System;
 using System.Collections.Generic;
@@ -342,6 +343,27 @@ namespace GUI_vinamilk.Controls
                 textBoxTimKiem.ForeColor = Color.Gray;
                 textBoxTimKiem.Font = new Font("Arial", 12, FontStyle.Italic);
             }
+        }
+
+        private void ButtonChucVu_Click(object sender, EventArgs e)
+        {
+            dataGridViewNhanVien.Visible = false;
+            panelSearch.Visible = false;
+            panelRight.Visible = false;
+
+            ChucVuUC chuc = new ChucVuUC();
+            chuc.BackButtonClicked += BackToParentPage;
+            Controls.Add(chuc);
+            chuc.Dock = DockStyle.Fill;
+            chuc.BringToFront();
+        }
+
+        private void BackToParentPage(object sender, EventArgs e)
+        {
+            Controls.Remove(sender as Control);
+
+            dataGridViewNhanVien.Visible = true;
+            panelSearch.Visible = true;
         }
     }
 }

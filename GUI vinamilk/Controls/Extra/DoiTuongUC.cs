@@ -1,6 +1,6 @@
-﻿using System;
+﻿using GUI_vinamilk.Modul;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -52,82 +52,86 @@ namespace GUI_vinamilk.Controls.Extra
         {
             try
             {
-                if (e.ColumnIndex >= 0 && dat_doituong.Columns[e.ColumnIndex].Name == "luu" && e.RowIndex >= 0)
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
-                    DoiTuong doi = new DoiTuong
+                    if (dat_doituong.Columns[e.ColumnIndex].Name == "luu")
                     {
-                        maDoiTuong = dat_doituong["maDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        tenDoiTuong = dat_doituong["tenDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        moTa = dat_doituong["moTaDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        trangThai = Convert.ToBoolean(dat_doituong["trangThaiDataGridViewCheckBoxColumn", e.RowIndex].Value ?? false)
-                    };
-
-                    using (VinamilkEntities vnm = new VinamilkEntities())
-                    {
-                        string maDoiTuong = TaoMaDoiTuong(doi.tenDoiTuong);
-
-                        DoiTuong dt = new DoiTuong
+                        DoiTuong doi = new DoiTuong
                         {
-                            maDoiTuong = maDoiTuong,
-                            tenDoiTuong = doi.tenDoiTuong,
-                            moTa = doi.moTa,
-                            trangThai = doi.trangThai
+                            maDoiTuong = dat_doituong["maDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
+                            tenDoiTuong = dat_doituong["tenDoiTuongDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
+                            moTa = dat_doituong["moTaDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
+                            trangThai = Convert.ToBoolean(dat_doituong["trangThaiDataGridViewCheckBoxColumn", e.RowIndex].Value ?? false)
                         };
 
-                        if (string.IsNullOrEmpty(dt.tenDoiTuong))
-                            throw new Exception("Tên của đối tượng không hợp lệ!");
-                        else if (string.IsNullOrEmpty(dt.moTa))
-                            throw new Exception("Mô tả không hợp lệ!");
-
-                        DoiTuong doiTuong = vnm.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == doi.maDoiTuong);
-
-                        if (doiTuong == null)
+                        using (VinamilkEntities vnm = new VinamilkEntities())
                         {
-                            vnm.DoiTuongs.Add(dt);
-                            vnm.SaveChanges();
-                            MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            doiTuong.tenDoiTuong = doi.tenDoiTuong;
-                            doiTuong.moTa = doi.moTa;
-                            doiTuong.trangThai = doi.trangThai;
-                            vnm.SaveChanges();
-                            MessageBox.Show("Đã lưu thay đổi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                            GenerateString gen = new GenerateString();
+                            string maDoiTuong = gen.StringID("dt", doi.tenDoiTuong);
 
-                        LoadData();
-                    }
-                }
-
-                if (e.ColumnIndex >= 0 && dat_doituong.Columns[e.ColumnIndex].Name == "xoa" && e.RowIndex >= 0)
-                {
-                    if (dat_doituong.Rows[e.RowIndex].Cells["maDoiTuongDataGridViewTextBoxColumn"].Value == null)
-                    {
-                        return;
-                    }
-
-                    string nam = dat_doituong.Rows[e.RowIndex].Cells["tenDoiTuongDataGridViewTextBoxColumn"].Value.ToString();
-
-                    if (MessageBox.Show("Đối tượng sử dụng \"" + nam + "\" sẽ bị xóa!", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                    {
-                        using (var vnm = new VinamilkEntities())
-                        {
-                            string id = dat_doituong.Rows[e.RowIndex].Cells["maDoiTuongDataGridViewTextBoxColumn"].Value.ToString();
-
-                            var doi = vnm.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == id);
-
-                            if (doi != null)
+                            DoiTuong dt = new DoiTuong
                             {
-                                vnm.DoiTuongs.Remove(doi);
-                                vnm.SaveChanges();
-                                LoadData();
+                                maDoiTuong = maDoiTuong,
+                                tenDoiTuong = doi.tenDoiTuong,
+                                moTa = doi.moTa,
+                                trangThai = doi.trangThai
+                            };
 
-                                MessageBox.Show("Xóa \"" + nam + "\" thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (string.IsNullOrEmpty(dt.tenDoiTuong))
+                                throw new Exception("Tên của đối tượng không hợp lệ!");
+                            else if (string.IsNullOrEmpty(dt.moTa))
+                                throw new Exception("Mô tả không hợp lệ!");
+
+                            DoiTuong doiTuong = vnm.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == doi.maDoiTuong);
+
+                            if (doiTuong == null)
+                            {
+                                vnm.DoiTuongs.Add(dt);
+                                vnm.SaveChanges();
+                                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
-                                MessageBox.Show("Có lỗi khi xóa \"" + nam + "\"!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                doiTuong.tenDoiTuong = doi.tenDoiTuong;
+                                doiTuong.moTa = doi.moTa;
+                                doiTuong.trangThai = doi.trangThai;
+                                vnm.SaveChanges();
+                                MessageBox.Show("Đã lưu thay đổi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            LoadData();
+                        }
+                    }
+
+                    if (dat_doituong.Columns[e.ColumnIndex].Name == "xoa")
+                    {
+                        if (dat_doituong.Rows[e.RowIndex].Cells["maDoiTuongDataGridViewTextBoxColumn"].Value == null)
+                        {
+                            return;
+                        }
+
+                        string nam = dat_doituong.Rows[e.RowIndex].Cells["tenDoiTuongDataGridViewTextBoxColumn"].Value.ToString();
+
+                        if (MessageBox.Show("Đối tượng sử dụng \"" + nam + "\" sẽ bị xóa!", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        {
+                            using (var vnm = new VinamilkEntities())
+                            {
+                                string id = dat_doituong.Rows[e.RowIndex].Cells["maDoiTuongDataGridViewTextBoxColumn"].Value.ToString();
+
+                                var doi = vnm.DoiTuongs.FirstOrDefault(n => n.maDoiTuong == id);
+
+                                if (doi != null)
+                                {
+                                    vnm.DoiTuongs.Remove(doi);
+                                    vnm.SaveChanges();
+                                    LoadData();
+
+                                    MessageBox.Show("Xóa \"" + nam + "\" thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Có lỗi khi xóa \"" + nam + "\"!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
@@ -137,21 +141,6 @@ namespace GUI_vinamilk.Controls.Extra
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private string TaoMaDoiTuong(string tenDT)
-        {
-            string tenDoiTuong = tenDT.Replace(" ", "") ?? string.Empty;
-            string maDoiTuong = "lk" + (tenDoiTuong.Length >= 5 ? tenDoiTuong.Trim().Substring(0, 5) : tenDoiTuong);
-
-            int remainingLength = 10 - maDoiTuong.Length;
-            if (remainingLength > 0)
-                maDoiTuong += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
-
-            RegexInput reg = new RegexInput();
-            string result = reg.RemoveVietnameseMarks(maDoiTuong.ToLower());
-
-            return result;
         }
     }
 }
