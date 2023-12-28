@@ -80,10 +80,10 @@
           <Property Name="maKhachHang" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="maLoaiKhachHang" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="tenKhachHang" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="diaChi" Type="nvarchar(max)" />
-          <Property Name="soDienThoai" Type="varchar" MaxLength="16" />
+          <Property Name="diaChi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="soDienThoai" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="128" />
-          <Property Name="diemTichLuy" Type="smallint" Nullable="false" />
+          <Property Name="diemTichLuy" Type="int" Nullable="false" />
           <Property Name="ngayDangKy" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="LoaiKhachHang">
@@ -140,7 +140,9 @@
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ChiTietDonHang_DonHang">
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonHang">
@@ -418,10 +420,10 @@
           <Property Name="maKhachHang" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maLoaiKhachHang" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="tenKhachHang" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="diaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="soDienThoai" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="diaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="soDienThoai" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="diemTichLuy" Type="Int16" Nullable="false" />
+          <Property Name="diemTichLuy" Type="Int32" Nullable="false" />
           <Property Name="ngayDangKy" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="DonHangs" Relationship="Self.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
           <NavigationProperty Name="LoaiKhachHang" Relationship="Self.FK_KhachHang_LoaiKhachHang" FromRole="KhachHang" ToRole="LoaiKhachHang" />

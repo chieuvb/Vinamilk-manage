@@ -1,4 +1,5 @@
 ﻿using GUI_vinamilk.Controls;
+using GUI_vinamilk.Modul;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,15 +13,27 @@ namespace GUI_vinamilk
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Main_Load(object sender, EventArgs e)
         {
+            CheckLogin();
+
             But_thanhtoan_Click(sender, e);
             but_thanhtoan.BackColor = Color.DeepSkyBlue;
         }
 
+        private void CheckLogin()
+        {
+            if (string.IsNullOrEmpty(LogedInUser.Username))
+            {
+                FormLogin formLogin = new FormLogin();
+                if (formLogin.ShowDialog() != DialogResult.OK)
+                    Close();
+            }
+        }
+
         private void But_thanhtoan_Click(object sender, EventArgs e)
         {
-            UserControl tha = new ThanhToanUC("chieuvb");
+            UserControl tha = new ThanhToanUC(LogedInUser.Username);
             AddControl(tha, sender);
         }
 
@@ -77,6 +90,8 @@ namespace GUI_vinamilk
         {
             UserControl tuy = new TuyChonUC();
             AddControl(tuy, sender);
+
+            MessageBox.Show(LogedInUser.Username);
         }
     }
 }

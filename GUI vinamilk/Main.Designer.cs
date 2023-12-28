@@ -169,7 +169,7 @@
             this.Name = "Form1";
             this.Text = "Phần mềm quản lý bán sữa Vinamilk";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Main_Load);
             this.pan_navigator.ResumeLayout(false);
             this.ResumeLayout(false);
 

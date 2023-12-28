@@ -75,6 +75,7 @@
             // 
             // panelMenu
             // 
+            this.panelMenu.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMenu.Controls.Add(this.buttonLoaiKhachHang);
             this.panelMenu.Controls.Add(this.buttonKhachHangMoi);

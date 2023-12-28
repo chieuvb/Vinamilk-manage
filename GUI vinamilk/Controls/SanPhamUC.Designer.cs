@@ -234,7 +234,7 @@
             // 
             // pan_menu
             // 
-            this.pan_menu.BackColor = System.Drawing.Color.Honeydew;
+            this.pan_menu.BackColor = System.Drawing.Color.PaleTurquoise;
             this.pan_menu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pan_menu.Controls.Add(this.but_them);
             this.pan_menu.Controls.Add(this.men_nsx);

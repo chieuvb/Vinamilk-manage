@@ -16,5 +16,15 @@ namespace GUI_vinamilk.Controls
         {
             InitializeComponent();
         }
+
+        private void ThongKeUC_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonDoanhThu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

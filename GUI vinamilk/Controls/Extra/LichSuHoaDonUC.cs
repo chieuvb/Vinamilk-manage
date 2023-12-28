@@ -86,5 +86,28 @@ namespace GUI_vinamilk.Controls.Extra
                 labelTongTien.Text = donHang.tongTien.ToString();
             }
         }
+
+        private void ButtonXoa_Click(object sender, EventArgs e)
+        {
+            string maDonHang = labelMaDonHang.Text;
+            if (maDonHang != "madonhang")
+            {
+                if (MessageBox.Show("Bạn có thực sự muốn xóa hóa đơn " + maDonHang + " khỏi hệ thống?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
+                    {
+                        DonHang donHang = vinamilkEntities.DonHangs.FirstOrDefault(d => d.maDonHang == maDonHang.Replace("#", ""));
+                        if (donHang != null)
+                        {
+                            vinamilkEntities.DonHangs.Remove(donHang);
+                            vinamilkEntities.SaveChanges();
+
+                            MessageBox.Show("Xóa đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LichSuHoaDonUC_Load(sender, e);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

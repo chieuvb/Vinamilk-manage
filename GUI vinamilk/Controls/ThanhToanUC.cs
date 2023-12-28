@@ -374,6 +374,7 @@ namespace GUI_vinamilk.Controls
             {
                 double chietkhau = diemTich * 10000;
                 double phanTram = oldTong * 0.1;
+
                 double newTong = oldTong - Math.Min(chietkhau, phanTram);
 
                 labelChietKhauNumber.Text = ReformatPrice(Math.Min(chietkhau, phanTram));
@@ -447,9 +448,7 @@ namespace GUI_vinamilk.Controls
                     };
 
                     if (donHang.hinhThucThanhToan.Contains("--"))
-                    {
-                        throw new Exception("Vui lòng chọn phuong thức thanh toán!");
-                    }
+                        throw new Exception("Vui lòng chọn phương thức thanh toán!");
 
                     using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
                     {
@@ -480,6 +479,16 @@ namespace GUI_vinamilk.Controls
                             vinamilkEntities.ChiTietDonHangs.Add(chiTiet);
                         }
 
+                        if (donHang.maKhachHang != "kh-khdonle")
+                        {
+                            KhachHang khachHang = vinamilkEntities.KhachHangs.FirstOrDefault(k => k.maKhachHang == donHang.maKhachHang);
+
+                            double chietKhau = double.Parse(labelChietKhauNumber.Text.Replace(".", ""));
+                            double diemTichLuy = (khachHang.diemTichLuy - (chietKhau / 100000)) + (donHang.tongTien / 100000);
+
+                            khachHang.diemTichLuy = (int)diemTichLuy;
+                        }
+
                         vinamilkEntities.SaveChanges();
                     }
 
@@ -501,6 +510,8 @@ namespace GUI_vinamilk.Controls
                     labelGiaGocNumber.Text = "0";
                     checkBoxDungDiem.Checked = false;
                     checkBoxDungDiem.Visible = false;
+                    labelChietKhau.Visible = false;
+                    labelChietKhauNumber.Visible = false;
                     textBoxSanPham.Clear();
 
                     TimKiemKhachHang();
@@ -522,13 +533,13 @@ namespace GUI_vinamilk.Controls
                 key = key.Substring(0, 2);
 
             Random random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            const string chars = "abcdefghijklmnopqrstuvwxyz";
             const string digits = "0123456789";
             string randomString = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
             string randomDigits = new string(Enumerable.Repeat(digits, 2).Select(s => s[random.Next(s.Length)]).ToArray());
             string finalString = key + randomString + randomDigits;
 
-            return finalString.ToLower();
+            return finalString;
         }
 
         private void PrintBill()

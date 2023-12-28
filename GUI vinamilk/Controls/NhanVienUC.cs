@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls
@@ -188,12 +190,15 @@ namespace GUI_vinamilk.Controls
             try
             {
                 NhanVien nhanVien = CreatNhanVienObject(vinamilkEntities);
+                TaiKhoan taiKhoan = CreateTaiKhoanObject(nhanVien);
 
                 vinamilkEntities.NhanViens.Add(nhanVien);
+                vinamilkEntities.TaiKhoans.Add(taiKhoan);
                 vinamilkEntities.SaveChanges();
 
                 RefreshData();
 
+                panelRight.Visible = false;
                 MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -229,6 +234,27 @@ namespace GUI_vinamilk.Controls
             return nhanVien;
         }
 
+        private TaiKhoan CreateTaiKhoanObject(NhanVien nhanVien)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(nhanVien.maNhanVien);
+
+            using (SHA512 sha3 = new SHA512CryptoServiceProvider())
+            {
+                byte[] hashBytes = sha3.ComputeHash(bytes);
+                string hashPass = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+
+                TaiKhoan taiKhoan = new TaiKhoan
+                {
+                    maNhanVien = nhanVien.maNhanVien,
+                    matKhau = hashPass,
+                    quyenHan = "imnhanvien",
+                    trangThai = true
+                };
+
+                return taiKhoan;
+            }
+        }
+
         private void UpdateNhanVien(VinamilkEntities vinamilkEntities, NhanVien existingNhanVien)
         {
             try
@@ -254,6 +280,7 @@ namespace GUI_vinamilk.Controls
 
                 RefreshData();
 
+                panelRight.Visible = false;
                 MessageBox.Show("Sửa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
