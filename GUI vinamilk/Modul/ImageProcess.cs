@@ -28,7 +28,7 @@ namespace GUI_vinamilk.Modul
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Image Files(*.png;)|*.png;"
+                Filter = "Image Files(*.png; *.jpg)|*.png; *.jpg;"
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)

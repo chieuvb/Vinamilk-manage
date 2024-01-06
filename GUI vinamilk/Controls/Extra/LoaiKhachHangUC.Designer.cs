@@ -34,15 +34,15 @@
             this.panelNavigationBar = new System.Windows.Forms.Panel();
             this.buttonBack = new System.Windows.Forms.Button();
             this.dataGridViewLoaiKhachHang = new System.Windows.Forms.DataGridView();
+            this.loaiKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.maLoaiKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenLoaiKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moTaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trangThaiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.khachHangsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loaiKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelNavigationBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLoaiKhachHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loaiKhachHangBindingSource)).BeginInit();
@@ -102,6 +102,10 @@
             this.dataGridViewLoaiKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewLoaiKhachHang_CellContentClick);
             this.dataGridViewLoaiKhachHang.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.DataGridViewLoaiKhachHang_RowPrePaint);
             // 
+            // loaiKhachHangBindingSource
+            // 
+            this.loaiKhachHangBindingSource.DataSource = typeof(GUI_vinamilk.LoaiKhachHang);
+            // 
             // stt
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -110,22 +114,6 @@
             this.stt.Name = "stt";
             this.stt.ReadOnly = true;
             this.stt.Width = 64;
-            // 
-            // luu
-            // 
-            this.luu.HeaderText = "";
-            this.luu.Name = "luu";
-            this.luu.ReadOnly = true;
-            this.luu.Text = "Lưu";
-            this.luu.UseColumnTextForButtonValue = true;
-            // 
-            // xoa
-            // 
-            this.xoa.HeaderText = "";
-            this.xoa.Name = "xoa";
-            this.xoa.ReadOnly = true;
-            this.xoa.Text = "Xóa";
-            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // maLoaiKhachHangDataGridViewTextBoxColumn
             // 
@@ -153,6 +141,7 @@
             this.trangThaiDataGridViewCheckBoxColumn.DataPropertyName = "trangThai";
             this.trangThaiDataGridViewCheckBoxColumn.HeaderText = "Trạng thái";
             this.trangThaiDataGridViewCheckBoxColumn.Name = "trangThaiDataGridViewCheckBoxColumn";
+            this.trangThaiDataGridViewCheckBoxColumn.Visible = false;
             // 
             // khachHangsDataGridViewTextBoxColumn
             // 
@@ -161,9 +150,21 @@
             this.khachHangsDataGridViewTextBoxColumn.Name = "khachHangsDataGridViewTextBoxColumn";
             this.khachHangsDataGridViewTextBoxColumn.Visible = false;
             // 
-            // loaiKhachHangBindingSource
+            // luu
             // 
-            this.loaiKhachHangBindingSource.DataSource = typeof(GUI_vinamilk.LoaiKhachHang);
+            this.luu.HeaderText = "";
+            this.luu.Name = "luu";
+            this.luu.ReadOnly = true;
+            this.luu.Text = "Lưu";
+            this.luu.UseColumnTextForButtonValue = true;
+            // 
+            // xoa
+            // 
+            this.xoa.HeaderText = "";
+            this.xoa.Name = "xoa";
+            this.xoa.ReadOnly = true;
+            this.xoa.Text = "Xóa";
+            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // LoaiKhachHangUC
             // 

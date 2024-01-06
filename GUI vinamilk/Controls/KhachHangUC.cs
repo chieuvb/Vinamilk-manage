@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls

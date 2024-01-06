@@ -1,4 +1,5 @@
 ﻿using GUI_vinamilk.Controls.Extra;
+using GUI_vinamilk.Modul;
 using GUI_vinamilk.Properties;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,13 @@ namespace GUI_vinamilk.Controls
 {
     public partial class ThanhToanUC : UserControl
     {
-        public ThanhToanUC(string maNV)
+        public ThanhToanUC(LoggedInUser user)
         {
             InitializeComponent();
-
-            maNhanVien = maNV;
+            loggedInUser = user;
         }
 
-        readonly string maNhanVien;
+        readonly LoggedInUser loggedInUser;
         private readonly Dictionary<string, string> dicPrice = new Dictionary<string, string>();
 
         private async void ThanhToanUC_Load(object sender, EventArgs e)
@@ -439,7 +439,7 @@ namespace GUI_vinamilk.Controls
                     {
                         maDonHang = "dh" + DateTime.Now.ToString("yyMMddHHmmssffff"),
                         maKhachHang = khachHang.maKhachHang,
-                        maNhanVien = maNhanVien,
+                        maNhanVien = loggedInUser.Username,
                         hinhThucThanhToan = comboBoxPhuongThucThanhToan.SelectedItem.ToString(),
                         ngayTao = DateTime.Now,
                         giaGiam = double.Parse(labelChietKhauNumber.Text.Replace(".", "")),
@@ -564,7 +564,7 @@ namespace GUI_vinamilk.Controls
 
             using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
             {
-                nhanVien = vinamilkEntities.NhanViens.AsNoTracking().FirstOrDefault(n => n.maNhanVien == maNhanVien);
+                nhanVien = vinamilkEntities.NhanViens.AsNoTracking().FirstOrDefault(n => n.maNhanVien == loggedInUser.Username);
                 khachHang = vinamilkEntities.KhachHangs.AsNoTracking().FirstOrDefault(k => k.maKhachHang == maKhachHang);
 
                 int xl1 = 60, yl1 = 438, xl2 = 790, yl2 = 438;
@@ -662,7 +662,7 @@ namespace GUI_vinamilk.Controls
 
         private void ButtonLichSuHoaDon_Click(object sender, EventArgs e)
         {
-            LichSuHoaDonUC lic = new LichSuHoaDonUC();
+            LichSuHoaDonUC lic = new LichSuHoaDonUC(loggedInUser);
             lic.BackButtonClicked += Uc_back;
 
             Controls.Clear();

@@ -101,6 +101,12 @@
     <Compile Include="ChucVu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Extra\ChangePasswordUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Extra\ChangePasswordUC.Designer.cs">
+      <DependentUpon>ChangePasswordUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Extra\ChucVuUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,9 +221,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Modul\EncodePassword.cs" />
     <Compile Include="Modul\GenerateString.cs" />
     <Compile Include="Modul\ImageProcess.cs" />
-    <Compile Include="Modul\LogedInUser.cs" />
+    <Compile Include="Modul\LoggedInUser.cs" />
     <Compile Include="NhanVien.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -233,6 +240,9 @@
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\Extra\ChangePasswordUC.resx">
+      <DependentUpon>ChangePasswordUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Extra\ChucVuUC.resx">
       <DependentUpon>ChucVuUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -355,6 +365,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\icons8-user-96.png" />
+    <None Include="Resources\icons8-exit-24.png" />
     <None Include="Resources\vinamilk-logo-new.png" />
     <None Include="Resources\icons8-close-24.png" />
     <None Include="Resources\icons8-no-image-96.png" />

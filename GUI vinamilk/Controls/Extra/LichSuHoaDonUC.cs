@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI_vinamilk.Modul;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,15 +9,20 @@ namespace GUI_vinamilk.Controls.Extra
 {
     public partial class LichSuHoaDonUC : UserControl
     {
-        public LichSuHoaDonUC()
+        public LichSuHoaDonUC(LoggedInUser user)
         {
             InitializeComponent();
+            loggedInUser = user;
         }
 
         public event EventHandler BackButtonClicked;
+        readonly LoggedInUser loggedInUser;
 
         private void LichSuHoaDonUC_Load(object sender, EventArgs e)
         {
+            if (!loggedInUser.Role.Contains("admin"))
+                buttonDelete.Visible = false;
+
             using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
             {
                 dataGridViewDonHang.DataSource = vinamilkEntities.DonHangs.AsNoTracking().ToList();

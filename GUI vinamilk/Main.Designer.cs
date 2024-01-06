@@ -35,7 +35,7 @@
             this.but_khachhang = new System.Windows.Forms.Button();
             this.but_nhanvien = new System.Windows.Forms.Button();
             this.but_sanpham = new System.Windows.Forms.Button();
-            this.but_thanhtoan = new System.Windows.Forms.Button();
+            this.buttonThanhToan = new System.Windows.Forms.Button();
             this.pan_container = new System.Windows.Forms.Panel();
             this.pan_navigator.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +48,7 @@
             this.pan_navigator.Controls.Add(this.but_khachhang);
             this.pan_navigator.Controls.Add(this.but_nhanvien);
             this.pan_navigator.Controls.Add(this.but_sanpham);
-            this.pan_navigator.Controls.Add(this.but_thanhtoan);
+            this.pan_navigator.Controls.Add(this.buttonThanhToan);
             this.pan_navigator.Dock = System.Windows.Forms.DockStyle.Top;
             this.pan_navigator.Location = new System.Drawing.Point(0, 0);
             this.pan_navigator.Name = "pan_navigator";
@@ -131,20 +131,20 @@
             this.but_sanpham.UseVisualStyleBackColor = false;
             this.but_sanpham.Click += new System.EventHandler(this.But_sanpham_Click);
             // 
-            // but_thanhtoan
+            // buttonThanhToan
             // 
-            this.but_thanhtoan.BackColor = System.Drawing.Color.MintCream;
-            this.but_thanhtoan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_thanhtoan.Image = global::GUI_vinamilk.Properties.Resources.icons8_bill_32;
-            this.but_thanhtoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.but_thanhtoan.Location = new System.Drawing.Point(12, 12);
-            this.but_thanhtoan.Name = "but_thanhtoan";
-            this.but_thanhtoan.Size = new System.Drawing.Size(150, 48);
-            this.but_thanhtoan.TabIndex = 0;
-            this.but_thanhtoan.Text = "Thanh toán";
-            this.but_thanhtoan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.but_thanhtoan.UseVisualStyleBackColor = false;
-            this.but_thanhtoan.Click += new System.EventHandler(this.But_thanhtoan_Click);
+            this.buttonThanhToan.BackColor = System.Drawing.Color.MintCream;
+            this.buttonThanhToan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonThanhToan.Image = global::GUI_vinamilk.Properties.Resources.icons8_bill_32;
+            this.buttonThanhToan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonThanhToan.Location = new System.Drawing.Point(12, 12);
+            this.buttonThanhToan.Name = "buttonThanhToan";
+            this.buttonThanhToan.Size = new System.Drawing.Size(150, 48);
+            this.buttonThanhToan.TabIndex = 0;
+            this.buttonThanhToan.Text = "Thanh toán";
+            this.buttonThanhToan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonThanhToan.UseVisualStyleBackColor = false;
+            this.buttonThanhToan.Click += new System.EventHandler(this.ButtonThanhToan_Click);
             // 
             // pan_container
             // 
@@ -154,7 +154,7 @@
             this.pan_container.Size = new System.Drawing.Size(1008, 611);
             this.pan_container.TabIndex = 1;
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -166,7 +166,7 @@
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Phần mềm quản lý bán sữa Vinamilk";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
@@ -178,7 +178,7 @@
         #endregion
 
         private System.Windows.Forms.Panel pan_navigator;
-        private System.Windows.Forms.Button but_thanhtoan;
+        private System.Windows.Forms.Button buttonThanhToan;
         private System.Windows.Forms.Button but_sanpham;
         private System.Windows.Forms.Button but_nhanvien;
         private System.Windows.Forms.Button but_khachhang;

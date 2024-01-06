@@ -6,17 +6,32 @@ namespace GUI_vinamilk.Modul
     {
         public string StringID(string key, string name)
         {
-            string tenSanPham = name.Replace(" ", "") ?? string.Empty;
-            string maSanPham = key + (tenSanPham.Length >= 5 ? tenSanPham.Trim().Substring(0, 5) : tenSanPham);
+            if (!string.IsNullOrEmpty(name))
+            {
+                string[] names = name.Split(' ');
 
-            int remainingLength = 10 - maSanPham.Length;
-            if (remainingLength > 0)
-                maSanPham += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
+                string fullID = "";
 
-            RegexInput reg = new RegexInput();
-            string result = reg.RemoveVietnameseMarks(maSanPham.ToLower());
+                for (int i = names.Length - 1; i >= 0; i--)
+                {
+                    fullID += names[i];
+                }
 
-            return result;
+                string preID = key + (fullID.Length >= 5 ? fullID.Trim().Substring(0, 5) : fullID);
+
+                int remainingLength = 10 - preID.Length;
+                if (remainingLength > 0)
+                    preID += Path.GetRandomFileName().Replace(".", "").Substring(0, remainingLength);
+
+                RegexInput reg = new RegexInput();
+                string result = reg.RemoveVietnameseMarks(preID.ToLower());
+
+                return result;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

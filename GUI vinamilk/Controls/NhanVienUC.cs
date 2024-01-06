@@ -19,8 +19,8 @@ namespace GUI_vinamilk.Controls
             imageProcess = new ImageProcess(false, cacheImage);
         }
 
-        readonly ImageProcess imageProcess;
         readonly Dictionary<string, Image> cacheImage = new Dictionary<string, Image>();
+        readonly ImageProcess imageProcess;
         readonly NhanVien nhanVien = new NhanVien();
         List<ChucVu> chucVus = new List<ChucVu>();
 
@@ -75,6 +75,7 @@ namespace GUI_vinamilk.Controls
                     comboBoxGioiTinh.SelectedIndex = 0;
                 else
                     comboBoxGioiTinh.SelectedIndex = 1;
+
                 dateTimePickerNgaySinh.Value = nhan.ngaySinh;
                 textBoxDienThoai.Text = nhan.soDienThoai;
                 textBoxEmail.Text = nhan.email;

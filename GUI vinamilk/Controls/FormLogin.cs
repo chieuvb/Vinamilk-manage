@@ -1,8 +1,6 @@
 ﻿using GUI_vinamilk.Modul;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls
@@ -13,6 +11,8 @@ namespace GUI_vinamilk.Controls
         {
             InitializeComponent();
         }
+
+        public string user, role;
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
@@ -35,25 +35,20 @@ namespace GUI_vinamilk.Controls
 
                     if (taiKhoan != null)
                     {
-                        byte[] bytes = Encoding.UTF8.GetBytes(password);
+                        EncodePassword en = new EncodePassword();
+                        string hashPass = en.Encode(password);
 
-                        using (SHA512 sha3 = new SHA512CryptoServiceProvider())
+                        if (hashPass == taiKhoan.matKhau)
                         {
-                            byte[] hashBytes = sha3.ComputeHash(bytes);
-                            string hashPass = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                            user = taiKhoan.maNhanVien;
+                            role = taiKhoan.quyenHan;
 
-                            if (hashPass == taiKhoan.matKhau)
-                            {
-                                LogedInUser.Username = taiKhoan.maNhanVien;
-                                LogedInUser.Role = taiKhoan.quyenHan;
-
-                                DialogResult = DialogResult.OK;
-                                Close();
-                            }
-                            else
-                            {
-                                throw new Exception("Tên tài khoản hoặc mật khẩu không đúng!");
-                            }
+                            DialogResult = DialogResult.OK;
+                            Close();
+                        }
+                        else
+                        {
+                            throw new Exception("Tên tài khoản hoặc mật khẩu không đúng!");
                         }
                     }
                     else

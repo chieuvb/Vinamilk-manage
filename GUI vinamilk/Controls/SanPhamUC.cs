@@ -12,15 +12,17 @@ namespace GUI_vinamilk.Controls
 {
     public partial class SanPhamUC : UserControl
     {
-        public SanPhamUC()
+        public SanPhamUC(LoggedInUser user)
         {
             InitializeComponent();
             imageProcess = new ImageProcess(true, cacheImage);
+            loggedInUser = user;
         }
 
         readonly ImageProcess imageProcess;
         readonly Dictionary<string, Image> cacheImage = new Dictionary<string, Image>();
         SanPham sanPham = new SanPham();
+        readonly LoggedInUser loggedInUser;
 
         private void SanPhamUC_LoadAsync(object sender, EventArgs e)
         {
@@ -29,7 +31,14 @@ namespace GUI_vinamilk.Controls
                 gro_boloc.Visible = false;
                 panelChiTiet.Visible = false;
 
-                RefreshData();
+                if (!loggedInUser.Role.Contains("admin"))
+                {
+                    panelMenu.Visible = false;
+                    buttonSave.Visible = false;
+                    buttonDelete.Visible = false;
+                }
+
+                    RefreshData();
             }
             catch (Exception ex)
             {
@@ -523,10 +532,10 @@ namespace GUI_vinamilk.Controls
 
         private void Tsm_phanloai_Click(object sender, EventArgs e)
         {
-            DoiTuongUC pha = new DoiTuongUC();
-            pha.BackButtonClicked += Uc_back;
+            DoiTuongUC doi = new DoiTuongUC();
+            doi.BackButtonClicked += Uc_back;
 
-            OpenUserControl(pha);
+            OpenUserControl(doi);
         }
 
         private void Tsm_donvi_Click(object sender, EventArgs e)

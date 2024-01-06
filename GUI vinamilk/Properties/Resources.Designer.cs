@@ -143,6 +143,16 @@ namespace GUI_vinamilk.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_exit_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-exit-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_filter_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-filter-24", resourceCulture);
@@ -186,6 +196,16 @@ namespace GUI_vinamilk.Properties {
         internal static System.Drawing.Bitmap icons8_search_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-search-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_user_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-user-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

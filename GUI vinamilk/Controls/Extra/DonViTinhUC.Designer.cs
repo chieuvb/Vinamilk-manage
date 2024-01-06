@@ -32,15 +32,15 @@
             this.pan_menu = new System.Windows.Forms.Panel();
             this.but_back = new System.Windows.Forms.Button();
             this.dat_donvi = new System.Windows.Forms.DataGridView();
+            this.donViBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.maDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moTaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trangThaiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.chiTietSanPhamsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.donViBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pan_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_donvi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.donViBindingSource)).BeginInit();
@@ -92,25 +92,15 @@
             this.dat_donvi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_donvi_CellClick);
             this.dat_donvi.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.Dat_donvi_RowPrePaint);
             // 
+            // donViBindingSource
+            // 
+            this.donViBindingSource.DataSource = typeof(GUI_vinamilk.DonVi);
+            // 
             // stt
             // 
             this.stt.HeaderText = "STT";
             this.stt.Name = "stt";
             this.stt.Width = 64;
-            // 
-            // luu
-            // 
-            this.luu.HeaderText = "";
-            this.luu.Name = "luu";
-            this.luu.Text = "Lưu";
-            this.luu.UseColumnTextForButtonValue = true;
-            // 
-            // xoa
-            // 
-            this.xoa.HeaderText = "";
-            this.xoa.Name = "xoa";
-            this.xoa.Text = "Xóa";
-            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // maDonViDataGridViewTextBoxColumn
             // 
@@ -138,6 +128,7 @@
             this.trangThaiDataGridViewCheckBoxColumn.DataPropertyName = "trangThai";
             this.trangThaiDataGridViewCheckBoxColumn.HeaderText = "Trạng thái";
             this.trangThaiDataGridViewCheckBoxColumn.Name = "trangThaiDataGridViewCheckBoxColumn";
+            this.trangThaiDataGridViewCheckBoxColumn.Visible = false;
             this.trangThaiDataGridViewCheckBoxColumn.Width = 200;
             // 
             // chiTietSanPhamsDataGridViewTextBoxColumn
@@ -147,9 +138,19 @@
             this.chiTietSanPhamsDataGridViewTextBoxColumn.Name = "chiTietSanPhamsDataGridViewTextBoxColumn";
             this.chiTietSanPhamsDataGridViewTextBoxColumn.Visible = false;
             // 
-            // donViBindingSource
+            // luu
             // 
-            this.donViBindingSource.DataSource = typeof(GUI_vinamilk.DonVi);
+            this.luu.HeaderText = "";
+            this.luu.Name = "luu";
+            this.luu.Text = "Lưu";
+            this.luu.UseColumnTextForButtonValue = true;
+            // 
+            // xoa
+            // 
+            this.xoa.HeaderText = "";
+            this.xoa.Name = "xoa";
+            this.xoa.Text = "Xóa";
+            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // DonViTinhUC
             // 
