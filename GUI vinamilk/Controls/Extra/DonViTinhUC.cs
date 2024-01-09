@@ -59,7 +59,7 @@ namespace GUI_vinamilk.Controls.Extra
                         maDonVi = dat_donvi["maDonViDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
                         tenDonVi = dat_donvi["tenDonViDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
                         moTa = dat_donvi["moTaDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? string.Empty,
-                        trangThai = Convert.ToBoolean(dat_donvi["trangThaiDataGridViewCheckBoxColumn", e.RowIndex].Value ?? false)
+                        trangThai = true
                     };
                     using (VinamilkEntities vnm = new VinamilkEntities())
                     {

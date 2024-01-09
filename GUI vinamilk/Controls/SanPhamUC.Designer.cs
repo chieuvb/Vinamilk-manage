@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SanPhamUC));
             this.dat_sanpham = new System.Windows.Forms.DataGridView();
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,8 +44,8 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pan_menu = new System.Windows.Forms.Panel();
-            this.but_them = new System.Windows.Forms.Button();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.buttonNewProduct = new System.Windows.Forms.Button();
             this.men_nsx = new System.Windows.Forms.MenuStrip();
             this.tsmi_them = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_nsx = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,8 +58,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxDonVi = new System.Windows.Forms.ComboBox();
             this.che_trangthai = new System.Windows.Forms.CheckBox();
-            this.but_xoa = new System.Windows.Forms.Button();
-            this.but_luu = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.tex_soluong = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxGiaNhap = new System.Windows.Forms.TextBox();
@@ -89,7 +89,7 @@
             this.maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
-            this.pan_menu.SuspendLayout();
+            this.panelMenu.SuspendLayout();
             this.men_nsx.SuspendLayout();
             this.panelChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSanPham)).BeginInit();
@@ -106,14 +106,14 @@
             this.dat_sanpham.AllowUserToResizeRows = false;
             this.dat_sanpham.AutoGenerateColumns = false;
             this.dat_sanpham.BackgroundColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dat_sanpham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dat_sanpham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dat_sanpham.ColumnHeadersHeight = 38;
             this.dat_sanpham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.stt,
@@ -232,39 +232,38 @@
             // 
             this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
             // 
-            // pan_menu
+            // panelMenu
             // 
-            this.pan_menu.BackColor = System.Drawing.Color.Honeydew;
-            this.pan_menu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pan_menu.Controls.Add(this.but_them);
-            this.pan_menu.Controls.Add(this.men_nsx);
-            this.pan_menu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pan_menu.Location = new System.Drawing.Point(0, 8);
-            this.pan_menu.Name = "pan_menu";
-            this.pan_menu.Padding = new System.Windows.Forms.Padding(8);
-            this.pan_menu.Size = new System.Drawing.Size(256, 931);
-            this.pan_menu.TabIndex = 1;
+            this.panelMenu.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMenu.Controls.Add(this.buttonNewProduct);
+            this.panelMenu.Controls.Add(this.men_nsx);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 8);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Padding = new System.Windows.Forms.Padding(8);
+            this.panelMenu.Size = new System.Drawing.Size(256, 931);
+            this.panelMenu.TabIndex = 1;
             // 
-            // but_them
+            // buttonNewProduct
             // 
-            this.but_them.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.but_them.FlatAppearance.BorderSize = 0;
-            this.but_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.but_them.Image = ((System.Drawing.Image)(resources.GetObject("but_them.Image")));
-            this.but_them.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.but_them.Location = new System.Drawing.Point(8, 8);
-            this.but_them.Name = "but_them";
-            this.but_them.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.but_them.Size = new System.Drawing.Size(235, 34);
-            this.but_them.TabIndex = 0;
-            this.but_them.Text = "Thêm sản phẩm";
-            this.but_them.UseVisualStyleBackColor = false;
-            this.but_them.Click += new System.EventHandler(this.But_them_Click);
+            this.buttonNewProduct.BackColor = System.Drawing.Color.Snow;
+            this.buttonNewProduct.FlatAppearance.BorderSize = 0;
+            this.buttonNewProduct.Image = ((System.Drawing.Image)(resources.GetObject("buttonNewProduct.Image")));
+            this.buttonNewProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonNewProduct.Location = new System.Drawing.Point(3, 3);
+            this.buttonNewProduct.Name = "buttonNewProduct";
+            this.buttonNewProduct.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
+            this.buttonNewProduct.Size = new System.Drawing.Size(248, 38);
+            this.buttonNewProduct.TabIndex = 0;
+            this.buttonNewProduct.Text = "Thêm sản phẩm";
+            this.buttonNewProduct.UseVisualStyleBackColor = false;
+            this.buttonNewProduct.Click += new System.EventHandler(this.But_them_Click);
             // 
             // men_nsx
             // 
             this.men_nsx.AutoSize = false;
-            this.men_nsx.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.men_nsx.BackColor = System.Drawing.Color.Snow;
             this.men_nsx.Dock = System.Windows.Forms.DockStyle.None;
             this.men_nsx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.men_nsx.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -272,7 +271,7 @@
             this.men_nsx.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.men_nsx.Location = new System.Drawing.Point(8, 265);
             this.men_nsx.Name = "men_nsx";
-            this.men_nsx.Size = new System.Drawing.Size(235, 38);
+            this.men_nsx.Size = new System.Drawing.Size(243, 38);
             this.men_nsx.TabIndex = 1;
             // 
             // tsmi_them
@@ -283,7 +282,7 @@
             this.tsm_doituong,
             this.tsm_donvi});
             this.tsmi_them.Name = "tsmi_them";
-            this.tsmi_them.Size = new System.Drawing.Size(232, 34);
+            this.tsmi_them.Size = new System.Drawing.Size(232, 32);
             this.tsmi_them.Text = "Tùy chọn";
             this.tsmi_them.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmi_them.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
@@ -319,8 +318,8 @@
             this.panelChiTiet.Controls.Add(this.label6);
             this.panelChiTiet.Controls.Add(this.comboBoxDonVi);
             this.panelChiTiet.Controls.Add(this.che_trangthai);
-            this.panelChiTiet.Controls.Add(this.but_xoa);
-            this.panelChiTiet.Controls.Add(this.but_luu);
+            this.panelChiTiet.Controls.Add(this.buttonDelete);
+            this.panelChiTiet.Controls.Add(this.buttonSave);
             this.panelChiTiet.Controls.Add(this.tex_soluong);
             this.panelChiTiet.Controls.Add(this.label7);
             this.panelChiTiet.Controls.Add(this.textBoxGiaNhap);
@@ -413,28 +412,28 @@
             this.che_trangthai.Text = "Đang kinh doanh";
             this.che_trangthai.UseVisualStyleBackColor = true;
             // 
-            // but_xoa
+            // buttonDelete
             // 
-            this.but_xoa.BackColor = System.Drawing.Color.LightSalmon;
-            this.but_xoa.Location = new System.Drawing.Point(350, 865);
-            this.but_xoa.Name = "but_xoa";
-            this.but_xoa.Size = new System.Drawing.Size(128, 32);
-            this.but_xoa.TabIndex = 28;
-            this.but_xoa.Text = "Xóa";
-            this.but_xoa.UseVisualStyleBackColor = false;
-            this.but_xoa.Click += new System.EventHandler(this.But_xoa_Click);
+            this.buttonDelete.BackColor = System.Drawing.Color.LightSalmon;
+            this.buttonDelete.Location = new System.Drawing.Point(350, 865);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(128, 32);
+            this.buttonDelete.TabIndex = 28;
+            this.buttonDelete.Text = "Xóa";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.But_xoa_Click);
             // 
-            // but_luu
+            // buttonSave
             // 
-            this.but_luu.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.but_luu.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.but_luu.Location = new System.Drawing.Point(122, 865);
-            this.but_luu.Name = "but_luu";
-            this.but_luu.Size = new System.Drawing.Size(128, 32);
-            this.but_luu.TabIndex = 26;
-            this.but_luu.Text = "Lưu";
-            this.but_luu.UseVisualStyleBackColor = false;
-            this.but_luu.Click += new System.EventHandler(this.But_luu_Click);
+            this.buttonSave.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.buttonSave.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonSave.Location = new System.Drawing.Point(122, 865);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(128, 32);
+            this.buttonSave.TabIndex = 26;
+            this.buttonSave.Text = "Lưu";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.But_luu_Click);
             // 
             // tex_soluong
             // 
@@ -743,7 +742,7 @@
             this.BackColor = System.Drawing.Color.MintCream;
             this.Controls.Add(this.pan_grid);
             this.Controls.Add(this.panelChiTiet);
-            this.Controls.Add(this.pan_menu);
+            this.Controls.Add(this.panelMenu);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SanPhamUC";
@@ -753,7 +752,7 @@
             this.Load += new System.EventHandler(this.SanPhamUC_LoadAsync);
             ((System.ComponentModel.ISupportInitialize)(this.dat_sanpham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
-            this.pan_menu.ResumeLayout(false);
+            this.panelMenu.ResumeLayout(false);
             this.men_nsx.ResumeLayout(false);
             this.men_nsx.PerformLayout();
             this.panelChiTiet.ResumeLayout(false);
@@ -782,10 +781,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn doiTuongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn loaiHangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nhaSanXuatDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Panel pan_menu;
+        private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelChiTiet;
         private System.Windows.Forms.Panel pan_grid;
-        private System.Windows.Forms.Button but_them;
+        private System.Windows.Forms.Button buttonNewProduct;
         private System.Windows.Forms.Panel pan_timkiem;
         private System.Windows.Forms.Button but_timkiem;
         private System.Windows.Forms.TextBox tex_timkiem;
@@ -807,7 +806,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tex_soluong;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button but_luu;
+        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button but_loc;
         private System.Windows.Forms.GroupBox gro_boloc;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
@@ -818,7 +817,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsm_donvi;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.Button but_xoa;
+        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.CheckBox che_trangthai;
         private System.Windows.Forms.DataGridViewTextBoxColumn maSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn maNhaSanXuat;

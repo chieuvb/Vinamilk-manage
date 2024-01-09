@@ -1,4 +1,5 @@
 ﻿using GUI_vinamilk.Controls;
+using GUI_vinamilk.Modul;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,15 +13,39 @@ namespace GUI_vinamilk
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        LoggedInUser loggedInUser = new LoggedInUser();
+
+        private void Main_Load(object sender, EventArgs e)
         {
-            But_thanhtoan_Click(sender, e);
-            but_thanhtoan.BackColor = Color.DeepSkyBlue;
+            CheckLogin(sender, e);
+
+            ButtonThanhToan_Click(sender, e);
+            buttonThanhToan.BackColor = Color.DeepSkyBlue;
         }
 
-        private void But_thanhtoan_Click(object sender, EventArgs e)
+        private void CheckLogin(object sender, EventArgs e)
         {
-            UserControl tha = new ThanhToanUC("chieuvb");
+            loggedInUser = loggedInUser.CheckLogin(this);
+            if (loggedInUser != null)
+            {
+                if (loggedInUser.Role.Contains("nhanvien"))
+                {
+                    but_khachhang.Visible = false;
+                    but_nhanvien.Visible = false;
+                    but_thongke.Visible = false;
+                }
+                else
+                {
+                    but_khachhang.Visible = true;
+                    but_nhanvien.Visible = true;
+                    but_thongke.Visible = true;
+                }
+            }
+        }
+
+        private void ButtonThanhToan_Click(object sender, EventArgs e)
+        {
+            UserControl tha = new ThanhToanUC(loggedInUser);
             AddControl(tha, sender);
         }
 
@@ -51,7 +76,7 @@ namespace GUI_vinamilk
 
         private void But_sanpham_Click(object sender, EventArgs e)
         {
-            UserControl san = new SanPhamUC();
+            UserControl san = new SanPhamUC(loggedInUser);
             AddControl(san, sender);
         }
 
@@ -75,7 +100,10 @@ namespace GUI_vinamilk
 
         private void But_tuychon_Click(object sender, EventArgs e)
         {
-            UserControl tuy = new TuyChonUC();
+            TuyChonUC tuy = new TuyChonUC(this, loggedInUser);
+            tuy.Logout += CheckLogin;
+            tuy.ThanhToanClick += ButtonThanhToan_Click;
+
             AddControl(tuy, sender);
         }
     }

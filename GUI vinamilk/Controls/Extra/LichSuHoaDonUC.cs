@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI_vinamilk.Modul;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,15 +9,20 @@ namespace GUI_vinamilk.Controls.Extra
 {
     public partial class LichSuHoaDonUC : UserControl
     {
-        public LichSuHoaDonUC()
+        public LichSuHoaDonUC(LoggedInUser user)
         {
             InitializeComponent();
+            loggedInUser = user;
         }
 
         public event EventHandler BackButtonClicked;
+        readonly LoggedInUser loggedInUser;
 
         private void LichSuHoaDonUC_Load(object sender, EventArgs e)
         {
+            if (!loggedInUser.Role.Contains("admin"))
+                buttonDelete.Visible = false;
+
             using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
             {
                 dataGridViewDonHang.DataSource = vinamilkEntities.DonHangs.AsNoTracking().ToList();
@@ -84,6 +90,33 @@ namespace GUI_vinamilk.Controls.Extra
                 labelNgayMua.Text = donHang.ngayTao.ToString("D");
                 labelGiaGiam.Text = donHang.giaGiam.ToString();
                 labelTongTien.Text = donHang.tongTien.ToString();
+            }
+        }
+
+        private void ButtonXoa_Click(object sender, EventArgs e)
+        {
+            string maDonHang = labelMaDonHang.Text;
+            if (maDonHang != "madonhang")
+            {
+                if (MessageBox.Show("Bạn có thực sự muốn xóa hóa đơn " + maDonHang + " khỏi hệ thống?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    using (VinamilkEntities vinamilkEntities = new VinamilkEntities())
+                    {
+                        DonHang donHang = vinamilkEntities.DonHangs.FirstOrDefault(d => d.maDonHang == maDonHang.Replace("#", ""));
+                        if (donHang != null)
+                        {
+                            vinamilkEntities.DonHangs.Remove(donHang);
+                            vinamilkEntities.SaveChanges();
+
+                            MessageBox.Show("Xóa đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LichSuHoaDonUC_Load(sender, e);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy đơn hàng \"" + "" + "\"", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

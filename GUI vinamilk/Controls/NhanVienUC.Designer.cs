@@ -85,7 +85,7 @@
             // 
             // panelLeft
             // 
-            this.panelLeft.BackColor = System.Drawing.Color.PaleGreen;
+            this.panelLeft.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelLeft.Controls.Add(this.buttonChucVu);
             this.panelLeft.Controls.Add(this.buttonThemNhanVien);
@@ -108,15 +108,16 @@
             // 
             // buttonThemNhanVien
             // 
+            this.buttonThemNhanVien.BackColor = System.Drawing.Color.Snow;
             this.buttonThemNhanVien.Image = global::GUI_vinamilk.Properties.Resources.icons8_add_24;
             this.buttonThemNhanVien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonThemNhanVien.Location = new System.Drawing.Point(3, 3);
             this.buttonThemNhanVien.Name = "buttonThemNhanVien";
             this.buttonThemNhanVien.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.buttonThemNhanVien.Size = new System.Drawing.Size(248, 34);
+            this.buttonThemNhanVien.Size = new System.Drawing.Size(248, 38);
             this.buttonThemNhanVien.TabIndex = 0;
             this.buttonThemNhanVien.Text = "Thêm nhân viên";
-            this.buttonThemNhanVien.UseVisualStyleBackColor = true;
+            this.buttonThemNhanVien.UseVisualStyleBackColor = false;
             this.buttonThemNhanVien.Click += new System.EventHandler(this.ButtonThemNhanVien_Click);
             // 
             // panelRight

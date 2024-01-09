@@ -51,7 +51,7 @@ namespace GUI_vinamilk.Controls.Extra
                         maLoaiKhachHang = dataGridViewLoaiKhachHang["maLoaiKhachHangDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? "",
                         tenLoaiKhachHang = dataGridViewLoaiKhachHang["tenLoaiKhachHangDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? "",
                         moTa = dataGridViewLoaiKhachHang["moTaDataGridViewTextBoxColumn", e.RowIndex].Value?.ToString() ?? "",
-                        trangThai = (bool)dataGridViewLoaiKhachHang["trangThaiDataGridViewCheckBoxColumn", e.RowIndex].Value
+                        trangThai = true
                     };
 
                     if (dataGridViewLoaiKhachHang.Columns[e.ColumnIndex].Name == "luu")

@@ -26,7 +26,7 @@ namespace GUI_vinamilk
         public string diaChi { get; set; }
         public string soDienThoai { get; set; }
         public string email { get; set; }
-        public short diemTichLuy { get; set; }
+        public int diemTichLuy { get; set; }
         public System.DateTime ngayDangKy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

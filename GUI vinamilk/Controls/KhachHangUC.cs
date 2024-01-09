@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GUI_vinamilk.Controls
@@ -111,6 +110,8 @@ namespace GUI_vinamilk.Controls
             textBoxEmail.Clear();
             dateTimePickerNgayDangKy.Value = DateTime.Now;
             textBoxDiemTichLuy.Text = "0";
+
+            textBoxTenKhachHang.Focus();
         }
 
         private void GroupBoxThongTinKhachHang_Enter(object sender, EventArgs e)
@@ -216,7 +217,7 @@ namespace GUI_vinamilk.Controls
                     diaChi = textBoxDiaChi.Text.Trim(),
                     soDienThoai = textBoxSoDienThoai.Text.Trim(),
                     email = textBoxEmail.Text.Trim(),
-                    diemTichLuy = short.Parse(textBoxDiemTichLuy.Text.Trim()),
+                    diemTichLuy = int.Parse(textBoxDiemTichLuy.Text.Trim()),
                     ngayDangKy = dateTimePickerNgayDangKy.Value
                 };
 
@@ -244,7 +245,7 @@ namespace GUI_vinamilk.Controls
                 khach.diaChi = textBoxDiaChi.Text;
                 khach.soDienThoai = textBoxSoDienThoai.Text;
                 khach.email = textBoxEmail.Text;
-                khach.diemTichLuy = short.Parse(textBoxDiemTichLuy.Text);
+                khach.diemTichLuy = int.Parse(textBoxDiemTichLuy.Text);
                 khach.ngayDangKy = dateTimePickerNgayDangKy.Value;
 
                 vinamilkEntities.SaveChanges();

@@ -69,6 +69,7 @@
             this.khachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nhanVienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonDelete = new System.Windows.Forms.Button();
             columnHeaderSTT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelHead.SuspendLayout();
             this.panelChiTiet.SuspendLayout();
@@ -105,6 +106,7 @@
             // panelChiTiet
             // 
             this.panelChiTiet.BackColor = System.Drawing.Color.MintCream;
+            this.panelChiTiet.Controls.Add(this.buttonDelete);
             this.panelChiTiet.Controls.Add(this.labelTongTien);
             this.panelChiTiet.Controls.Add(this.label8);
             this.panelChiTiet.Controls.Add(this.labelGiaGiam);
@@ -305,6 +307,8 @@
             // 
             this.dataGridViewDonHang.AllowUserToAddRows = false;
             this.dataGridViewDonHang.AllowUserToDeleteRows = false;
+            this.dataGridViewDonHang.AllowUserToResizeColumns = false;
+            this.dataGridViewDonHang.AllowUserToResizeRows = false;
             this.dataGridViewDonHang.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -444,6 +448,17 @@
             // 
             this.donHangBindingSource.DataSource = typeof(GUI_vinamilk.DonHang);
             // 
+            // buttonXoa
+            // 
+            this.buttonDelete.BackColor = System.Drawing.Color.LightSalmon;
+            this.buttonDelete.Location = new System.Drawing.Point(374, 817);
+            this.buttonDelete.Name = "buttonXoa";
+            this.buttonDelete.Size = new System.Drawing.Size(106, 35);
+            this.buttonDelete.TabIndex = 15;
+            this.buttonDelete.Text = "Xóa";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.ButtonXoa_Click);
+            // 
             // LichSuHoaDonUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -502,5 +517,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label labelNgayMua;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

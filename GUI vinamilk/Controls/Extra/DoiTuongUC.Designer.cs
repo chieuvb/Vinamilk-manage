@@ -32,15 +32,15 @@
             this.pan_menu = new System.Windows.Forms.Panel();
             this.but_back = new System.Windows.Forms.Button();
             this.dat_doituong = new System.Windows.Forms.DataGridView();
+            this.doiTuongBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.maDoiTuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenDoiTuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moTaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trangThaiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.luu = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.xoa = new System.Windows.Forms.DataGridViewButtonColumn();
             this.sanPhamsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.doiTuongBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pan_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_doituong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doiTuongBindingSource)).BeginInit();
@@ -97,25 +97,15 @@
             this.dat_doituong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dat_loaihang_CellClick);
             this.dat_doituong.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.Dat_loaihang_RowPrePaint);
             // 
+            // doiTuongBindingSource
+            // 
+            this.doiTuongBindingSource.DataSource = typeof(GUI_vinamilk.DoiTuong);
+            // 
             // stt
             // 
             this.stt.HeaderText = "STT";
             this.stt.Name = "stt";
             this.stt.Width = 64;
-            // 
-            // luu
-            // 
-            this.luu.HeaderText = "";
-            this.luu.Name = "luu";
-            this.luu.Text = "Lưu";
-            this.luu.UseColumnTextForButtonValue = true;
-            // 
-            // xoa
-            // 
-            this.xoa.HeaderText = "";
-            this.xoa.Name = "xoa";
-            this.xoa.Text = "Xóa";
-            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // maDoiTuongDataGridViewTextBoxColumn
             // 
@@ -143,7 +133,22 @@
             this.trangThaiDataGridViewCheckBoxColumn.DataPropertyName = "trangThai";
             this.trangThaiDataGridViewCheckBoxColumn.HeaderText = "Trạng thái";
             this.trangThaiDataGridViewCheckBoxColumn.Name = "trangThaiDataGridViewCheckBoxColumn";
+            this.trangThaiDataGridViewCheckBoxColumn.Visible = false;
             this.trangThaiDataGridViewCheckBoxColumn.Width = 200;
+            // 
+            // luu
+            // 
+            this.luu.HeaderText = "";
+            this.luu.Name = "luu";
+            this.luu.Text = "Lưu";
+            this.luu.UseColumnTextForButtonValue = true;
+            // 
+            // xoa
+            // 
+            this.xoa.HeaderText = "";
+            this.xoa.Name = "xoa";
+            this.xoa.Text = "Xóa";
+            this.xoa.UseColumnTextForButtonValue = true;
             // 
             // sanPhamsDataGridViewTextBoxColumn
             // 
@@ -151,10 +156,6 @@
             this.sanPhamsDataGridViewTextBoxColumn.HeaderText = "SanPhams";
             this.sanPhamsDataGridViewTextBoxColumn.Name = "sanPhamsDataGridViewTextBoxColumn";
             this.sanPhamsDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // doiTuongBindingSource
-            // 
-            this.doiTuongBindingSource.DataSource = typeof(GUI_vinamilk.DoiTuong);
             // 
             // DoiTuongUC
             // 
@@ -180,6 +181,7 @@
         private System.Windows.Forms.Panel pan_menu;
         private System.Windows.Forms.Button but_back;
         private System.Windows.Forms.DataGridView dat_doituong;
+        private System.Windows.Forms.BindingSource doiTuongBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn stt;
         private System.Windows.Forms.DataGridViewTextBoxColumn maDoiTuongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenDoiTuongDataGridViewTextBoxColumn;
@@ -188,6 +190,5 @@
         private System.Windows.Forms.DataGridViewButtonColumn luu;
         private System.Windows.Forms.DataGridViewButtonColumn xoa;
         private System.Windows.Forms.DataGridViewTextBoxColumn sanPhamsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource doiTuongBindingSource;
     }
 }

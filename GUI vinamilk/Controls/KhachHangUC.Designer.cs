@@ -75,6 +75,7 @@
             // 
             // panelMenu
             // 
+            this.panelMenu.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMenu.Controls.Add(this.buttonLoaiKhachHang);
             this.panelMenu.Controls.Add(this.buttonKhachHangMoi);
@@ -86,8 +87,7 @@
             // 
             // buttonLoaiKhachHang
             // 
-            this.buttonLoaiKhachHang.BackColor = System.Drawing.Color.LightCyan;
-            this.buttonLoaiKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLoaiKhachHang.BackColor = System.Drawing.Color.Snow;
             this.buttonLoaiKhachHang.Location = new System.Drawing.Point(3, 446);
             this.buttonLoaiKhachHang.Name = "buttonLoaiKhachHang";
             this.buttonLoaiKhachHang.Size = new System.Drawing.Size(248, 36);
@@ -98,13 +98,15 @@
             // 
             // buttonKhachHangMoi
             // 
-            this.buttonKhachHangMoi.BackColor = System.Drawing.Color.SpringGreen;
-            this.buttonKhachHangMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKhachHangMoi.BackColor = System.Drawing.Color.Snow;
+            this.buttonKhachHangMoi.Image = global::GUI_vinamilk.Properties.Resources.icons8_add_24;
+            this.buttonKhachHangMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonKhachHangMoi.Location = new System.Drawing.Point(3, 3);
             this.buttonKhachHangMoi.Name = "buttonKhachHangMoi";
-            this.buttonKhachHangMoi.Size = new System.Drawing.Size(248, 36);
+            this.buttonKhachHangMoi.Size = new System.Drawing.Size(248, 38);
             this.buttonKhachHangMoi.TabIndex = 0;
             this.buttonKhachHangMoi.Text = "Đăng ký khách hàng mới";
+            this.buttonKhachHangMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonKhachHangMoi.UseVisualStyleBackColor = false;
             this.buttonKhachHangMoi.Click += new System.EventHandler(this.ButtonKhachHangMoi_Click);
             // 
