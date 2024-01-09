@@ -437,7 +437,7 @@ namespace GUI_vinamilk.Controls
 
                     DonHang donHang = new DonHang
                     {
-                        maDonHang = "dh" + DateTime.Now.ToString("yyMMddHHmmssffff"),
+                        maDonHang = "dh" + DateTime.Now.ToString("yyyyMMddHHmmssffff"),
                         maKhachHang = khachHang.maKhachHang,
                         maNhanVien = loggedInUser.Username,
                         hinhThucThanhToan = comboBoxPhuongThucThanhToan.SelectedItem.ToString(),
@@ -513,6 +513,7 @@ namespace GUI_vinamilk.Controls
                     labelChietKhau.Visible = false;
                     labelChietKhauNumber.Visible = false;
                     textBoxSanPham.Clear();
+                    chiTietDonHangs.Clear();
 
                     TimKiemKhachHang();
                 }
@@ -544,11 +545,11 @@ namespace GUI_vinamilk.Controls
 
         private void PrintBill()
         {
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
-            PrintDialog printDialog = new PrintDialog { Document = pd };
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+            PrintDialog printDialog = new PrintDialog { Document = printDocument };
 
-            pd.Print();
+            printDocument.Print();
         }
 
         private string maDonHang;

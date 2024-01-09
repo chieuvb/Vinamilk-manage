@@ -10,7 +10,7 @@ namespace GUI_vinamilk.Controls
 {
     public partial class TuyChonUC : UserControl
     {
-        public event EventHandler ReLogin;
+        public event EventHandler Logout;
         public event EventHandler ThanhToanClick;
 
         public TuyChonUC(Form form, LoggedInUser user)
@@ -93,7 +93,7 @@ namespace GUI_vinamilk.Controls
             loggedInUser.Username = string.Empty;
             loggedInUser.Role = string.Empty;
             Controls.Clear();
-            ReLogin?.Invoke(this, e);
+            Logout?.Invoke(this, e);
             ThanhToanClick?.Invoke(this, e);
         }
     }

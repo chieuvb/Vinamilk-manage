@@ -12,7 +12,7 @@
             <PropertyRef Name="maSanPham" />
           </Key>
           <Property Name="maChiTietDonHang" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="maDonHang" Type="nchar" MaxLength="18" Nullable="false" />
+          <Property Name="maDonHang" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="maSanPham" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="soLuong" Type="smallint" Nullable="false" />
           <Property Name="thanhTien" Type="float" Nullable="false" />
@@ -55,7 +55,7 @@
           <Key>
             <PropertyRef Name="maDonHang" />
           </Key>
-          <Property Name="maDonHang" Type="nchar" MaxLength="18" Nullable="false" />
+          <Property Name="maDonHang" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="maKhachHang" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="maNhanVien" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="hinhThucThanhToan" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -135,7 +135,7 @@
             <PropertyRef Name="maNhanVien" />
           </Key>
           <Property Name="maNhanVien" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="matKhau" Type="varchar" MaxLength="128" />
+          <Property Name="matKhau" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="quyenHan" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
@@ -178,7 +178,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChiTietSanPham_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChiTietSanPham" Type="Self.ChiTietSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
@@ -262,7 +264,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_NhanVien">
-          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="NhanVien">
@@ -342,7 +346,7 @@
             <PropertyRef Name="maSanPham" />
           </Key>
           <Property Name="maChiTietDonHang" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="maDonHang" Type="String" MaxLength="18" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="maDonHang" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maSanPham" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="soLuong" Type="Int16" Nullable="false" />
           <Property Name="thanhTien" Type="Double" Nullable="false" />
@@ -391,7 +395,7 @@
           <Key>
             <PropertyRef Name="maDonHang" />
           </Key>
-          <Property Name="maDonHang" Type="String" MaxLength="18" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="maDonHang" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maKhachHang" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="maNhanVien" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="hinhThucThanhToan" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
@@ -486,7 +490,7 @@
             <PropertyRef Name="maNhanVien" />
           </Key>
           <Property Name="maNhanVien" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="matKhau" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="matKhau" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="quyenHan" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="trangThai" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NhanVien" Relationship="Self.FK_TaiKhoan_NhanVien" FromRole="TaiKhoan" ToRole="NhanVien" />

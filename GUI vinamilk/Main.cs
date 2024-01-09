@@ -101,7 +101,7 @@ namespace GUI_vinamilk
         private void But_tuychon_Click(object sender, EventArgs e)
         {
             TuyChonUC tuy = new TuyChonUC(this, loggedInUser);
-            tuy.ReLogin += CheckLogin;
+            tuy.Logout += CheckLogin;
             tuy.ThanhToanClick += ButtonThanhToan_Click;
 
             AddControl(tuy, sender);

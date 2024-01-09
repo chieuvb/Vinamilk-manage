@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBoxInformation = new System.Windows.Forms.GroupBox();
             this.labelName = new System.Windows.Forms.Label();
             this.labelChucVu = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.buttonChangePassword = new System.Windows.Forms.Button();
             this.panelControl = new System.Windows.Forms.Panel();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelContainer.SuspendLayout();
             this.groupBoxInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHinhAnh)).BeginInit();
@@ -62,6 +62,17 @@
             this.panelContainer.Size = new System.Drawing.Size(1920, 939);
             this.panelContainer.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(648, 103);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(200, 48);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            // 
             // groupBoxInformation
             // 
             this.groupBoxInformation.Controls.Add(this.labelName);
@@ -69,7 +80,7 @@
             this.groupBoxInformation.Controls.Add(this.pictureBoxHinhAnh);
             this.groupBoxInformation.Location = new System.Drawing.Point(24, 24);
             this.groupBoxInformation.Name = "groupBoxInformation";
-            this.groupBoxInformation.Size = new System.Drawing.Size(600, 327);
+            this.groupBoxInformation.Size = new System.Drawing.Size(600, 232);
             this.groupBoxInformation.TabIndex = 7;
             this.groupBoxInformation.TabStop = false;
             this.groupBoxInformation.Text = "Thông tin cá nhân";
@@ -78,7 +89,7 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(236, 89);
+            this.labelName.Location = new System.Drawing.Point(183, 89);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(72, 27);
             this.labelName.TabIndex = 8;
@@ -88,7 +99,7 @@
             // 
             this.labelChucVu.AutoSize = true;
             this.labelChucVu.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelChucVu.Location = new System.Drawing.Point(234, 22);
+            this.labelChucVu.Location = new System.Drawing.Point(181, 22);
             this.labelChucVu.Name = "labelChucVu";
             this.labelChucVu.Size = new System.Drawing.Size(127, 37);
             this.labelChucVu.TabIndex = 7;
@@ -99,7 +110,7 @@
             this.pictureBoxHinhAnh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxHinhAnh.Location = new System.Drawing.Point(6, 25);
             this.pictureBoxHinhAnh.Name = "pictureBoxHinhAnh";
-            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(222, 296);
+            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(150, 200);
             this.pictureBoxHinhAnh.TabIndex = 0;
             this.pictureBoxHinhAnh.TabStop = false;
             // 
@@ -124,6 +135,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // button3
             // 
@@ -134,6 +146,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             // 
             // buttonExit
             // 
@@ -182,16 +195,6 @@
             this.buttonBack.TabIndex = 3;
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.ButtonBack_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(648, 103);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 48);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // TuyChonUC
             // 

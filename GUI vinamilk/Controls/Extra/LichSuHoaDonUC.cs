@@ -114,6 +114,10 @@ namespace GUI_vinamilk.Controls.Extra
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Không tìm thấy đơn hàng \"" + "" + "\"", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
