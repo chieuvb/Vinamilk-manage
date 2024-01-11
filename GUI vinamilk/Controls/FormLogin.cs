@@ -47,14 +47,10 @@ namespace GUI_vinamilk.Controls
                             Close();
                         }
                         else
-                        {
                             throw new Exception("Tên tài khoản hoặc mật khẩu không đúng!");
-                        }
                     }
                     else
-                    {
                         throw new Exception("Tên tài khoản hoặc mật khẩu không đúng!");
-                    }
                 }
             }
             catch (Exception ex)
