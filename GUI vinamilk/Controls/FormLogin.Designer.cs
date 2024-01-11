@@ -113,7 +113,6 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(408, 35);
             this.textBoxPassword.TabIndex = 1;
-            this.textBoxPassword.Text = "chieuvb";
             this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPassword_KeyPress);
             // 
             // textBoxUsername
@@ -123,7 +122,6 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(408, 35);
             this.textBoxUsername.TabIndex = 0;
-            this.textBoxUsername.Text = "chieuvb";
             this.textBoxUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxUsername_KeyPress);
             // 
             // FormLogin
