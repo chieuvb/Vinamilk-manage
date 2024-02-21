@@ -477,6 +477,11 @@ namespace GUI_vinamilk.Controls
                         foreach (ChiTietDonHang chiTiet in chiTietDonHangs)
                         {
                             vinamilkEntities.ChiTietDonHangs.Add(chiTiet);
+
+                            ChiTietSanPham chi = vinamilkEntities.ChiTietSanPhams.FirstOrDefault(s => s.maSanPham == chiTiet.maSanPham);
+
+                            if (chi != null)
+                                chi.soLuong -= chiTiet.soLuong;
                         }
 
                         if (donHang.maKhachHang != "kh-khdonle")

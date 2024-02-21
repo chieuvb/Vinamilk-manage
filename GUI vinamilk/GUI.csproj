@@ -365,6 +365,14 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\image\employees\chieuvb.png" />
+    <Content Include="Resources\image\employees\nvbuivafsc.png" />
+    <Content Include="Resources\image\employees\nvnanamylf.png" />
+    <Content Include="Resources\image\products\spcreamp4a.png" />
+    <Content Include="Resources\image\products\spcreamphc.png" />
+    <Content Include="Resources\image\products\spsuada2zl.png" />
+    <Content Include="Resources\image\products\spsuatudv5.png" />
+    <Content Include="Resources\image\products\spsuatuzir.png" />
     <None Include="Resources\icons8-user-96.png" />
     <None Include="Resources\icons8-exit-24.png" />
     <None Include="Resources\vinamilk-logo-new.png" />
