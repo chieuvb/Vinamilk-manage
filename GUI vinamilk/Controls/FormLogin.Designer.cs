@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class FormLogin
     {
@@ -58,7 +58,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI_vinamilk.Properties.Resources.icons8_user_96;
+            this.pictureBox1.Image = global::milk_sales_manager.Properties.Resources.icons8_user_96;
             this.pictureBox1.Location = new System.Drawing.Point(31, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(96, 96);

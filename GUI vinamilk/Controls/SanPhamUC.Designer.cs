@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class SanPhamUC
     {
@@ -230,7 +230,7 @@
             // 
             // sanPhamBindingSource
             // 
-            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
+            this.sanPhamBindingSource.DataSource = typeof(milk_sales_manager.SanPham);
             // 
             // panelMenu
             // 
@@ -350,7 +350,7 @@
             this.but_closepan.BackColor = System.Drawing.Color.LightSteelBlue;
             this.but_closepan.FlatAppearance.BorderSize = 0;
             this.but_closepan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.but_closepan.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.but_closepan.Image = global::milk_sales_manager.Properties.Resources.icons8_close_24;
             this.but_closepan.Location = new System.Drawing.Point(470, 5);
             this.but_closepan.Name = "but_closepan";
             this.but_closepan.Size = new System.Drawing.Size(34, 34);
@@ -664,7 +664,7 @@
             // 
             this.but_loc.BackColor = System.Drawing.Color.MistyRose;
             this.but_loc.FlatAppearance.BorderSize = 0;
-            this.but_loc.Image = global::GUI_vinamilk.Properties.Resources.icons8_filter_24;
+            this.but_loc.Image = global::milk_sales_manager.Properties.Resources.icons8_filter_24;
             this.but_loc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_loc.Location = new System.Drawing.Point(869, 8);
             this.but_loc.Name = "but_loc";
@@ -707,7 +707,7 @@
             // 
             this.but_timkiem.BackColor = System.Drawing.Color.MistyRose;
             this.but_timkiem.FlatAppearance.BorderSize = 0;
-            this.but_timkiem.Image = global::GUI_vinamilk.Properties.Resources.icons8_search_24;
+            this.but_timkiem.Image = global::milk_sales_manager.Properties.Resources.icons8_search_24;
             this.but_timkiem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_timkiem.Location = new System.Drawing.Point(732, 8);
             this.but_timkiem.Name = "but_timkiem";

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk
+namespace milk_sales_manager
 {
     internal static class Program
     {

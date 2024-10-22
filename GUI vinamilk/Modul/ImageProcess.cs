@@ -1,10 +1,10 @@
-﻿using GUI_vinamilk.Properties;
+﻿using milk_sales_manager.Properties;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk.Modul
+namespace milk_sales_manager.Modul
 {
     internal class ImageProcess
     {

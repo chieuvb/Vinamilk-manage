@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class ThongKeUC
     {

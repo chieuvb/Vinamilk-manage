@@ -1,6 +1,6 @@
-﻿using GUI_vinamilk.Controls.Extra;
-using GUI_vinamilk.Modul;
-using GUI_vinamilk.Properties;
+﻿using milk_sales_manager.Controls.Extra;
+using milk_sales_manager.Modul;
+using milk_sales_manager.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk.Controls
+namespace milk_sales_manager.Controls
 {
     public partial class ThanhToanUC : UserControl
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GUI_vinamilk.Properties
+namespace milk_sales_manager.Properties
 {
 
 

@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace GUI_vinamilk.Modul
+namespace milk_sales_manager.Modul
 {
     public class EncodePassword
     {

@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class TuyChonUC
     {
@@ -152,7 +152,7 @@
             // 
             this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonExit.BackColor = System.Drawing.Color.MistyRose;
-            this.buttonExit.Image = global::GUI_vinamilk.Properties.Resources.icons8_exit_24;
+            this.buttonExit.Image = global::milk_sales_manager.Properties.Resources.icons8_exit_24;
             this.buttonExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonExit.Location = new System.Drawing.Point(24, 880);
             this.buttonExit.Name = "buttonExit";
@@ -188,7 +188,7 @@
             // buttonBack
             // 
             this.buttonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonBack.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.buttonBack.Image = global::milk_sales_manager.Properties.Resources.icons8_close_24;
             this.buttonBack.Location = new System.Drawing.Point(1850, 24);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(48, 48);

@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class NhanVienUC
     {
@@ -109,7 +109,7 @@
             // buttonThemNhanVien
             // 
             this.buttonThemNhanVien.BackColor = System.Drawing.Color.Snow;
-            this.buttonThemNhanVien.Image = global::GUI_vinamilk.Properties.Resources.icons8_add_24;
+            this.buttonThemNhanVien.Image = global::milk_sales_manager.Properties.Resources.icons8_add_24;
             this.buttonThemNhanVien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonThemNhanVien.Location = new System.Drawing.Point(3, 3);
             this.buttonThemNhanVien.Name = "buttonThemNhanVien";
@@ -171,7 +171,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.buttonClose.Image = global::milk_sales_manager.Properties.Resources.icons8_close_24;
             this.buttonClose.Location = new System.Drawing.Point(5, 4);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(32, 32);
@@ -528,11 +528,11 @@
             // 
             // nhanVienBindingSource
             // 
-            this.nhanVienBindingSource.DataSource = typeof(GUI_vinamilk.NhanVien);
+            this.nhanVienBindingSource.DataSource = typeof(milk_sales_manager.NhanVien);
             // 
             // chucVuBindingSource
             // 
-            this.chucVuBindingSource.DataSource = typeof(GUI_vinamilk.ChucVu);
+            this.chucVuBindingSource.DataSource = typeof(milk_sales_manager.ChucVu);
             // 
             // NhanVienUC
             // 

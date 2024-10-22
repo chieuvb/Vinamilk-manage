@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls.Extra
+﻿namespace milk_sales_manager.Controls.Extra
 {
     partial class NhaSanXuatUC
     {
@@ -63,7 +63,7 @@
             // but_back
             // 
             this.but_back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.but_back.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.but_back.Image = global::milk_sales_manager.Properties.Resources.icons8_close_24;
             this.but_back.Location = new System.Drawing.Point(1162, 4);
             this.but_back.Margin = new System.Windows.Forms.Padding(4);
             this.but_back.Name = "but_back";
@@ -156,7 +156,7 @@
             // 
             // nhaSanXuatBindingSource1
             // 
-            this.nhaSanXuatBindingSource1.DataSource = typeof(GUI_vinamilk.NhaSanXuat);
+            this.nhaSanXuatBindingSource1.DataSource = typeof(milk_sales_manager.NhaSanXuat);
             // 
             // NhaSanXuatUC
             // 

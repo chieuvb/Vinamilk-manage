@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class KhachHangUC
     {
@@ -99,7 +99,7 @@
             // buttonKhachHangMoi
             // 
             this.buttonKhachHangMoi.BackColor = System.Drawing.Color.Snow;
-            this.buttonKhachHangMoi.Image = global::GUI_vinamilk.Properties.Resources.icons8_add_24;
+            this.buttonKhachHangMoi.Image = global::milk_sales_manager.Properties.Resources.icons8_add_24;
             this.buttonKhachHangMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonKhachHangMoi.Location = new System.Drawing.Point(3, 3);
             this.buttonKhachHangMoi.Name = "buttonKhachHangMoi";
@@ -403,7 +403,7 @@
             // 
             // khachHangBindingSource
             // 
-            this.khachHangBindingSource.DataSource = typeof(GUI_vinamilk.KhachHang);
+            this.khachHangBindingSource.DataSource = typeof(milk_sales_manager.KhachHang);
             // 
             // panelContainer
             // 

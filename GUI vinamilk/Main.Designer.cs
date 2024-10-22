@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk
+﻿namespace milk_sales_manager
 {
     partial class Main
     {
@@ -60,7 +60,7 @@
             this.but_tuychon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.but_tuychon.BackColor = System.Drawing.Color.MintCream;
             this.but_tuychon.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_tuychon.Image = global::GUI_vinamilk.Properties.Resources.icons8_options_32;
+            this.but_tuychon.Image = global::milk_sales_manager.Properties.Resources.icons8_options_32;
             this.but_tuychon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_tuychon.Location = new System.Drawing.Point(846, 12);
             this.but_tuychon.Name = "but_tuychon";
@@ -75,7 +75,7 @@
             // 
             this.but_thongke.BackColor = System.Drawing.Color.MintCream;
             this.but_thongke.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_thongke.Image = global::GUI_vinamilk.Properties.Resources.icons8_chart_32;
+            this.but_thongke.Image = global::milk_sales_manager.Properties.Resources.icons8_chart_32;
             this.but_thongke.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_thongke.Location = new System.Drawing.Point(636, 12);
             this.but_thongke.Name = "but_thongke";
@@ -90,7 +90,7 @@
             // 
             this.but_khachhang.BackColor = System.Drawing.Color.MintCream;
             this.but_khachhang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_khachhang.Image = global::GUI_vinamilk.Properties.Resources.icons8_customer_32;
+            this.but_khachhang.Image = global::milk_sales_manager.Properties.Resources.icons8_customer_32;
             this.but_khachhang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_khachhang.Location = new System.Drawing.Point(480, 12);
             this.but_khachhang.Name = "but_khachhang";
@@ -105,7 +105,7 @@
             // 
             this.but_nhanvien.BackColor = System.Drawing.Color.MintCream;
             this.but_nhanvien.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_nhanvien.Image = global::GUI_vinamilk.Properties.Resources.icons8_employee_32;
+            this.but_nhanvien.Image = global::milk_sales_manager.Properties.Resources.icons8_employee_32;
             this.but_nhanvien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_nhanvien.Location = new System.Drawing.Point(324, 12);
             this.but_nhanvien.Name = "but_nhanvien";
@@ -120,7 +120,7 @@
             // 
             this.but_sanpham.BackColor = System.Drawing.Color.MintCream;
             this.but_sanpham.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_sanpham.Image = global::GUI_vinamilk.Properties.Resources.icons8_product_32;
+            this.but_sanpham.Image = global::milk_sales_manager.Properties.Resources.icons8_product_32;
             this.but_sanpham.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.but_sanpham.Location = new System.Drawing.Point(168, 12);
             this.but_sanpham.Name = "but_sanpham";
@@ -135,7 +135,7 @@
             // 
             this.buttonThanhToan.BackColor = System.Drawing.Color.MintCream;
             this.buttonThanhToan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonThanhToan.Image = global::GUI_vinamilk.Properties.Resources.icons8_bill_32;
+            this.buttonThanhToan.Image = global::milk_sales_manager.Properties.Resources.icons8_bill_32;
             this.buttonThanhToan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonThanhToan.Location = new System.Drawing.Point(12, 12);
             this.buttonThanhToan.Name = "buttonThanhToan";

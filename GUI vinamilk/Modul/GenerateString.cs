@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace GUI_vinamilk.Modul
+namespace milk_sales_manager.Modul
 {
     internal class GenerateString
     {

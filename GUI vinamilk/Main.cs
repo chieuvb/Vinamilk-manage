@@ -1,10 +1,10 @@
-﻿using GUI_vinamilk.Controls;
-using GUI_vinamilk.Modul;
+﻿using milk_sales_manager.Controls;
+using milk_sales_manager.Modul;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk
+namespace milk_sales_manager
 {
     public partial class Main : Form
     {

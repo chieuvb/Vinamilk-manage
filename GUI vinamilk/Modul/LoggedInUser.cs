@@ -1,7 +1,7 @@
-﻿using GUI_vinamilk.Controls;
+﻿using milk_sales_manager.Controls;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk.Modul
+namespace milk_sales_manager.Modul
 {
     public class LoggedInUser
     {

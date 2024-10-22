@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GUI_vinamilk
+namespace milk_sales_manager
 {
     using System;
     using System.Collections.Generic;

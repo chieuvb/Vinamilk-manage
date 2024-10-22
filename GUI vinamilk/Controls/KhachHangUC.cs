@@ -1,4 +1,4 @@
-﻿using GUI_vinamilk.Controls.Extra;
+﻿using milk_sales_manager.Controls.Extra;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk.Controls
+namespace milk_sales_manager.Controls
 {
     public partial class KhachHangUC : UserControl
     {

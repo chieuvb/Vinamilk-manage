@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk.Controls.Extra
+namespace milk_sales_manager.Controls.Extra
 {
     public partial class DonViTinhUC : UserControl
     {

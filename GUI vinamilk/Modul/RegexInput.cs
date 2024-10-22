@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace GUI_vinamilk
+namespace milk_sales_manager
 {
     internal class RegexInput
     {

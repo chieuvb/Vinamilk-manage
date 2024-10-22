@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls
+﻿namespace milk_sales_manager.Controls
 {
     partial class ThanhToanUC
     {
@@ -177,7 +177,7 @@
             // 
             // sanPhamBindingSource
             // 
-            this.sanPhamBindingSource.DataSource = typeof(GUI_vinamilk.SanPham);
+            this.sanPhamBindingSource.DataSource = typeof(milk_sales_manager.SanPham);
             // 
             // panelLeft
             // 
@@ -625,7 +625,7 @@
             // 
             // khachHangBindingSource
             // 
-            this.khachHangBindingSource.DataSource = typeof(GUI_vinamilk.KhachHang);
+            this.khachHangBindingSource.DataSource = typeof(milk_sales_manager.KhachHang);
             // 
             // textBoxKhachHang
             // 

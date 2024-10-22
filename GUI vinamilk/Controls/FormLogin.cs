@@ -1,9 +1,9 @@
-﻿using GUI_vinamilk.Modul;
+﻿using milk_sales_manager.Modul;
 using System;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace GUI_vinamilk.Controls
+namespace milk_sales_manager.Controls
 {
     public partial class FormLogin : Form
     {

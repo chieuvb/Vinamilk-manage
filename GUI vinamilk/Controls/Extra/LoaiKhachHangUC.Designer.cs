@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls.Extra
+﻿namespace milk_sales_manager.Controls.Extra
 {
     partial class LoaiKhachHangUC
     {
@@ -61,7 +61,7 @@
             // buttonBack
             // 
             this.buttonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonBack.Image = global::GUI_vinamilk.Properties.Resources.icons8_close_24;
+            this.buttonBack.Image = global::milk_sales_manager.Properties.Resources.icons8_close_24;
             this.buttonBack.Location = new System.Drawing.Point(1619, 3);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(40, 40);
@@ -104,7 +104,7 @@
             // 
             // loaiKhachHangBindingSource
             // 
-            this.loaiKhachHangBindingSource.DataSource = typeof(GUI_vinamilk.LoaiKhachHang);
+            this.loaiKhachHangBindingSource.DataSource = typeof(milk_sales_manager.LoaiKhachHang);
             // 
             // stt
             // 

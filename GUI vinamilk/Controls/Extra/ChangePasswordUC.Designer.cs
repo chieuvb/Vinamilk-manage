@@ -1,4 +1,4 @@
-﻿namespace GUI_vinamilk.Controls.Extra
+﻿namespace milk_sales_manager.Controls.Extra
 {
     partial class ChangePasswordUC
     {
